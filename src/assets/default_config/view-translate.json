@@ -1,0 +1,63 @@
+[
+  {
+    "key": "menu",
+    "translate": { "en": "Menu", "fr": "Menu" }
+  },{
+    "key": "shop",
+    "translate": { "en": "Shop", "fr": "Boutique" }
+  },{
+    "key": "about",
+    "translate": { "en": "About", "fr": "À propos" }
+  }, {
+    "key": "contact",
+    "translate": { "en": "Contact", "fr": "Contact" }
+  }, {
+    "key": "events",
+    "translate": { "en": "Events", "fr": "Évènement" }
+  }, {
+    "key": "designer.circle",
+    "translate": { "en": "Designer circle", "fr": "Cercle de créateur" }
+  }, {
+    "key": "merchant",
+    "translate": { "en": "Merchant", "fr": "Marchant" }
+  }, {
+    "key": "admin",
+    "translate": { "en": "Admin", "fr": "Admin" }
+  }, {
+    "key": "tooltip.menu",
+    "translate": { "en": "Menu display", "fr": "Afficher le menu" }
+  }, {
+    "key": "aria.label.btn.menu",
+    "translate": { "en": "Menu display buton", "fr": "Bouton d'affichage du menu" }
+  }, {
+    "key": "signup",
+    "translate": { "en": "Sign up", "fr": "S'enregistrer" }
+  }, {
+    "key": "signin",
+    "translate": { "en": "Sign in", "fr": "Connexion" }
+  }, {
+    "key": "logout",
+    "translate": { "en": "Logout", "fr": "Déconnexion" }
+  }, {
+    "key": "username",
+    "translate": { "en": "Username", "fr": "Nom d'utilisateur"}
+  }, {
+    "key": "username.required",
+    "translate": { "en": "Username is required", "fr": "Le nom d'utilisateur est requis" }
+  }, {
+    "key": "password",
+    "translate": { "en": "Password", "fr": "Mot de passe" }
+  }, {
+    "key": "hide.password",
+    "translate": { "en": "Hide password", "fr": "Cacher le mot de passe" }
+  }, {
+    "key": "show.password",
+    "translate": { "en": "Show password", "fr": "Afficher le mot de passe" }
+  }, {
+    "key": "password.required",
+    "translate": { "en": "Password is required", "fr": "Le mot de passe est requis" }
+  }, {
+    "key": "don.t.have.account",
+    "translate": { "en": "You don't have an account:", "fr": "Vous n'avez pas encore de compte :" }
+  }
+]

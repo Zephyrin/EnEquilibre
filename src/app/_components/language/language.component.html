@@ -1,0 +1,24 @@
+<button mat-button
+        [matMenuTriggerFor]="menu"
+        [attr.aria-label]="vt.translate('aria.label.language')">Language
+  <img *ngIf="language.language === 'en'"
+       [src]="getEnglishFlag()"
+       [alt]="vt.translate('english_flag')"
+       width="20" />
+  <img *ngIf="language.language === 'fr'"
+       [src]="getFranceFlag()"
+       [alt]="vt.translate('france_flag')"
+       width="20" />
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item
+          [disabled]="language.language === 'fr'"
+          (click)="select('fr')"><img [src]="getFranceFlag()"
+         [alt]="vt.translate('france_flag')"
+         width="20" />Français</button>
+  <button mat-menu-item
+          [disabled]="language.language === 'en'"
+          (click)="select('en')"><img [src]="getEnglishFlag()"
+         [alt]="vt.translate('english_flag')"
+         width="20" />English</button>
+</mat-menu>

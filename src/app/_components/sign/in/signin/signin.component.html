@@ -1,0 +1,71 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <form [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()">
+    <mat-card class="full-width">
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput
+                     required
+                     #login
+                     [placeholder]="vt.translate('username')"
+                     formControlName="username" />
+              <mat-error *ngIf="submitted && f.username.errors">
+                <div *ngIf="f.username.errors.required">{{vt.translate('username.required')}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput
+                     required
+                     #password
+                     [placeholder]="vt.translate('password')"
+                     [type]="hide ? 'password' : 'text'"
+                     formControlName="password" />
+              <button mat-icon-button
+                      matSuffix
+                      type="button"
+                      role="button"
+                      (click)="hide = !hide"
+                      [matTooltip]="hide ? vt.translate('show.password') : vt.translate('hide.password')"
+                      [attr.aria-label]="hide ? vt.translate('show.password') : vt.translate('hide.password')"
+                      [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="submitted && f.password.errors">
+                <div *ngIf="f.password.errors.required">{{vt.translate('password.required')}}</div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div *ngIf="submitted && error.hasMessage"
+                 class="alert alert-warning full-width">
+              <div>{{error.message}}</div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button
+                [disabled]="loading"
+                color="primary"
+                type="submit">
+          <span *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"></span>
+          {{vt.translate('signin')}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <span class="d-flex justify-content-center align-items-center mt-3">
+    {{vt.translate('don.t.have.account')}}
+    <a routerLink="/signup"
+       mat-button>{{vt.translate('signup')}}</a>
+  </span>
+</div>
