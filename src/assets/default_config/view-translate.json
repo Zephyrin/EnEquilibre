@@ -5,7 +5,10 @@
   },{
     "key": "shop",
     "translate": { "en": "Shop", "fr": "Boutique" }
-  },{
+  }, {
+    "key": "gallery",
+    "translate": { "en": "Gallery", "fr": "Galerie" }
+  }, {
     "key": "about",
     "translate": { "en": "About", "fr": "À propos" }
   }, {
@@ -59,5 +62,11 @@
   }, {
     "key": "don.t.have.account",
     "translate": { "en": "You don't have an account:", "fr": "Vous n'avez pas encore de compte :" }
+  }, {
+    "key": "aria.label.language",
+    "translate": { "en": "Menu to select language", "fr": "Menu de sélection de la langue" }
+  }, {
+    "key": "language",
+    "translate": { "en": "Language", "fr": "Langue" }
   }
 ]

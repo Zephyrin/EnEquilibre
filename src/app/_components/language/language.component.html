@@ -1,6 +1,6 @@
 <button mat-button
         [matMenuTriggerFor]="menu"
-        [attr.aria-label]="vt.translate('aria.label.language')">Language
+        [attr.aria-label]="vt.translate('aria.label.language')">{{vt.translate('language')}}
   <img *ngIf="language.language === 'en'"
        [src]="getEnglishFlag()"
        [alt]="vt.translate('english_flag')"
