@@ -1,3 +1,4 @@
+import { Mediaobject } from './../../_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';
 import { ViewTranslateService } from './../../_services/view-translate.service';
 import { HomeService } from './../../_services/home/home.service';
@@ -22,7 +23,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(ImageDialogComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      this.home.updateBackground(new Mediaobject(result.data));
     });
   }
 }

@@ -7,6 +7,7 @@ import { ViewTranslateService } from './../../_services/view-translate.service';
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-image-dialog',
@@ -15,13 +16,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class ImageDialogComponent implements OnInit, AfterViewInit {
   @ViewChild('descriptionInput') descriptionInput: TranslateComponent;
+  @ViewChild('tabGroup') tabGroup: MatTabGroup;
   form: FormGroup;
   loading = false;
   submitted = false;
   errors = new FormErrors();
   imageSrc: SafeResourceUrl;
   fileName: string;
-
+  medias: Mediaobject[];
+  selectedImg: Mediaobject;
+  tabPosition = 0;
   get f() { return this.form.controls; }
 
   constructor(
@@ -52,13 +56,17 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(): void {
-    this.errors = new FormErrors();
-    this.submitted = true;
-    if (this.form.invalid) {
-      return;
+    if (this.tabPosition === 0) {
+      this.errors = new FormErrors();
+      this.submitted = true;
+      if (this.form.invalid) {
+        return;
+      }
+      this.loading = true;
+      this.manageImg();
+    } else {
+      this.dialogRef.close({ data: this.selectedImg });
     }
-    this.loading = true;
-    this.manageImg();
   }
 
   manageImg() {
@@ -90,7 +98,7 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     this.loading = false;
     this.submitted = false;
     this.data = mediaObject;
-    this.dialogRef.close();
+    this.dialogRef.close({ data: mediaObject });
   }
 
   endTransactionError(error) {
@@ -118,5 +126,24 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     this.form.patchValue({ filePath: null });
     this.form.controls.image.markAsTouched();
     this.form.controls.filePath.markAsTouched();
+  }
+
+  updateMediasList(tabChangeEvent: MatTabChangeEvent): void {
+    this.tabPosition = tabChangeEvent.index;
+    if (tabChangeEvent.index > 0) {
+      this.loading = true;
+      this.mediaService.getAll(null).subscribe(response => {
+        this.medias = response.body.map((x) => new Mediaobject(x));
+        this.loading = false;
+      });
+    }
+  }
+
+  selectImg(img: Mediaobject) {
+    if (this.selectedImg === img) {
+      this.selectedImg = undefined;
+    } else {
+      this.selectedImg = img;
+    }
   }
 }

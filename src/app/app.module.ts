@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { SigninComponent } from './_components/sign/in/signin/signin.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -57,6 +58,7 @@ import { TranslateComponent } from './_components/helpers/translate/translate.co
     MatMenuModule,
     MatTabsModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     NgbModule
   ],
   providers: [
