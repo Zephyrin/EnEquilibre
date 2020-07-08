@@ -1,5 +1,5 @@
 import { LanguageService } from './language.service';
-import { ViewTranslateHttpService } from './vîew-translate-http.service';
+import { ViewTranslateHttpService } from './view-translate-http.service';
 import { HttpClient } from '@angular/common/http';
 import { ViewTranslate } from './../_models/view-translate';
 import { Injectable } from '@angular/core';
