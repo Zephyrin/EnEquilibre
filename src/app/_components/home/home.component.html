@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <img [src]="home.home?.background?.url()"
+         [alt]="home.home?.background?.description|| vt.translate('click.add.background')"
+         [ngClass]="{ 'border': (home.home?.background || true) || home.edit}"
+         class="img-fluid size" />
+    <button mat-mini-fab
+            color="primary"
+            *ngIf="home.edit"
+            (click)="openDialog()"
+            [matTooltip]="vt.translate('click.add.background')"
+            [attr.aria-label]="vt.translate('click.add.background')">
+      <mat-icon>image</mat-icon>
+    </button>
+  </div>
+  <div class="row justify-content-center">
+    <img [src]="home.home?.separator?.url()"
+         [alt]="home.home?.separator?.description|| vt.translate('click.add.separator')"
+         [ngClass]="{ 'border': (home.home?.separator || true) || home.edit}"
+         class="img-fluid min-size" />
+    <button mat-mini-fab
+            color="primary"
+            *ngIf="home.edit"
+            (click)="openDialog()"
+            [matTooltip]="vt.translate('click.add.separator')"
+            [attr.aria-label]="vt.translate('click.add.separator')">
+      <mat-icon>image</mat-icon>
+    </button>
+  </div>
+</div>
+<div class="container">
+  <button mat-fab
+          color="primary"
+          class="action-bottom"
+          *ngIf="home.canEdit"
+          (click)="home.edit = !home.edit"
+          [matTooltip]="vt.translate('aria.edit.home')"
+          [attr.aria-label]="vt.translate('aria.edit.home')">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

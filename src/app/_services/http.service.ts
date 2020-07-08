@@ -14,6 +14,10 @@ export abstract class HttpService<T> {
 
   abstract get(id: string): Observable<T>;
 
+  abstract getMerchant(id: string): Observable<T>;
+
+  abstract getAllMerchant(httpParams: HttpParams): Observable<HttpResponse<T[]>>;
+
   handleError(error: any) {
     if (error instanceof String
       || typeof (error) === 'string') {

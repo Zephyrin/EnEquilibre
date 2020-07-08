@@ -12,6 +12,8 @@ export class ViewTranslateService {
   public loading = true;
 
   private translate$: ViewTranslate[] = [];
+
+  get language() { return this.lang.language; }
   constructor(
     private http: HttpClient,
     private service: ViewTranslateHttpService,

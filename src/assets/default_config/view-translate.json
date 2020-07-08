@@ -68,5 +68,38 @@
   }, {
     "key": "language",
     "translate": { "en": "Language", "fr": "Langue" }
+  }, {
+    "key": "click.add.background",
+    "translate": { "en": "Click here to add the main image", "fr": "Clique ici pour ajouter l'image principal" }
+  }, {
+    "key": "click.add.separator",
+    "translate": { "en": "Click here to add the separator", "fr": "Clique ici pour ajouter l'image de séparation" }
+  }, {
+    "key": "aria.edit.home",
+    "translate": { "en": "Edit the home page", "fr": "Édition de la page d'accueil" }
+  }, {
+    "key": "image.selector",
+    "translate": { "en": "Image selector", "fr": "Sélection d'image" }
+  }, {
+    "key": "add.image",
+    "translate": { "en": "Add a new image", "fr": "Ajout d'une nouvelle image"}
+  }, {
+    "key": "select.image",
+    "translate": { "en": "Image from existing", "fr": "Image depuis une existante"}
+  }, {
+    "key": "cancel",
+    "translate": { "en": "Cancel", "fr": "Annuler" }
+  }, {
+    "key": "picture",
+    "translate": { "en": "Picture", "fr": "Photo" }
+  }, {
+    "key": "picture.description",
+    "translate": { "en": "Picture description", "fr": "Description de la photo" }
+  }, {
+    "key": "missing.translation",
+    "translate": { "en": "There are some missing translations", "fr": "Il manque quelques traductions"}
+  }, {
+    "key": "picture.required",
+    "translate": { "en": "This picture is required", "fr": "Cette photo est indispensable" }
   }
 ]

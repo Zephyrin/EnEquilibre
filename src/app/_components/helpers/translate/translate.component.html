@@ -1,0 +1,26 @@
+<div [formGroup]="parts"
+     class="d-flex flex-row">
+  <div class="flex-column full-width">
+    <div class="d-flex flex-row"
+         *ngIf="vt.language === 'en' || focused">
+      <input matInput
+             #enInput
+             class="mr-auto en"
+             formControlName="en">
+      <label>en</label>
+    </div>
+    <mat-divider *ngIf="focused"></mat-divider>
+    <!-- <mat-divider></mat-divider> -->
+    <div class="d-flex flex-row"
+         *ngIf="vt.language === 'fr' || focused">
+      <input matInput
+             #frInput
+             class="mr-auto fr"
+             formControlName="fr">
+      <label>fr</label>
+    </div>
+  </div>
+  <mat-icon class="align-self-center ml-1"
+            [matTooltip]="vt.translate('missing.translation')"
+            *ngIf="!hasAll()">translate</mat-icon>
+</div>

@@ -39,5 +39,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
 }
 
+.btn-icon {
+  padding-top: 0!important;
+  padding-bottom: 0!important;
+  padding-left: 0.5em !important;
+  padding-right: 0.5em !important;
+}
+
+$custom-file-text: (
+  en: "Browse",
+  fr: "Ouvrir"
+);
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+

@@ -64,6 +64,15 @@ export class FormErrors {
                 this.errors[key].add(element.children[key].errors);
               }
             });
+            if (element.errors) {
+              Object.keys(element.errors).forEach(key => {
+                if (this.errors[`errors`] === undefined) {
+                  this.errors[`errors`] = new Errors(element.errors);
+                } else {
+                  this.error[`errors`].add(element.errors);
+                }
+              });
+            }
           });
         }
       }
@@ -93,5 +102,12 @@ export class FormErrors {
       this.message = undefined;
       this.hasMessage = false;
     }
+  }
+
+  get(name: string = 'errors') {
+    if (this.hasErrors[name]) {
+      return this.errors[name].errors;
+    }
+    return undefined;
   }
 }

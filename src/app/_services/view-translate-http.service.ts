@@ -29,6 +29,17 @@ export class ViewTranslateHttpService extends HttpService<ViewTranslate> {
       { params: httpParams, observe: 'response' });
   }
 
+  getMerchant(key: string): Observable<ViewTranslate> {
+    return this.http.get<ViewTranslate>(
+      `${environment.apiUrl}/viewtranslate/${key}`
+    );
+  }
+  getAllMerchant(httpParams: HttpParams = null): Observable<HttpResponse<ViewTranslate[]>> {
+    return this.http.get<ViewTranslate[]>(
+      `${environment.apiUrl}/viewtranslates`,
+      { params: httpParams, observe: 'response' });
+  }
+
   create(viewtranslate: ViewTranslate): Observable<ViewTranslate> {
     return this.http.post<ViewTranslate>(
       `${environment.apiUrl}/${this.language.language}/viewtranslate`, viewtranslate);
