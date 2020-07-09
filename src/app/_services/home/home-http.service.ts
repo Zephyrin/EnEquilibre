@@ -47,7 +47,7 @@ export class HomeHttpService extends HttpService<Home> {
   }
 
   update(home: Home): Observable<Home> {
-    return this.http.patch<Home>(
+    return this.http.put<Home>(
       `${environment.apiUrl}/${this.language.language}/home`, home)
       ;
   }

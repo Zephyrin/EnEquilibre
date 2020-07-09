@@ -51,6 +51,49 @@ $custom-file-text: (
   fr: "Ouvrir"
 );
 
+.container-img {
+  position: relative;
+}
+
+.text-block, .text-block-top, .text-block-top-center {
+  position: absolute;
+  background-color:rgba(0,0,0,0.5);
+  width: 100%;
+}
+
+.text-block p, .text-block-top p, .text-block-top-center {
+  color: white;
+  font-weight: bold;
+  opacity: 1.0;
+  vertical-align: middle;
+  display: table-cell;
+  padding-left: 1em;
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+}
+
+.text-block-top-center {
+  top: 5em;
+  cursor: default;
+}
+.text-block-top {
+  top: 0;
+}
+
+.text-block {
+  bottom: 0;
+}
+
+.border-shadow{
+  position: relative;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 

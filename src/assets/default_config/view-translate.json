@@ -75,6 +75,12 @@
     "key": "click.add.separator",
     "translate": { "en": "Click here to add the separator", "fr": "Clique ici pour ajouter l'image de séparation" }
   }, {
+    "key": "click.update.background",
+    "translate": { "en": "Click on image to update the main image", "fr": "Clique sur l'image pour la modifier" }
+  }, {
+    "key": "click.update.separator",
+    "translate": { "en": "Click on image to update the separator", "fr": "Clique sur l'image pour modifier la séparation" }
+  }, {
     "key": "aria.edit.home",
     "translate": { "en": "Edit the home page", "fr": "Édition de la page d'accueil" }
   }, {
@@ -101,5 +107,23 @@
   }, {
     "key": "picture.required",
     "translate": { "en": "This picture is required", "fr": "Cette photo est indispensable" }
+  }, {
+    "key": "remove.picture",
+    "translate": { "en": "Remove this picture", "fr": "Enlève cette photo" }
+  }, {
+    "key": "ok",
+    "translate": { "en": "Ok", "fr": "Ok" }
+  }, {
+    "key": "remove",
+    "translate": { "en": "Remove", "fr": "Enlever" }
+  }, {
+    "key": "are.you.sure.remove",
+    "translate": {"en": "Are you sure you want remove this ?", "fr": "Es tu sûre de vouloir l'enlever ?" }
+  }, {
+    "key": "no.title",
+    "translate": {"en": "No title!", "fr": "Pas de titre !"}
+  }, {
+    "key": "no.subtitle",
+    "translate": {"en": "No subtitle!", "fr": "Pas de sous titre !"}
   }
 ]

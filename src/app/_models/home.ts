@@ -4,6 +4,8 @@ export class Home {
   background: Mediaobject;
   separator: Mediaobject;
   translations: any;
+  title: any;
+  subtitle: any;
 
   public constructor(home: Home = null) {
     if (home && home !== null) {
@@ -15,6 +17,18 @@ export class Home {
         this.separator = new Mediaobject(home.separator);
       }
       this.translations = home.translations;
+      this.title = home.title;
+      this.subtitle = home.subtitle;
     }
+  }
+
+  toJSON() {
+    const data = {};
+    if (this.id) { data[`id`] = this.id; }
+    if (this.background) { data[`background`] = this.background; }
+    if (this.separator) { data[`separator`] = this.separator; }
+    if (this.title) { data[`title`] = this.title; }
+    if (this.subtitle) { data[`subtitle`] = this.subtitle; }
+    return data;
   }
 }

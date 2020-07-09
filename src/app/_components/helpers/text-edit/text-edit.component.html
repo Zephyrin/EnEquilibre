@@ -1,0 +1,20 @@
+<h1 *ngIf="title && !edit">{{getTranslation()}}<mat-icon (click)="edit = true"
+            *ngIf="!edit && value.edit"
+            class="pointer">edit</mat-icon>
+</h1>
+<p *ngIf="!title && !edit">{{getTranslation()}}<mat-icon (click)="edit = true"
+            *ngIf="!edit && value.edit"
+            class="pointer">edit</mat-icon>
+</p>
+
+<div class="d-flex align-items-center"
+     [ngClass]="{'visible': edit, 'hidden': !edit}">
+  <mat-form-field class="full-width w170">
+    <app-translate #input
+                   [placeholder]="vt.translate(placeholder)"></app-translate>
+  </mat-form-field>
+  <mat-icon (click)="edit = false"
+            class="pointer">save</mat-icon>
+  <mat-icon (click)="edit = false"
+            class="pointer">cancel</mat-icon>
+</div>

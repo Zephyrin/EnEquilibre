@@ -20,3 +20,21 @@
   right: 10px;
 }
 
+.float-right-bottom {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+}
+
+  .edit-image {
+  cursor: pointer;
+}
+
+.small-size {
+  min-width: 100%;
+  max-height: 10em;
+}
+
+.size {
+  max-height: 80em;
+}

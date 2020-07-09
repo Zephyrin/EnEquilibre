@@ -1,0 +1,11 @@
+<p mat-dialog-title>{{vt.translate('remove')}}</p>
+<div mat-dialog-content>
+  {{vt.translate('are.you.sure.remove')}}
+</div>
+<div mat-dialog-actions
+     class="d-flex flex-row-reverse">
+  <button mat-button
+          (click)="onSubmit()">{{vt.translate('ok')}}</button>
+  <button mat-button
+          (click)="onNoClick()">{{vt.translate('cancel')}}</button>
+</div>

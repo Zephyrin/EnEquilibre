@@ -1,3 +1,4 @@
+import { RemoveDialogComponent } from './../helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from './../../_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';
 import { ViewTranslateService } from './../../_services/view-translate.service';
@@ -11,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  editTitle = false;
   constructor(
     public home: HomeService,
     public vt: ViewTranslateService,
@@ -19,11 +20,28 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  openDialog() {
-    const dialogRef = this.dialog.open(ImageDialogComponent);
+  openDialog(name: string) {
+    if (this.home.edit) {
+      const dialogRef = this.dialog.open(ImageDialogComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.home.updateBackground(new Mediaobject(result.data));
-    });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          if (name === 'background') { this.home.updateBackground(new Mediaobject(result.data)); }
+          else if (name === 'separator') { this.home.updateSeparator(new Mediaobject(result.data)); }
+        }
+      });
+    }
+  }
+
+  removePicture(name: string) {
+    if (this.home.edit) {
+      const dialogRef = this.dialog.open(RemoveDialogComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result.data === true) {
+          if (name === 'background') { this.home.removeBackground(); }
+          else if (name === 'separator') { this.home.removeSeparator(); }
+        }
+      });
+    }
   }
 }

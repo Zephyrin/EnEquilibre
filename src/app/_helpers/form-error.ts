@@ -55,25 +55,29 @@ export class FormErrors {
       this.fatalError = undefined;
       if (error.error) {
         if (error.error.errors) {
-          error.error.errors.forEach(element => {
-            Object.keys(element.children).forEach(key => {
+          if (typeof error.error.errors === 'string') {
+            this.errors[`errors`] = new Errors(error.error.errors);
+          } else {
+            error.error.errors.forEach(element => {
+              Object.keys(element.children).forEach(key => {
 
-              if (this.errors[key] === undefined) {
-                this.errors[key] = new Errors(element.children[key].errors);
-              } else {
-                this.errors[key].add(element.children[key].errors);
-              }
-            });
-            if (element.errors) {
-              Object.keys(element.errors).forEach(key => {
-                if (this.errors[`errors`] === undefined) {
-                  this.errors[`errors`] = new Errors(element.errors);
+                if (this.errors[key] === undefined) {
+                  this.errors[key] = new Errors(element.children[key].errors);
                 } else {
-                  this.error[`errors`].add(element.errors);
+                  this.errors[key].add(element.children[key].errors);
                 }
               });
-            }
-          });
+              if (element.errors) {
+                Object.keys(element.errors).forEach(key => {
+                  if (this.errors[`errors`] === undefined) {
+                    this.errors[`errors`] = new Errors(element.errors);
+                  } else {
+                    this.error[`errors`].add(element.errors);
+                  }
+                });
+              }
+            });
+          }
         }
       }
       Object.keys(this.errors).forEach(key => {

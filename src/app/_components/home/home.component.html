@@ -1,34 +1,57 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <img [src]="home.home?.background?.url()"
-         [alt]="home.home?.background?.description|| vt.translate('click.add.background')"
-         [ngClass]="{ 'border': (home.home?.background || true) || home.edit}"
-         class="img-fluid size" />
-    <button mat-mini-fab
-            color="primary"
-            *ngIf="home.edit"
-            (click)="openDialog()"
-            [matTooltip]="vt.translate('click.add.background')"
-            [attr.aria-label]="vt.translate('click.add.background')">
-      <mat-icon>image</mat-icon>
-    </button>
+  <div class="row justify-content-center mb-3">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'background', small: false}"></ng-template>
   </div>
   <div class="row justify-content-center">
-    <img [src]="home.home?.separator?.url()"
-         [alt]="home.home?.separator?.description|| vt.translate('click.add.separator')"
-         [ngClass]="{ 'border': (home.home?.separator || true) || home.edit}"
-         class="img-fluid min-size" />
-    <button mat-mini-fab
-            color="primary"
-            *ngIf="home.edit"
-            (click)="openDialog()"
-            [matTooltip]="vt.translate('click.add.separator')"
-            [attr.aria-label]="vt.translate('click.add.separator')">
-      <mat-icon>image</mat-icon>
-    </button>
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'separator', small: true}"></ng-template>
   </div>
 </div>
-<div class="container">
+<ng-template #imgContainer
+             let-name="name"
+             let-small="small">
+  <div class="container-img"
+       [ngClass]="{'edit-image': home.edit}"
+       *ngIf="home.hasImage(name)">
+    <div class="text-block-top-center d-flex flex-column align-items-center"
+         *ngIf="!small && home.hasTitleOrSubtitle()">
+      <div class="row align-items-center">
+        <app-text-edit [value]="home"
+                       [placeholder]="'title'"
+                       [title]="true"
+                       [field]="'title'"></app-text-edit>
+      </div>
+      <div class="row">
+        <app-text-edit [value]="home"
+                       [placeholder]="'subtitle'"
+                       [field]="'subtitle'"></app-text-edit>
+      </div>
+    </div>
+    <div class="text-block-top d-flex justify-content-between"
+         *ngIf="home.edit">
+      <p class="align-self-center"
+         (click)="openDialog(name)"
+         *ngIf="home.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+      <p class="align-self-center"
+         (click)="openDialog(name)"
+         *ngIf="home.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="home.getUrl(name) !== ''"
+              mat-button
+              [matTooltip]="vt.translate('remove.picture')"
+              (click)="removePicture(name)"
+              class="align-self-center">
+        <mat-icon>image_not_supported</mat-icon>
+      </button>
+    </div>
+    <img [src]="home.getUrl(name)"
+         [alt]="home.getDescription(name)"
+         (click)="openDialog(name)"
+         [ngClass]="{ 'border': home.border(name), 'size': !small, 'small-size': small}"
+         class="img-fluid" />
+  </div>
+</ng-template>
+<div class="float-right-bottom">
   <button mat-fab
           color="primary"
           class="action-bottom"

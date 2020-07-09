@@ -18,15 +18,6 @@
   max-width: 25%;
 }
 
-.border-shadow{
-  position: relative;
-  cursor: pointer;
-  padding: 0.5em;
-}
-.container-img {
-  position: relative;
-}
-
 .img-column img {
   vertical-align: middle;
   width: 100%;
@@ -46,24 +37,6 @@
     flex: 100%;
     max-width: 100%;
   }
-}
-
-.text-block {
-  position: absolute;
-  bottom: 0;
-  background-color:rgba(0,0,0,0.5);
-  width: 100%;
-}
-
-.text-block p {
-  color: white;
-  font-weight: bold;
-  opacity: 1.0;
-  vertical-align: middle;
-  display: table-cell;
-  padding-left: 1em;
-  padding-top: 0.8em;
-  padding-bottom: 0.8em;
 }
 
 .img-selected {

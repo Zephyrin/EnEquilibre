@@ -1,3 +1,4 @@
+import { ViewTranslateService } from './../view-translate.service';
 import { FormErrors } from './../../_helpers/form-error';
 import { Mediaobject } from './../../_models/mediaobject';
 import { Role } from './../../_enums/role.enum';
@@ -51,16 +52,92 @@ export class HomeService {
         || this.currentUser.roles.indexOf(Role.SuperAdmin) !== -1);
   }
 
-  constructor(private http: HomeHttpService, private authenticationService: AuthenticationService) {
+  constructor(
+    private http: HomeHttpService,
+    private authenticationService: AuthenticationService,
+    private vt: ViewTranslateService) {
     this.edit = false;
     this.authenticationService.currentUser.subscribe(
       x => { this.currentUser = x; this.edit = true; });
   }
 
+  public getUrl(name: string): string {
+    if (this.home) {
+      if (this.home[name]) {
+        return this.home[name].url();
+      }
+    }
+    return '';
+  }
+
+  public getDescription(name: string): string {
+    if (this.home) {
+      if (this.home[name]) {
+        return this.home[name].description;
+      }
+    }
+    return '';
+  }
+
+  public get(name: string): string {
+    if (this.home) {
+      if (this.home[name]) {
+        return this.home[name];
+      }
+    }
+    return this.edit ? this.vt.translate('no.' + name) : '';
+  }
+
+  public border(name: string): boolean {
+    if (this.home) {
+      if (this.home[name]) {
+        return false;
+      }
+    }
+    return this.edit;
+  }
+
+  public hasTitleOrSubtitle(): boolean {
+    return this.home && (this.home.title || this.home.subtitle || this.edit);
+  }
+
+  public hasImage(name: string): boolean {
+    if (this.home && this.home[name]) { return true; }
+    return this.edit;
+  }
+
   public updateBackground(mediaObject: Mediaobject): void {
     this.start();
-    this.home.background = mediaObject;
-    this.updateOrCreate();
+    const home = new Home(this.home);
+    home.background = mediaObject;
+    this.updateOrCreate(home);
+  }
+
+  public updateSeparator(mediaObject: Mediaobject): void {
+    this.start();
+    const home = new Home(this.home);
+    home.separator = mediaObject;
+    this.updateOrCreate(home);
+  }
+
+  public update(name: string, translate: any): void {
+    this.start();
+    const home = new Home(this.home);
+    home[name] = translate;
+    this.updateOrCreate(home);
+  }
+
+  public removeBackground(): void {
+    this.start();
+    const home = new Home(this.home);
+    home.background = undefined;
+    this.updateOrCreate(home);
+  }
+  public removeSeparator(): void {
+    this.start();
+    const home = new Home(this.home);
+    home.separator = undefined;
+    this.updateOrCreate(home);
   }
 
   private start() {
@@ -75,16 +152,17 @@ export class HomeService {
     }
   }
 
-  private updateOrCreate() {
-    if (this.home.id === undefined) {
-      this.http.create(this.home).subscribe(data => {
-        this.home.id = data.id;
+  private updateOrCreate(home: Home) {
+    if (home.id === undefined) {
+      this.http.create(home).subscribe(data => {
+        this.home = new Home(data);
         this.end();
       }, error => {
         this.end(error);
       });
     } else {
-      this.http.update(this.home).subscribe(data => {
+      this.http.update(home).subscribe(data => {
+        this.home = new Home(home);
         this.end();
       }, error => {
         this.end(error);

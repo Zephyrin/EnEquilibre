@@ -29,6 +29,8 @@ import { HomeUpdateComponent } from './_components/home-update/home-update.compo
 import { ImageDialogComponent } from './_components/image-dialog/image-dialog.component';
 import { FileUploadComponent } from './_components/helpers/file-upload/file-upload.component';
 import { TranslateComponent } from './_components/helpers/translate/translate.component';
+import { RemoveDialogComponent } from './_components/helpers/remove-dialog/remove-dialog.component';
+import { TextEditComponent } from './_components/helpers/text-edit/text-edit.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { TranslateComponent } from './_components/helpers/translate/translate.co
     HomeUpdateComponent,
     ImageDialogComponent,
     FileUploadComponent,
-    TranslateComponent
+    TranslateComponent,
+    RemoveDialogComponent,
+    TextEditComponent
   ],
   imports: [
     BrowserModule,
