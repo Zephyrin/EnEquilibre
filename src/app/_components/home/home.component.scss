@@ -38,3 +38,17 @@
 .size {
   max-height: 80em;
 }
+
+.separator {
+  overflow: hidden;
+  max-height: 10em;
+  min-height: 5em;
+  min-width: 40em;
+  width: 100%;
+}
+
+.separator-background {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+}

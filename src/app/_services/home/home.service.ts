@@ -130,13 +130,13 @@ export class HomeService {
   public removeBackground(): void {
     this.start();
     const home = new Home(this.home);
-    home.background = undefined;
+    home.background = null;
     this.updateOrCreate(home);
   }
   public removeSeparator(): void {
     this.start();
     const home = new Home(this.home);
-    home.separator = undefined;
+    home.separator = null;
     this.updateOrCreate(home);
   }
 
