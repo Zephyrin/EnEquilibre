@@ -105,11 +105,23 @@
     "key": "missing.translation",
     "translate": { "en": "There are some missing translations", "fr": "Il manque quelques traductions"}
   }, {
+    "key": "save.translation",
+    "translate": { "en": "Save translation", "fr": "Sauvegarde de la traduction"}
+  }, {
+    "key": "cancel.translation",
+    "translate": { "en": "Cancel modifications", "fr": "Annule les modifications"}
+  }, {
+    "key": "edit.translation",
+    "translate": { "en": "Edit translation", "fr": "Édite la traduction"}
+  }, {
     "key": "picture.required",
     "translate": { "en": "This picture is required", "fr": "Cette photo est indispensable" }
   }, {
     "key": "remove.picture",
     "translate": { "en": "Remove this picture", "fr": "Enlève cette photo" }
+  }, {
+    "key": "delete.picture",
+    "translate": { "en": "Delete this picture", "fr": "Supprime cette photo" }
   }, {
     "key": "ok",
     "translate": { "en": "Ok", "fr": "Ok" }
@@ -119,11 +131,23 @@
   }, {
     "key": "are.you.sure.remove",
     "translate": {"en": "Are you sure you want remove this ?", "fr": "Es tu sûre de vouloir l'enlever ?" }
+  },{
+    "key": "title",
+    "translate": {"en": "Title", "fr": "Titre"}
   }, {
     "key": "no.title",
     "translate": {"en": "No title!", "fr": "Pas de titre !"}
   }, {
+    "key": "subtitle",
+    "translate": {"en": "Subtitle", "fr": "Sous-titre"}
+  }, {
     "key": "no.subtitle",
     "translate": {"en": "No subtitle!", "fr": "Pas de sous titre !"}
+  }, {
+    "key": "no.description",
+    "translate": {"en": "No description!", "fr": "Pas de description !" }
+  }, {
+    "key": "description",
+    "translate": { "en": "Image description", "fr": "Description de l'image"}
   }
 ]

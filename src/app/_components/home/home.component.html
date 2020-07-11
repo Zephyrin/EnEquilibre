@@ -7,10 +7,6 @@
     <ng-template [ngTemplateOutlet]="imgContainer"
                  [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"></ng-template>
   </div>
-  <div class="row justify-content-center mb-3">
-    <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'background', small: false, separator: false}"></ng-template>
-  </div>
 </div>
 
 <ng-template #imgContainer
@@ -24,12 +20,14 @@
          *ngIf="!small && home.hasTitleOrSubtitle()">
       <div class="row align-items-center">
         <app-text-edit [value]="home"
+                       [service]="home"
                        [placeholder]="'title'"
                        [title]="true"
                        [field]="'title'"></app-text-edit>
       </div>
       <div class="row">
         <app-text-edit [value]="home"
+                       [service]="home"
                        [placeholder]="'subtitle'"
                        [field]="'subtitle'"></app-text-edit>
       </div>
@@ -53,7 +51,7 @@
     <img [src]="home.getUrl(name)"
          [alt]="home.getDescription(name)"
          (click)="openDialog(name)"
-         [ngClass]="{ 'border': home.border(name), 'size': !small}"
+         [ngClass]="{ 'border': home.border(name), 'size': !small, 'edit-img': home.edit}"
          class="img-fluid"
          *ngIf="!separator || home.edit" />
 

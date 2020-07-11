@@ -55,10 +55,15 @@ $custom-file-text: (
   position: relative;
 }
 
+.edit-img {
+  min-width: 300px;
+  min-height: 250px;
+}
 .text-block, .text-block-top, .text-block-top-center {
   position: absolute;
   background-color:rgba(0,0,0,0.5);
   width: 100%;
+  color: white;
 }
 
 .text-block p, .text-block-top p, .text-block-top-center {
@@ -72,9 +77,9 @@ $custom-file-text: (
   padding-bottom: 0.8em;
 }
 
-.text-block button {
+/* .text-block button {
   background-color: rgba(255,255,255,0.5);
-}
+} */
 
 .text-block-top-center {
   top: 5em;

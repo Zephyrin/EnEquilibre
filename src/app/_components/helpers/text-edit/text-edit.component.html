@@ -1,20 +1,36 @@
-<h1 *ngIf="title && !edit">{{getTranslation()}}<mat-icon (click)="edit = true"
-            *ngIf="!edit && value.edit"
-            class="pointer">edit</mat-icon>
+<h1 *ngIf="title && !edit">{{getTranslation()}}<button mat-button
+          [matTooltip]="vt.translate('edit.translation')"
+          *ngIf="!edit && service.edit"
+          class="small"
+          (click)="edit = true">
+    <mat-icon>edit</mat-icon>
+  </button>
 </h1>
-<p *ngIf="!title && !edit">{{getTranslation()}}<mat-icon (click)="edit = true"
-            *ngIf="!edit && value.edit"
-            class="pointer">edit</mat-icon>
+<p *ngIf="!title && !edit">{{getTranslation()}}<button mat-button
+          [matTooltip]="vt.translate('edit.translation')"
+          *ngIf="!edit && service.edit"
+          class="small"
+          (click)="edit = true">
+    <mat-icon>edit</mat-icon>
+  </button>
 </p>
 
-<div class="d-flex align-items-center"
+<div class="d-flex align-items-center pl1"
      [ngClass]="{'visible': edit, 'hidden': !edit}">
   <mat-form-field class="full-width w170">
     <app-translate #input
                    [placeholder]="vt.translate(placeholder)"></app-translate>
   </mat-form-field>
-  <mat-icon (click)="edit = false"
-            class="pointer">save</mat-icon>
-  <mat-icon (click)="edit = false"
-            class="pointer">cancel</mat-icon>
+  <button mat-button
+          [matTooltip]="vt.translate('save.translation')"
+          (click)="onSubmit()"
+          class="small">
+    <mat-icon class="pointer">save</mat-icon>
+  </button>
+  <button mat-button
+          [matTooltip]="vt.translate('cancel.translation')"
+          (click)="edit = false"
+          class="small">
+    <mat-icon class="pointer">cancel</mat-icon>
+  </button>
 </div>

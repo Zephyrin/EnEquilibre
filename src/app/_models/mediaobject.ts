@@ -6,6 +6,7 @@ export class Mediaobject {
   description: any;
   filePath: string;
   protected img: SafeResourceUrl;
+  translations: any;
   get image(): SafeResourceUrl {
     return this.img;
   }
@@ -22,6 +23,7 @@ export class Mediaobject {
       this.filePath = mediaobject.filePath;
       this.image = mediaobject.image;
       this.timeStamp = mediaobject.timeStamp;
+      this.translations = mediaobject.translations;
     } else {
       this.timeStamp = (new Date()).getTime();
     }
@@ -52,7 +54,6 @@ export class Mediaobject {
 
   toJSON() {
     const data = {};
-    if (this.id) { data[`id`] = this.id; }
     if (this.img) { data[`image`] = this.img; }
     if (this.description) { data[`description`] = this.description; }
     return data;

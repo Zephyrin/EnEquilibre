@@ -30,7 +30,7 @@ export class MediaobjectHttpService extends HttpService<Mediaobject>{
 
   getAll(httpParams: HttpParams): Observable<HttpResponse<Mediaobject[]>> {
     return this.http.get<Mediaobject[]>(
-      `${environment.apiUrl}/${this.language.language}/mediaobjects`,
+      `${environment.apiUrl}/mediaobjects`,
       { params: httpParams, observe: 'response' });
   }
 
@@ -48,7 +48,7 @@ export class MediaobjectHttpService extends HttpService<Mediaobject>{
   }
 
   update(mediaobject: Mediaobject): Observable<Mediaobject> {
-    return this.http.put<Mediaobject>(
+    return this.http.patch<Mediaobject>(
       `${environment.apiUrl}/${this.language.language}/mediaobject/${mediaobject.id}`, mediaobject);
   }
 

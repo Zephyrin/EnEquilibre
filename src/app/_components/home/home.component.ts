@@ -22,8 +22,7 @@ export class HomeComponent implements OnInit {
   }
   openDialog(name: string) {
     if (this.home.edit) {
-      const dialogRef = this.dialog.open(ImageDialogComponent);
-
+      const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.home.get(undefined, name) });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           if (name === 'background') { this.home.updateBackground(new Mediaobject(result.data)); }

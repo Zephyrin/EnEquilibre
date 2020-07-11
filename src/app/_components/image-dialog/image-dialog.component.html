@@ -102,14 +102,30 @@
 <ng-template #imageGrid
              let-img="img">
   <div class="border-shadow"
-       [ngClass]="{'img-selected': img === selectedImg}"
-       (click)="selectImg(img)">
+       [ngClass]="{'img-selected': img.id === selectedImg?.id}">
     <div class="container-img">
       <img [src]="img.url()"
-           [alt]="img.description">
-      <div class="text-block"
-           *ngIf="img.description">
-        <p class="align-self-center">{{img.description}}</p>
+           [alt]="img.description"
+           (click)="selectImg(img)">
+      <div class="text-block">
+        <div class="d-flex align-items-center justify-content-between"
+             *ngIf="img.id === selectedImg?.id">
+          <app-text-edit #editor
+                         [value]="img"
+                         [service]="this"
+                         [placeholder]="'description'"
+                         [title]="false"
+                         [field]="'description'"></app-text-edit>
+          <button *ngIf="!editor.edit"
+                  mat-button
+                  [matTooltip]="vt.translate('delete.picture')"
+                  (click)="delete(img)"
+                  class="align-self-center">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <p class="align-self-center"
+           *ngIf="img.description && img.id !== selectedImg?.id">{{getTranslations(img)}}</p>
       </div>
     </div>
   </div>

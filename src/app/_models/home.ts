@@ -24,9 +24,10 @@ export class Home {
 
   toJSON() {
     const data = {};
-    if (this.id) { data[`id`] = this.id; }
-    if (this.background) { data[`background`] = this.background; }
-    if (this.separator) { data[`separator`] = this.separator; }
+    if (this.background) { data[`background`] = this.background.id; }
+    if (this.background === null) { data[`background`] = null; }
+    if (this.separator) { data[`separator`] = this.separator.id; }
+    if (this.separator === null) { data[`separator`] = null; }
     if (this.title) { data[`title`] = this.title; }
     if (this.subtitle) { data[`subtitle`] = this.subtitle; }
     return data;

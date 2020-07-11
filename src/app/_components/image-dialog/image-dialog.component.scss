@@ -1,6 +1,6 @@
 .img-thumbnail {
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 .custom-file:hover, .custom-file-input:hover, .custom-file-label:hover {
@@ -16,11 +16,13 @@
 .img-column {
   flex: 25%;
   max-width: 25%;
+  min-width: 360px;
 }
 
 .img-column img {
   vertical-align: middle;
   width: 100%;
+  min-height: 75px;
 }
 
 /* Responsive layout - makes a two column-layout instead of four columns */

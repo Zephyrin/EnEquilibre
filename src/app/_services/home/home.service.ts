@@ -79,13 +79,19 @@ export class HomeService {
     return '';
   }
 
-  public get(name: string): string {
+  public get(object: any, name: string): string {
     if (this.home) {
       if (this.home[name]) {
         return this.home[name];
       }
     }
     return this.edit ? this.vt.translate('no.' + name) : '';
+  }
+
+  public set(object: any, name: string, newValue: any): void {
+    if (this.home) {
+      this.home[name] = newValue;
+    }
   }
 
   public border(name: string): boolean {
@@ -120,7 +126,7 @@ export class HomeService {
     this.updateOrCreate(home);
   }
 
-  public update(name: string, translate: any): void {
+  public update(object: any, name: string, translate: any): void {
     this.start();
     const home = new Home(this.home);
     home[name] = translate;

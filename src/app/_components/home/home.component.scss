@@ -1,6 +1,8 @@
-.size {
+/* .size {
   min-width: 250px;
   min-height: 150px;
+}*/ .size {
+  max-height: 80em;
 }
 
 .min-size {
@@ -26,17 +28,13 @@
   right: 20px;
 }
 
-  .edit-image {
+.edit-image {
   cursor: pointer;
 }
 
 .small-size {
   min-width: 100%;
   max-height: 10em;
-}
-
-.size {
-  max-height: 80em;
 }
 
 .separator {

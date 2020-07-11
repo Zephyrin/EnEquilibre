@@ -7,4 +7,5 @@ export class Translate {
       this.fr = translate.fr;
     }
   }
+
 }
