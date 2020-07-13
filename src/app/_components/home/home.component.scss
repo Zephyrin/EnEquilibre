@@ -17,6 +17,26 @@
   right: 10px;
 }
 
+.row-img {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+  max-width: 25%;
+}
+
+/* Create two equal columns that sits next to each other */
+.column-img {
+  flex: 50%;
+  padding: 0 4px;
+  max-height: 200px;
+}
+
+.column-img img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
 .action-bottom {
   position: absolute;
   bottom: 10px;
