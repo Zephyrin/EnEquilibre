@@ -3,6 +3,10 @@
   max-width: 250px;
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .custom-file:hover, .custom-file-input:hover, .custom-file-label:hover {
   cursor: pointer;
 }
@@ -16,7 +20,7 @@
 .img-column {
   flex: 25%;
   max-width: 25%;
-  min-width: 360px;
+  min-width: 230px;
 }
 
 .img-column img {

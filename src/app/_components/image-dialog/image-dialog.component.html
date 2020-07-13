@@ -108,7 +108,7 @@
            [alt]="img.description"
            (click)="selectImg(img)">
       <div class="text-block">
-        <div class="d-flex align-items-center justify-content-between"
+        <!-- <div class="d-flex align-items-center justify-content-between wrap"
              *ngIf="img.id === selectedImg?.id">
           <app-text-edit #editor
                          [value]="img"
@@ -123,9 +123,9 @@
                   class="align-self-center">
             <mat-icon>delete</mat-icon>
           </button>
-        </div>
+        </div> -->
         <p class="align-self-center"
-           *ngIf="img.description && img.id !== selectedImg?.id">{{getTranslations(img)}}</p>
+           *ngIf="img.description">{{getTranslations(img)}}</p>
       </div>
     </div>
   </div>

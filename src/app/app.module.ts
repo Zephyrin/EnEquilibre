@@ -40,6 +40,7 @@ import { GalleryComponent } from './_components/gallery/gallery/gallery.componen
 import { AboutComponent } from './_components/about/about.component';
 import { SignupComponent } from './_components/sign/up/signup/signup.component';
 import { ManageUserComponent } from './_components/admin/manage-user/manage-user.component';
+import { ManageImageComponent } from './_components/merchant/manage-image/manage-image.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ManageUserComponent } from './_components/admin/manage-user/manage-user
     ManageUserComponent,
     TheadComponent,
     TopErrorsComponent,
-    PaginationComponent
+    PaginationComponent,
+    ManageImageComponent
   ],
   imports: [
     BrowserModule,

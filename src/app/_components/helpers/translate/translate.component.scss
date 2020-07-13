@@ -5,3 +5,7 @@ span {
 :host.floating span {
   opacity: 1;
 }
+
+.nowrap {
+  flex-wrap: nowrap;
+}

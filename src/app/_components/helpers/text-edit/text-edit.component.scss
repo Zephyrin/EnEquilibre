@@ -7,7 +7,7 @@
 }
 
 .w170 {
-  min-width: 250px;
+  padding: 0.5em;
 }
 
 .small {
@@ -25,4 +25,8 @@
 
 h1 {
   margin: 0;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
