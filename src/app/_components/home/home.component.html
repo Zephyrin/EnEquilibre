@@ -14,7 +14,7 @@
              let-small="small"
              let-separator="separator">
   <div class="container-img"
-       [ngClass]="{'edit-image': home.edit, separator: separator}"
+       [ngClass]="{'edit-image': home.edit, separator: separator, 'min-size': home.edit}"
        *ngIf="(!separator && home.hasImage(name)) || home.edit">
     <div class="text-block-top-center d-flex flex-column align-items-center"
          *ngIf="!small && home.hasTitleOrSubtitle()">
@@ -51,7 +51,7 @@
     <img [src]="home.getUrl(name)"
          [alt]="home.getDescription(name)"
          (click)="openDialog(name)"
-         [ngClass]="{ 'border': home.border(name), 'size': !small, 'edit-img': home.edit}"
+         [ngClass]="{ 'border': home.border(name), 'size': !small, 'edit-img': home.edit && !separator, 'edit-img-separator': home.edit && separator}"
          class="img-fluid"
          *ngIf="!separator || home.edit" />
 
