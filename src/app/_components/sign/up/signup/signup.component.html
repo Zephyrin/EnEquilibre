@@ -1,0 +1,92 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <form [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()">
+    <mat-card class="full-width">
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput
+                     required
+                     #login
+                     [placeholder]="vt.translate('username')"
+                     formControlName="username" />
+              <mat-error *ngIf="submitted && f.username.errors">
+                <div *ngIf="f.username.errors.required">{{vt.translate('username.required')}}</div>
+              </mat-error>
+              <mat-error *ngIf="submitted && errors.get('username')">
+                <div *ngFor="let child of errors.get('username')">
+                  {{child}}
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput
+                     required
+                     #login
+                     [placeholder]="vt.translate('email')"
+                     formControlName="email" />
+              <mat-error *ngIf="submitted && f.email.errors">
+                <div *ngIf="f.email.errors.required">{{vt.translate('email.required')}}</div>
+              </mat-error>
+              <mat-error *ngIf="submitted && errors.get('email')">
+                <div *ngFor="let child of errors.get('email')">
+                  {{child}}
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput
+                     required
+                     #password
+                     [placeholder]="vt.translate('password')"
+                     [type]="hide ? 'password' : 'text'"
+                     formControlName="password" />
+              <button mat-icon-button
+                      matSuffix
+                      type="button"
+                      role="button"
+                      (click)="hide = !hide"
+                      [matTooltip]="hide ? vt.translate('show.password') : vt.translate('hide.password')"
+                      [attr.aria-label]="hide ? vt.translate('show.password') : vt.translate('hide.password')"
+                      [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+              <mat-error *ngIf="submitted && f.password.errors">
+                <div *ngIf="f.password.errors.required">{{vt.translate('password.required')}}</div>
+              </mat-error>
+              <mat-error *ngIf="submitted && errors.get('password')">
+                <div *ngFor="let child of errors.get('password')">
+                  {{child}}
+                </div>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button
+                [disabled]="loading"
+                color="primary"
+                type="submit">
+          <span *ngIf="loading"
+                class="spinner-border spinner-border-sm mr-1"></span>
+          {{vt.translate('signup')}}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  <span class="d-flex justify-content-center align-items-center mt-3">
+    {{vt.translate('have.account')}}
+    <a routerLink="/signup"
+       mat-button>{{vt.translate('signin')}}</a>
+  </span>
+</div>

@@ -1,3 +1,5 @@
+import { ManageUserComponent } from './_components/admin/manage-user/manage-user.component';
+import { SignupComponent } from './_components/sign/up/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AboutComponent } from './_components/about/about.component';
 import { GalleriesComponent } from './_components/gallery/galleries.component';
@@ -11,7 +13,9 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'galleries', component: GalleriesComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'about', component: AboutComponent }
+  { path: 'signup', component: SignupComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'manage-user', component: ManageUserComponent }
 ];
 
 @NgModule({

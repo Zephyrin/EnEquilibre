@@ -1,0 +1,18 @@
+<div *ngIf="errors.hasFatalError"
+     class="alert alert-danger">
+  <div [innerHTML]="errors.fatalError"></div>
+</div>
+<div *ngIf="errors.hasMessage"
+     class="alert alert-warning">
+  <div [innerHTML]="errors.message"></div>
+</div>
+<div *ngIf="errors.hasErrors['validate']">
+  <div *ngFor="let child of errors.errors['validate'].errors">
+    {{child}}
+  </div>
+</div>
+<div *ngIf="errors.hasErrors['askValidate']">
+  <div *ngFor="let child of errors.errors['askValidate'].errors">
+    {{child}}
+  </div>
+</div>

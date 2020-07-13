@@ -1,0 +1,68 @@
+<nav aria-label="Pagination navigation"
+    *ngIf="pagination.values?.length > 0 || false">
+  <ul
+      class="pagination pagination-sm align-items-center justify-content-end d-flex">
+    <li class="page-item">
+      <small>{{pagination.posBeginCount()}}</small><small
+             *ngIf="pagination.posBeginCount() !== pagination.posEndCount()"> - {{pagination.posEndCount()}}</small><small> on {{pagination.total()}} </small>
+    </li>
+    <li class="page-item"
+        [ngClass]="{'disabled': pagination.isFirst()}">
+      <button class="page-link d-flex justify-content-center align-content-between"
+              role="link"
+              type="button"
+              (click)="pagination.goToFirst()">
+        <mat-icon [inline]="true">first_page</mat-icon>
+      </button>
+    </li>
+    <li class="page-item">
+      <button class="page-link"
+              role="link"
+              type="button"
+              *ngIf="pagination.hasPreviousPage()"
+              (click)="pagination.goTo(pagination.getPreviousPage())">
+        {{pagination.getPreviousPage()}}
+      </button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': pagination.isFirst()}">
+      <button class="page-link d-flex justify-content-center align-content-between"
+              role="link"
+              type="button"
+              (click)="pagination.goToPrevious()"
+              >
+        <mat-icon [inline]="true">navigate_before</mat-icon>
+      </button>
+    </li>
+    <li class="page-item">
+      <button class="page-link d-flex justify-content-center align-content-between"
+              type="button"
+              role="link"
+              (click)="pagination.changePage()">{{pagination.page()}}</button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': pagination.isLast()}">
+      <button class="page-link d-flex justify-content-center align-content-between"
+              type="button"
+              role="link"
+              (click)="pagination.goToNext()">
+        <mat-icon [inline]="true">navigate_next</mat-icon>
+      </button>
+    </li>
+    <li class="page-item">
+      <button class="page-link "
+              type="button"
+              role="link"
+              *ngIf="pagination.hasNextPage()"
+              (click)="pagination.goTo(pagination.getNextPage())">
+        {{pagination.getNextPage()}}
+      </button>
+    </li>
+    <li class="page-item" [ngClass]="{'disabled': pagination.isLast()}">
+      <button class="page-link d-flex justify-content-center align-content-between"
+              type="button"
+              role="link"
+              (click)="pagination.goToLast()">
+        <mat-icon [inline]="true">last_page</mat-icon>
+      </button>
+    </li>
+  </ul>
+</nav>

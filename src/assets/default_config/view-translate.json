@@ -48,6 +48,12 @@
     "key": "username.required",
     "translate": { "en": "Username is required", "fr": "Le nom d'utilisateur est requis" }
   }, {
+    "key": "email",
+    "translate": { "en": "Email", "fr": "Courriel"}
+  }, {
+    "key": "email.required",
+    "translate": { "en": "Email is required", "fr": "Le courriel est requis" }
+  },  {
     "key": "password",
     "translate": { "en": "Password", "fr": "Mot de passe" }
   }, {
@@ -59,6 +65,9 @@
   }, {
     "key": "password.required",
     "translate": { "en": "Password is required", "fr": "Le mot de passe est requis" }
+  }, {
+    "key": "have.account",
+    "translate": { "en": "You have an account:", "fr": "Vous avez un compte :" }
   }, {
     "key": "don.t.have.account",
     "translate": { "en": "You don't have an account:", "fr": "Vous n'avez pas encore de compte :" }

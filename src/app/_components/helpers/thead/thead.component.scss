@@ -1,0 +1,12 @@
+.hide-hover {
+  display: none;
+}
+
+.thead:hover > .hide-hover {
+  display: block;
+  opacity: 0.65;
+}
+
+.thead:hover > .visible-hover {
+  display: none;
+}

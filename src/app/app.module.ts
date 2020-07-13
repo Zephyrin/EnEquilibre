@@ -1,3 +1,6 @@
+import { PaginationComponent } from './_components/helpers/pagination/pagination.component';
+import { TopErrorsComponent } from './_components/helpers/top-errors/top-errors.component';
+import { TheadComponent } from './_components/helpers/remove-dialog/thead.component';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
 import { BrowserModule } from '@angular/platform-browser';
@@ -35,6 +38,8 @@ import { GalleriesComponent } from './_components/gallery/galleries.component';
 import { NewGalleryComponent } from './_components/gallery/new-gallery/new-gallery.component';
 import { GalleryComponent } from './_components/gallery/gallery/gallery.component';
 import { AboutComponent } from './_components/about/about.component';
+import { SignupComponent } from './_components/sign/up/signup/signup.component';
+import { ManageUserComponent } from './_components/admin/manage-user/manage-user.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +56,12 @@ import { AboutComponent } from './_components/about/about.component';
     GalleriesComponent,
     NewGalleryComponent,
     GalleryComponent,
-    AboutComponent
+    AboutComponent,
+    SignupComponent,
+    ManageUserComponent,
+    TheadComponent,
+    TopErrorsComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

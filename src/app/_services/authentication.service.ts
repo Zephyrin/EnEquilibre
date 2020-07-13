@@ -53,4 +53,12 @@ export class AuthenticationService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(undefined);
   }
+
+  public signup(user: User) {
+    return this.http.post<any>(
+      `${environment.apiUrl}/${this.language.language}/auth/register`, user)
+      .pipe(map(token => {
+        return token.token;
+      }));
+  }
 }

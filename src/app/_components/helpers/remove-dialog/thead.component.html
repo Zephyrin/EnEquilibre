@@ -1,0 +1,25 @@
+<div class="d-flex pointer thead"
+     (click)="service.sortByOrOrient(sortBy)">{{text}}
+  <div *ngIf="service.sortBy === sortBy"
+       class="visible-hover">
+    <mat-icon *ngIf="service.sort === sortEnum.asc"
+              [inline]="true">arrow_downward
+    </mat-icon>
+    <mat-icon *ngIf="service.sort === sortEnum.desc"
+              [inline]="true">arrow_upward
+    </mat-icon>
+  </div>
+  <div *ngIf="service.sortBy !== sortBy"
+       class="hide-hover">
+    <mat-icon [inline]="true">arrow_downward</mat-icon>
+  </div>
+  <div *ngIf="service.sortBy === sortBy"
+       class="hide-hover">
+    <mat-icon *ngIf="service.sort !== sortEnum.asc"
+              [inline]="true">arrow_downward
+    </mat-icon>
+    <mat-icon *ngIf="service.sort !== sortEnum.desc"
+              [inline]="true">arrow_upward
+    </mat-icon>
+  </div>
+</div>

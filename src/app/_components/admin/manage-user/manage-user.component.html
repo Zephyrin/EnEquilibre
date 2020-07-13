@@ -1,0 +1,63 @@
+<app-pagination [pagination]="service"></app-pagination>
+<div class="table-responsive-sm table-responsive-md table-responsive-lg table-responsive-xl">
+  <app-top-errors [errors]="service.errors"></app-top-errors>
+  <fieldset [disabled]="service.loading">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"
+              class="align-middle">
+            <app-thead [service]="service"
+                       [text]="'Username'"
+                       [sortBy]="sortByEnum.username"></app-thead>
+          </th>
+          <th scope="col"
+              class="align-middle">
+            <app-thead [service]="service"
+                       [text]="'Email'"
+                       [sortBy]="sortByEnum.email"></app-thead>
+          </th>
+          <th scope="col"
+              class="align-middle">
+            <app-thead [service]="service"
+                       [text]="'Role'"
+                       [sortBy]="sortByEnum.roles"></app-thead>
+          </th>
+          <th scope="col"
+              class="align-middle">
+            <app-thead [service]="service"
+                       [text]="'Last Login'"
+                       [sortBy]="sortByEnum.lastLogin"></app-thead>
+          </th>
+        </tr>
+      </thead>
+      <tr *ngFor="let user of service.values"
+          (click)="service.setSelected(user)"
+          class="pointer"
+          [class.active]="user == service.selected"
+          [class.pointer]="service.canEdit(user)">
+        <td class="align-middle">{{user.username}}</td>
+        <td class="align-middle">{{user.email}}</td>
+        <td class="align-middle"
+            *ngIf="!service.canEdit(user)">{{user.roles}}</td>
+        <td class="align-middle"
+            *ngIf="service.canEdit(user)">
+          <button mat-button
+                  [matMenuTriggerFor]="menu">{{user.roles}}</button>
+          <mat-menu #menu="matMenu">
+            <button (click)="service.updateUser(user, role.User)"
+                    mat-menu-item>{{role.User}}</button>
+            <button (click)="service.updateUser(user, role.Merchant)"
+                    mat-menu-item>{{role.Merchant}}</button>
+            <button (click)="service.updateUser(user, role.Admin)"
+                    mat-menu-item>{{role.Admin}}</button>
+          </mat-menu>
+        </td>
+        <td class="align-middle">{{user.lastLogin}}</td>
+      </tr>
+    </table>
+
+  </fieldset>
+</div>
+<app-pagination [pagination]="service"></app-pagination>
+<app-top-errors [errors]="service.errors"></app-top-errors>

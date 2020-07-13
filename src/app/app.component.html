@@ -41,6 +41,10 @@
     </mat-nav-list>
     <mat-toolbar *ngIf="isAdmin">{{vt.translate('admin')}}</mat-toolbar>
     <mat-nav-list *ngIf="isAdmin">
+      <a mat-list-item
+         routerLinkActive="active-link"
+         class="hover-link"
+         routerLink="manage-user">{{vt.translate('users')}}</a>
     </mat-nav-list>
     <mat-nav-list *ngIf="(isHandset$ | async) === true">
       <app-language></app-language>
