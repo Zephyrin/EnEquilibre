@@ -1,8 +1,9 @@
+import { GalleryService } from '@app/_services/gallery/gallery.service';
 import { RemoveDialogComponent } from './../helpers/remove-dialog/remove-dialog.component';
-import { Mediaobject } from './../../_models/mediaobject';
+import { Mediaobject } from '@app/_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';
-import { ViewTranslateService } from './../../_services/view-translate.service';
-import { HomeService } from './../../_services/home/home.service';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { HomeService } from '@app/_services/home/home.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -16,6 +17,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public home: HomeService,
     public vt: ViewTranslateService,
+    public galleries: GalleryService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {

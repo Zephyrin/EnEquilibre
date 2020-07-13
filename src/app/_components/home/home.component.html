@@ -7,6 +7,12 @@
     <ng-template [ngTemplateOutlet]="imgContainer"
                  [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"></ng-template>
   </div>
+  <div class="gallery-container"
+       *ngFor="let gallery of galleries.values">
+    <img [src]="gallery.showCase.url()"
+         [alt]="gallery.showCase.description"
+         *ngIf="gallery.showCase">
+  </div>
 </div>
 
 <ng-template #imgContainer
