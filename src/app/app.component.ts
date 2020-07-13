@@ -1,14 +1,15 @@
 import { ViewTranslateService } from './_services';
 import { Role } from './_enums/role.enum';
-import { Router } from '@angular/router';
-import { map, shareReplay } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
+import { map, shareReplay, withLatestFrom, filter } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import { AuthenticationService } from './_services';
 import { User } from './_models';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent implements OnInit {
   currentUser: User;
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
-
+  @ViewChild('drawer') drawer: MatSidenav;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -36,7 +37,10 @@ export class AppComponent implements OnInit {
       x => this.currentUser = x);
   }
   ngOnInit(): void {
-
+    this.router.events.pipe(
+      withLatestFrom(this.isHandset$),
+      filter(([a, b]) => b && a instanceof NavigationEnd)
+    ).subscribe(_ => { if (this.drawer) { this.drawer.close(); } });
   }
 
   get isAdmin() {
