@@ -1,0 +1,96 @@
+<div class="container">
+  <div class="column justify-content-center mb-3">
+    <ng-template [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"
+                 [ngTemplateOutlet]="imgContainer"></ng-template>
+    <div class="d-flex">
+      <app-text-edit [value]="gallery"
+                     [service]="service"
+                     [placeholder]="'title'"
+                     [title]="true"
+                     [field]="'title'"
+                     class="mr-auto"></app-text-edit>
+      <button (click)="service.orderUp(gallery)"
+              *ngIf="!service.isFirst(gallery) && service.edit"
+              mat-button
+              [matTooltip]="vt.translate('up')">
+        <mat-icon>arrow_upward</mat-icon>
+      </button>
+      <button (click)="service.orderDown(gallery)"
+              *ngIf="!service.isLast(gallery) && service.edit"
+              mat-button
+              [matTooltip]="vt.translate('down')">
+        <mat-icon>arrow_downward</mat-icon>
+      </button>
+    </div>
+    <div class="justify-content-center">
+      <div class="scrolls max-height-carrousel">
+        <button (click)="addToCarrousel()"
+                *ngIf="service.edit"
+                mat-button
+                class="max-height-carrousel-btn inline-carrousel"
+                [matTooltip]="vt.translate('add.carroussel')">
+          <mat-icon>add</mat-icon>
+        </button>
+        <ng-container *ngFor="let img of gallery.medias">
+          <div class="padding inline-carrousel">
+            <div class="container-img">
+              <div class="text-block-top d-flex flex-row-reverse"
+                   *ngIf="service.edit">
+                <button mat-button
+                        [matTooltip]="vt.translate('remove.picture.carrousel')"
+                        (click)="removeFromCarrousel(img)"
+                        class="right">
+                  <mat-icon>image_not_supported</mat-icon>
+                </button>
+              </div>
+              <img [src]="img.url()"
+                   [alt]="img.description" />
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <ng-template [ngTemplateOutletContext]="{name: 'main', small: false, separator: false}"
+                 [ngTemplateOutlet]="imgContainer"></ng-template>
+    <div class="padding-top-bottom">
+      <ng-template [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"
+                   [ngTemplateOutlet]="imgContainer"></ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #imgContainer
+             let-name="name"
+             let-small="small"
+             let-separator="separator">
+  <div class="container-img"
+       [ngClass]="{'edit-image': service.edit, separator: separator}"
+       *ngIf="(!separator && service.has(gallery, name)) || service.edit">
+    <div class="text-block-top d-flex justify-content-between"
+         *ngIf="service.edit">
+      <p class="align-self-center mr-auto"
+         (click)="openDialog(name)"
+         *ngIf="service.getUrl(gallery, name) === ''">{{vt.translate('click.add.' + name)}}</p>
+      <p class="align-self-center mr-auto"
+         (click)="openDialog(name)"
+         *ngIf="service.getUrl(gallery, name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="service.getUrl(gallery, name) !== ''"
+              mat-button
+              [matTooltip]="vt.translate('remove.picture')"
+              (click)="removePicture(name)"
+              class="align-self-center">
+        <mat-icon>image_not_supported</mat-icon>
+      </button>
+    </div>
+    <img [src]="service.getUrl(gallery, name)"
+         [alt]="service.getDescription(gallery, name)"
+         (click)="openDialog(name)"
+         [ngClass]="{ 'border': service.border(gallery, name), 'size': !small, 'edit-img': service.edit && !separator, 'edit-img-separator': service.edit && separator}"
+         class="img-fluid"
+         *ngIf="!separator || service.edit" />
+
+  </div>
+  <div class="separator separator-background"
+       [ngStyle]="{'background-image': 'url(' + service.getUrl(gallery, name) + ')'}"
+       *ngIf="separator && !service.edit"></div>
+</ng-template>

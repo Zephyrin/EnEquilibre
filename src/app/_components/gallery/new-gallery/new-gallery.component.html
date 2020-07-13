@@ -1,0 +1,14 @@
+<p mat-dialog-title>{{vt.translate('gallery.creator')}}</p>
+<div mat-dialog-content>
+  <mat-form-field class="full-width">
+    <app-translate #titleInput
+                   [placeholder]="vt.translate('picture.description')"></app-translate>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions
+     class="d-flex flex-row-reverse">
+  <button mat-button
+          (click)="onSubmit()">{{vt.translate('ok')}}</button>
+  <button mat-button
+          (click)="onNoClick()">{{vt.translate('cancel')}}</button>
+</div>

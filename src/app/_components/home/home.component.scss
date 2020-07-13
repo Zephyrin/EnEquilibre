@@ -22,12 +22,6 @@
   right: 10px;
 }
 
-.float-right-bottom {
-  position: fixed;
-  bottom: 10px;
-  right: 20px;
-}
-
 .edit-image {
   cursor: pointer;
 }
@@ -43,6 +37,7 @@
   min-height: 5em;
   min-width: 40em;
   width: 100%;
+  min-width: 100%;
 }
 
 .separator-background {

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   openDialog(name: string) {
     if (this.home.edit) {
       const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.home.get(undefined, name) });

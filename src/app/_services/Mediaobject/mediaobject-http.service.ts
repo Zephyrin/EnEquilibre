@@ -47,9 +47,9 @@ export class MediaobjectHttpService extends HttpService<Mediaobject>{
       }));
   }
 
-  update(mediaobject: Mediaobject): Observable<Mediaobject> {
+  update(id: string, mediaobject: Mediaobject): Observable<Mediaobject> {
     return this.http.patch<Mediaobject>(
-      `${environment.apiUrl}/${this.language.language}/mediaobject/${mediaobject.id}`, mediaobject);
+      `${environment.apiUrl}/${this.language.language}/mediaobject/${id}`, mediaobject);
   }
 
   delete(mediaobject: Mediaobject): Observable<{}> {

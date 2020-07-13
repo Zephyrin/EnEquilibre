@@ -167,7 +167,7 @@ export class HomeService {
         this.end(error);
       });
     } else {
-      this.http.update(home).subscribe(data => {
+      this.http.update(home.id.toString(), home).subscribe(data => {
         this.home = new Home(home);
         this.end();
       }, error => {

@@ -52,8 +52,9 @@ export class Mediaobject {
     }
   }
 
-  toJSON() {
+  toJSON(addId = false) {
     const data = {};
+    if (this.id && addId) { data[`id`] = this.id; }
     if (this.img) { data[`image`] = this.img; }
     if (this.description) { data[`description`] = this.description; }
     return data;

@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { TranslateComponent } from './../helpers/translate/translate.component';
 import { MediaobjectHttpService } from './../../_services/Mediaobject/mediaobject-http.service';
 import { FormErrors } from './../../_helpers/form-error';
@@ -134,6 +135,8 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     this.tabPosition = tabChangeEvent.index;
     if (tabChangeEvent.index > 0) {
       this.loading = true;
+      const httpParams = new HttpParams();
+      httpParams.append('noPagination', 'true');
       this.http.getAll(null).subscribe(response => {
         this.medias = response.body.map((x) => new Mediaobject(x));
         this.loading = false;
@@ -193,7 +196,7 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
         this.end(error);
       });
     } else {
-      this.http.update(newM).subscribe(data => {
+      this.http.update(newM.id.toString(), newM).subscribe(data => {
         oldM[name] = newValue;
         this.end();
       }, error => {

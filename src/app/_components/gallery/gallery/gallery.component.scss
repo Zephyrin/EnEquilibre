@@ -1,0 +1,43 @@
+.edit-image {
+  cursor: pointer;
+}
+
+.separator {
+  overflow: hidden;
+  max-height: 10em;
+  min-height: 5em;
+  min-width: 100%;
+  width: 100%;
+}
+
+.separator-background {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+}
+
+.scrolls {
+  display: flex;
+  overflow-x: auto;
+}
+
+.max-height-carrousel img {
+  max-height: 200px;
+}
+
+.max-height-carrousel .max-height-carrousel-btn {
+  min-height: 200px;
+}
+
+.padding {
+  padding: 1em;
+}
+
+.padding-top-bottom {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.right {
+  margin-right: 0;
+}

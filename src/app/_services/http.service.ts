@@ -6,7 +6,7 @@ export abstract class HttpService<T> {
 
   abstract getAll(httpParams: HttpParams): Observable<HttpResponse<T[]>>;
 
-  abstract update(elt: T): Observable<T>;
+  abstract update(id: string, elt: T): Observable<T>;
 
   abstract delete(elt: T): Observable<{}>;
 

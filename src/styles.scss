@@ -56,7 +56,12 @@ $custom-file-text: (
 }
 
 .edit-img {
-  min-width: 300px;
+  min-width: 100%;
+  min-height: 250px;
+}
+
+.edit-img-separator {
+  min-width: 100%;
   min-height: 250px;
 }
 .text-block, .text-block-top, .text-block-top-center {
@@ -101,6 +106,12 @@ $custom-file-text: (
 
 .pointer {
   cursor: pointer;
+}
+
+.float-right-bottom {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
 }
 
 /* Importing Bootstrap SCSS file. */

@@ -1,0 +1,32 @@
+<div class="d-flex justify-content-center align-items-center h150">
+  <div class="img-row"
+       *ngIf="gallery.values?.length > 0">
+    <ng-container *ngFor="let img of gallery.values; index as i">
+      <div class="img-column">
+        <app-gallery [gallery]="img"></app-gallery>
+        <div *ngIf="!gallery.isLast(img)"
+             class="center">~</div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div class="float-right-bottom">
+  <button mat-fab
+          color="primary"
+          class="action-bottom mr-2"
+          *ngIf="gallery.edit"
+          (click)="addGallery()"
+          [matTooltip]="vt.translate('aria.add.gallery')"
+          [attr.aria-label]="vt.translate('aria.add.gallery')">
+    <mat-icon>add</mat-icon>
+  </button>
+  <button mat-fab
+          color="primary"
+          class="action-bottom"
+          *ngIf="gallery.canEdit"
+          (click)="gallery.edit = !gallery.edit"
+          [matTooltip]="vt.translate('aria.edit.gallery')"
+          [attr.aria-label]="vt.translate('aria.edit.gallery')">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

@@ -31,6 +31,9 @@ import { FileUploadComponent } from './_components/helpers/file-upload/file-uplo
 import { TranslateComponent } from './_components/helpers/translate/translate.component';
 import { RemoveDialogComponent } from './_components/helpers/remove-dialog/remove-dialog.component';
 import { TextEditComponent } from './_components/helpers/text-edit/text-edit.component';
+import { GalleriesComponent } from './_components/gallery/galleries.component';
+import { NewGalleryComponent } from './_components/gallery/new-gallery/new-gallery.component';
+import { GalleryComponent } from './_components/gallery/gallery/gallery.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { TextEditComponent } from './_components/helpers/text-edit/text-edit.com
     FileUploadComponent,
     TranslateComponent,
     RemoveDialogComponent,
-    TextEditComponent
+    TextEditComponent,
+    GalleriesComponent,
+    NewGalleryComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

@@ -45,9 +45,9 @@ export class ViewTranslateHttpService extends HttpService<ViewTranslate> {
       `${environment.apiUrl}/${this.language.language}/viewtranslate`, viewtranslate);
   }
 
-  update(viewtranslate: ViewTranslate): Observable<ViewTranslate> {
+  update(key: string, viewtranslate: ViewTranslate): Observable<ViewTranslate> {
     return this.http.patch<ViewTranslate>(
-      `${environment.apiUrl}/${this.language.language}/viewtranslate/${viewtranslate.key}`, viewtranslate)
+      `${environment.apiUrl}/${this.language.language}/viewtranslate/${key}`, viewtranslate)
       ;
   }
 
