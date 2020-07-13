@@ -6,7 +6,13 @@
       <input matInput
              #enInput
              class="mr-auto en"
+             *ngIf="!isArea"
              formControlName="en">
+      <textarea matInput
+                #enInput
+                class="mr-auto en"
+                *ngIf="isArea"
+                formControlName="en"></textarea>
       <label>en</label>
     </div>
     <mat-divider *ngIf="focused"></mat-divider>
@@ -16,7 +22,13 @@
       <input matInput
              #frInput
              class="mr-auto fr"
+             *ngIf="!isArea"
              formControlName="fr">
+      <textarea matInput
+                #frInput
+                class="mr-auto fr"
+                *ngIf="isArea"
+                formControlName="fr"></textarea>
       <label>fr</label>
     </div>
   </div>

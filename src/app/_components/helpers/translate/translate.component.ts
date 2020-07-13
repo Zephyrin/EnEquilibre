@@ -18,7 +18,7 @@ export class TranslateComponent implements MatFormFieldControl<Translate>, OnDes
 
   @ViewChild('enInput') enInput: ElementRef;
   @ViewChild('frInput') frInput: ElementRef;
-
+  @Input() isArea = false;
   parts: FormGroup;
   stateChanges = new Subject<void>();
   get focused(): boolean {

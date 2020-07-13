@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+  </div>
+  <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'background', separator: false}"></ng-template>
+  </div>
+  <div class="row justify-content-center">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="about"
+                   [service]="about"
+                   [placeholder]="'about'"
+                   [field]="'about'"></app-text-edit>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="about"
+                   [service]="about"
+                   [placeholder]="'comment'"
+                   [area]="true"
+                   [field]="'comment'"></app-text-edit>
+  </div>
+</div>
+
+<ng-template #imgContainer
+             let-name="name"
+             let-separator="separator">
+  <div class="container-img"
+       [ngClass]="{'edit-image': about.edit, separator: separator, main: !separator}"
+       *ngIf="(!separator && about.hasImage(name)) || about.edit">
+    <div class="text-block-top d-flex justify-content-between"
+         *ngIf="about.edit">
+      <p class="align-self-center"
+         (click)="openDialog(name)"
+         *ngIf="about.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+      <p class="align-self-center"
+         (click)="openDialog(name)"
+         *ngIf="about.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="about.getUrl(name) !== ''"
+              mat-button
+              [matTooltip]="vt.translate('remove.picture')"
+              (click)="removePicture(name)"
+              class="align-self-center">
+        <mat-icon>image_not_supported</mat-icon>
+      </button>
+    </div>
+    <img [src]="about.getUrl(name)"
+         [alt]="about.getDescription(name)"
+         (click)="openDialog(name)"
+         [ngClass]="{ 'border': about.border(name), 'edit-img': about.edit && !separator, 'edit-img-separator': about.edit && separator}"
+         class="img-fluid"
+         *ngIf="!separator || about.edit" />
+
+  </div>
+  <div class="separator separator-background"
+       [ngStyle]="{'background-image': 'url(' + about.getUrl(name) + ')'}"
+       *ngIf="separator && !about.edit"></div>
+</ng-template>
+<div class="float-right-bottom">
+  <button mat-fab
+          color="primary"
+          class="action-bottom"
+          *ngIf="about.canEdit"
+          (click)="about.edit = !about.edit"
+          [matTooltip]="vt.translate('aria.edit.about')"
+          [attr.aria-label]="vt.translate('aria.edit.about')">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

@@ -34,6 +34,7 @@ import { TextEditComponent } from './_components/helpers/text-edit/text-edit.com
 import { GalleriesComponent } from './_components/gallery/galleries.component';
 import { NewGalleryComponent } from './_components/gallery/new-gallery/new-gallery.component';
 import { GalleryComponent } from './_components/gallery/gallery/gallery.component';
+import { AboutComponent } from './_components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { GalleryComponent } from './_components/gallery/gallery/gallery.componen
     TextEditComponent,
     GalleriesComponent,
     NewGalleryComponent,
-    GalleryComponent
+    GalleryComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,7 @@ interface EditTranslate {
 export class TextEditComponent implements OnInit {
   @ViewChild('input') input: TranslateComponent;
 
+  @Input() area = false;
   @Input() placeholder: string;
   @Input() value: any;
   @Input() service: EditTranslate;

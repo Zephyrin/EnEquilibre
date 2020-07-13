@@ -19,6 +19,7 @@
      [ngClass]="{'visible': edit, 'hidden': !edit}">
   <mat-form-field class="full-width w170">
     <app-translate #input
+                   [isArea]="area"
                    [placeholder]="vt.translate(placeholder)"></app-translate>
   </mat-form-field>
   <button mat-button
