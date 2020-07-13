@@ -22,36 +22,36 @@
         <mat-icon>arrow_downward</mat-icon>
       </button>
     </div>
-    <div class="justify-content-center">
-      <div class="scrolls max-height-carrousel">
-        <button (click)="addToCarrousel()"
-                *ngIf="service.edit"
-                mat-button
-                class="max-height-carrousel-btn inline-carrousel"
-                [matTooltip]="vt.translate('add.carroussel')">
-          <mat-icon>add</mat-icon>
-        </button>
-        <ng-container *ngFor="let img of gallery.medias">
-          <div class="padding inline-carrousel">
-            <div class="container-img">
-              <div class="text-block-top d-flex flex-row-reverse"
-                   *ngIf="service.edit">
-                <button mat-button
-                        [matTooltip]="vt.translate('remove.picture.carrousel')"
-                        (click)="removeFromCarrousel(img)"
-                        class="right">
-                  <mat-icon>image_not_supported</mat-icon>
-                </button>
-              </div>
-              <img [src]="img.url()"
-                   [alt]="img.description" />
-            </div>
+    <div class="scrolls max-height-carrousel"
+         *ngIf="gallery.medias && gallery.medias.length > 0">
+      <button (click)="addToCarrousel()"
+              *ngIf="service.edit"
+              mat-button
+              class="max-height-carrousel-btn inline-carrousel"
+              [matTooltip]="vt.translate('add.carroussel')">
+        <mat-icon>add</mat-icon>
+      </button>
+
+      <div class="padding inline-carrousel"
+           *ngFor="let img of gallery.medias">
+        <div class="container-img">
+          <div class="text-block-top d-flex flex-row-reverse"
+               *ngIf="service.edit">
+            <button mat-button
+                    [matTooltip]="vt.translate('remove.picture.carrousel')"
+                    (click)="removeFromCarrousel(img)"
+                    class="right">
+              <mat-icon>image_not_supported</mat-icon>
+            </button>
           </div>
-        </ng-container>
+          <img [src]="img.url()"
+               [alt]="img.description" />
+        </div>
       </div>
     </div>
     <ng-template [ngTemplateOutletContext]="{name: 'main', small: false, separator: false}"
-                 [ngTemplateOutlet]="imgContainer"></ng-template>
+                 [ngTemplateOutlet]="imgContainer">
+    </ng-template>
     <div class="padding-top-bottom">
       <ng-template [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"
                    [ngTemplateOutlet]="imgContainer"></ng-template>
@@ -87,10 +87,10 @@
          (click)="openDialog(name)"
          [ngClass]="{ 'border': service.border(gallery, name), 'size': !small, 'edit-img': service.edit && !separator, 'edit-img-separator': service.edit && separator}"
          class="img-fluid"
-         *ngIf="!separator || service.edit" />
+         *ngIf="(!separator || service.edit)" />
 
   </div>
   <div class="separator separator-background"
        [ngStyle]="{'background-image': 'url(' + service.getUrl(gallery, name) + ')'}"
-       *ngIf="separator && !service.edit"></div>
+       *ngIf="separator && !service.edit && service.getUrl(gallery, name)"></div>
 </ng-template>

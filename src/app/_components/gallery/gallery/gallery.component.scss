@@ -18,7 +18,16 @@
 
 .scrolls {
   display: flex;
+  flex-wrap: nowrap;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+   &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.inline-carrousel {
+  flex: 0 0 auto;
 }
 
 .max-height-carrousel img {
@@ -30,7 +39,8 @@
 }
 
 .padding {
-  padding: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
 }
 
 .padding-top-bottom {
