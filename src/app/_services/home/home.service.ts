@@ -58,7 +58,7 @@ export class HomeService {
     private vt: ViewTranslateService) {
     this.edit = false;
     this.authenticationService.currentUser.subscribe(
-      x => { this.currentUser = x; this.edit = true; });
+      x => { this.currentUser = x; });
   }
 
   public getUrl(name: string): string {

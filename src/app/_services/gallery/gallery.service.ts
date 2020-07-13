@@ -59,7 +59,7 @@ export class GalleryService {
     private vt: ViewTranslateService) {
     this.edit = false;
     this.authenticationService.currentUser.subscribe(
-      x => { this.currentUser = x; this.edit = true; });
+      x => { this.currentUser = x; });
   }
 
   public get(object: any, name: string): string {
