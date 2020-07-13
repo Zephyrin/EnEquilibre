@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   @ViewChild('login') loginElement: ElementRef;
   @ViewChild('email') emailElement: ElementRef;
-  @ViewChild('gender') genderElement: ElementRef;
   @ViewChild('password') passwordElement: ElementRef;
 
   registerForm: FormGroup;
@@ -100,8 +99,6 @@ export class SignupComponent implements OnInit, AfterViewInit {
         this.loginElement.nativeElement.focus();
       } else if (this.f.email.invalid) {
         this.emailElement.nativeElement.focus();
-      } else if (this.f.gender.invalid) {
-        this.genderElement.nativeElement.focus();
       } else if (this.f.password.invalid) {
         this.passwordElement.nativeElement.focus();
       } else {
