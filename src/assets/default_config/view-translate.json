@@ -158,5 +158,8 @@
   }, {
     "key": "description",
     "translate": { "en": "Image description", "fr": "Description de l'image"}
+  }, {
+    "key": "manage.images",
+    "translate": { "en": "Manage images", "fr": "Gestion des images"}
   }
 ]

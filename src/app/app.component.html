@@ -38,6 +38,10 @@
     </mat-nav-list>
     <mat-toolbar *ngIf="isMerchant">{{vt.translate('merchant')}}</mat-toolbar>
     <mat-nav-list *ngIf="isMerchant">
+      <a mat-list-item
+         routerLinkActive="active-link"
+         class="hover-link"
+         routerLink="manage-image">{{vt.translate('manage.images')}}</a>
     </mat-nav-list>
     <mat-toolbar *ngIf="isAdmin">{{vt.translate('admin')}}</mat-toolbar>
     <mat-nav-list *ngIf="isAdmin">
