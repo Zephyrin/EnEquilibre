@@ -13,11 +13,35 @@ export class MediaobjectService {
   loading = false;
   errors = new FormErrors();
   edit = true;
+  /* List for the first column of the display */
+  m1: Mediaobject[];
+  /* List for the second column of the display */
+  m2: Mediaobject[];
+  m3: Mediaobject[];
+  m4: Mediaobject[];
   constructor(private http: MediaobjectHttpService, private vt: ViewTranslateService) {
     this.http.getAllMerchant(null).subscribe(response => {
       this.medias = response.body.map((x) => new Mediaobject(x));
-
+      this.m1 = [];
+      this.m2 = [];
+      this.m3 = [];
+      this.m4 = [];
+      this.medias.forEach(elt => {
+        this.push(elt);
+      });
     });
+  }
+
+  private push(media: Mediaobject) {
+    if (this.m4.length < this.m3.length) {
+      this.m4.push(media);
+    } else if (this.m3.length < this.m2.length) {
+      this.m3.push(media);
+    } else if (this.m2.length < this.m1.length) {
+      this.m2.push(media);
+    } else {
+      this.m1.push(media);
+    }
   }
 
   public selectImg(img: Mediaobject): void {
@@ -67,7 +91,9 @@ export class MediaobjectService {
   private updateOrCreate(newM: Mediaobject, oldM: Mediaobject, name: string, newValue: any) {
     if (newM.id === undefined) {
       this.http.create(newM).subscribe(data => {
-        //TODO
+        const elt = new Mediaobject(data);
+        this.medias.push(elt);
+        this.push(elt);
         this.end();
       }, error => {
         this.end(error);

@@ -1,25 +1,30 @@
 <div class="img-row"
      *ngIf="service.medias?.length > 0">
-  <ng-container *ngFor="let img of service.medias; index as i">
-    <div class="img-column"
-         *ngIf="i % (service.medias.length < 16 ? 2 : 4) === 0 ">
-      <ng-template [ngTemplateOutlet]="imageGrid"
-                   [ngTemplateOutletContext]="{img: img}"></ng-template>
-      <ng-template [ngTemplateOutlet]="imageGrid"
-                   [ngTemplateOutletContext]="{img: service.medias[i + 1]}"
-                   *ngIf="i + 1 < service.medias.length"></ng-template>
-      <ng-template [ngTemplateOutlet]="imageGrid"
-                   [ngTemplateOutletContext]="{img: service.medias[i + 2]}"
-                   *ngIf="service.medias.length < 16 ? false : i + 2 < service.medias.length"></ng-template>
-      <ng-template [ngTemplateOutlet]="imageGrid"
-                   [ngTemplateOutletContext]="{img: service.medias[i + 3]}"
-                   *ngIf="service.medias.length < 16 ? false : i + 3 < service.medias.length"></ng-template>
-      <div class="container-img"
-           *ngIf="service.loading && (service.medias.length < 16 ? i + 2 : i + 4) >= service.medias.length">
-        <mat-spinner color="accent"></mat-spinner>
-      </div>
-    </div>
-  </ng-container>
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m1"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m2"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m3"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m4"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="container-img"
+       *ngIf="service.loading">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
 </div>
 
 <ng-template #imageGrid
