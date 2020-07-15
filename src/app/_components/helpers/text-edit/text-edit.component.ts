@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Translate } from './../../../_models/translate';
 import { TranslateComponent } from './../translate/translate.component';
 import { ViewTranslateService } from './../../../_services/view-translate.service';
@@ -23,6 +24,8 @@ export class TextEditComponent implements OnInit {
   @Input() service: EditTranslate;
   @Input() field: string;
   @Input() title = false;
+
+  form: FormGroup;
   get edit(): boolean {
     return this.edit$ && this.service.edit;
   }
@@ -46,9 +49,10 @@ export class TextEditComponent implements OnInit {
   }
   private edit$ = false;
 
-  constructor(public vt: ViewTranslateService) { }
+  constructor(public vt: ViewTranslateService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({});
   }
 
   getTranslation(): string {
