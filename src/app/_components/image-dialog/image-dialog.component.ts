@@ -27,7 +27,7 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   medias: Mediaobject[];
   selectedImg: Mediaobject;
   tabPosition = 0;
-  edit = true;
+  edit = false;
   get f() { return this.form.controls; }
 
   constructor(

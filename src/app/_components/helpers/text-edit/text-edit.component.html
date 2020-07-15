@@ -15,23 +15,29 @@
   </button>
 </p>
 
-<div class="d-flex align-items-center pl1 wrap"
-     [ngClass]="{'visible': edit, 'hidden': !edit}">
-  <mat-form-field class="full-width w170">
-    <app-translate #input
-                   [isArea]="area"
-                   [placeholder]="vt.translate(placeholder)"></app-translate>
-  </mat-form-field>
-  <button mat-button
-          [matTooltip]="vt.translate('save.translation')"
-          (click)="onSubmit()"
-          class="small">
-    <mat-icon class="pointer">save</mat-icon>
-  </button>
-  <button mat-button
-          [matTooltip]="vt.translate('cancel.translation')"
-          (click)="edit = false"
-          class="small">
-    <mat-icon class="pointer">cancel</mat-icon>
-  </button>
-</div>
+<form (ngSubmit)="onSubmit()"
+      [formGroup]="form">
+  <div class="d-flex align-items-center pl1"
+       [ngClass]="{'visible': edit, 'hidden': !edit}">
+    <mat-form-field class="full-width w170">
+      <app-translate #input
+                     [isArea]="area"
+                     [placeholder]="vt.translate(placeholder)"></app-translate>
+    </mat-form-field>
+  </div>
+  <div class="d-flex flex-row-reverse"
+       [ngClass]="{'visible': edit, 'hidden': !edit}">
+    <button mat-button
+            [matTooltip]="vt.translate('save.translation')"
+            (click)="onSubmit()"
+            class="small">
+      <mat-icon class="pointer">save</mat-icon>
+    </button>
+    <button mat-button
+            [matTooltip]="vt.translate('cancel.translation')"
+            (click)="edit = false"
+            class="small">
+      <mat-icon class="pointer">cancel</mat-icon>
+    </button>
+  </div>
+</form>

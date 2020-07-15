@@ -1,1 +1,62 @@
-<p>manage-image works!</p>
+<div class="img-row"
+     *ngIf="service.medias?.length > 0">
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m1"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m2"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m3"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+
+  <div class="img-column">
+    <ng-template [ngTemplateOutlet]="imageGrid"
+                 *ngFor="let img of service.m4"
+                 [ngTemplateOutletContext]="{img: img}"></ng-template>
+  </div>
+  <div class="container-img"
+       *ngIf="service.loading">
+    <mat-spinner color="accent"></mat-spinner>
+  </div>
+</div>
+
+<ng-template #imageGrid
+             let-img="img">
+  <div class="border-shadow"
+       [ngClass]="{'img-selected': img.id === service.selectedImg?.id}">
+    <div class="container-img">
+      <img [src]="img.url()"
+           [alt]="img.description"
+           (click)="service.selectImg(img)"
+           class="img-fluid">
+      <div class="text-block">
+        <div class="d-flex align-items-center justify-content-between"
+             *ngIf="img.id === service.selectedImg?.id">
+          <app-text-edit #editor
+                         [value]="img"
+                         [service]="service"
+                         [placeholder]="'description'"
+                         [title]="false"
+                         [field]="'description'"
+                         class="full-width"></app-text-edit>
+          <button *ngIf="!editor.edit"
+                  mat-button
+                  [matTooltip]="vt.translate('delete.picture')"
+                  (click)="service.delete(img)"
+                  class="align-self-center">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <p class="align-self-center"
+           *ngIf="img.id !== service.selectedImg?.id && img.description">{{service.getTranslations(img)}}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>
