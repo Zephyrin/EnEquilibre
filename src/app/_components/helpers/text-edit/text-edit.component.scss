@@ -34,3 +34,11 @@ h1 {
 ::ng-deep .mat-form-field-label {
     color: currentColor!important;
 }
+
+::ng-deep .mat-form-field-underline {
+  background-color: currentColor!important;
+}
+
+::ng-deep .mat-form-field-ripple {
+  background-color: currentColor!important;
+}
