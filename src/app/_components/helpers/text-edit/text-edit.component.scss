@@ -30,3 +30,7 @@ h1 {
 .wrap {
   flex-wrap: wrap;
 }
+
+::ng-deep .mat-form-field-label {
+    color: currentColor!important;
+}

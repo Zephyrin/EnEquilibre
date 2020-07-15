@@ -44,7 +44,8 @@
                          [service]="service"
                          [placeholder]="'description'"
                          [title]="false"
-                         [field]="'description'"></app-text-edit>
+                         [field]="'description'"
+                         class="full-width"></app-text-edit>
           <button *ngIf="!editor.edit"
                   mat-button
                   [matTooltip]="vt.translate('delete.picture')"
@@ -54,7 +55,7 @@
           </button>
         </div>
         <p class="align-self-center"
-           *ngIf="img.description">{{service.getTranslations(img)}}</p>
+           *ngIf="img.id !== service.selectedImg?.id && img.description">{{service.getTranslations(img)}}</p>
       </div>
     </div>
   </div>
