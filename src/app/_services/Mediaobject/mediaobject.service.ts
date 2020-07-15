@@ -119,10 +119,16 @@ export class MediaobjectService {
   }
 
   private _delete(img: Mediaobject) {
-    const i = this.medias.indexOf(img);
-    if (i >= 0) {
-      this.medias.splice(i, 1);
-    }
+    let i = this.medias.indexOf(img);
+    if (i >= 0) { this.medias.splice(i, 1); }
+    i = this.m1.indexOf(img);
+    if (i >= 0) { this.m1.splice(i, 1); }
+    i = this.m2.indexOf(img);
+    if (i >= 0) { this.m2.splice(i, 1); }
+    i = this.m3.indexOf(img);
+    if (i >= 0) { this.m3.splice(i, 1); }
+    i = this.m4.indexOf(img);
+    if (i >= 0) { this.m4.splice(i, 1); }
     this.end();
   }
 

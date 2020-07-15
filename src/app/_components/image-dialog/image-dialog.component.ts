@@ -1,3 +1,4 @@
+import { MediaobjectService } from './../../_services/Mediaobject/mediaobject.service';
 import { HttpParams } from '@angular/common/http';
 import { TranslateComponent } from './../helpers/translate/translate.component';
 import { MediaobjectHttpService } from './../../_services/Mediaobject/mediaobject-http.service';
@@ -24,8 +25,6 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   errors = new FormErrors();
   imageSrc: SafeResourceUrl;
   fileName: string;
-  medias: Mediaobject[];
-  selectedImg: Mediaobject;
   tabPosition = 0;
   edit = false;
   get f() { return this.form.controls; }
@@ -36,8 +35,9 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: Mediaobject,
     private formBuilder: FormBuilder,
     private domSanitizer: DomSanitizer,
+    private service: MediaobjectService,
     private http: MediaobjectHttpService) {
-    this.selectedImg = data;
+    this.service.selectedImg = data;
   }
 
   ngOnInit(): void {
@@ -69,7 +69,7 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
       this.loading = true;
       this.manageImg();
     } else {
-      this.dialogRef.close({ data: this.selectedImg });
+      this.dialogRef.close({ data: this.service.selectedImg });
     }
   }
 
@@ -134,104 +134,14 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   updateMediasList(tabChangeEvent: MatTabChangeEvent): void {
     this.tabPosition = tabChangeEvent.index;
     if (tabChangeEvent.index > 0) {
-      this.loading = true;
+      //TODO
+      /* this.loading = true;
       const httpParams = new HttpParams();
       httpParams.append('noPagination', 'true');
       this.http.getAll(null).subscribe(response => {
         this.medias = response.body.map((x) => new Mediaobject(x));
         this.loading = false;
-      });
-    }
-  }
-
-  selectImg(img: Mediaobject) {
-    if (this.selectedImg && this.selectedImg.id === img.id) {
-      this.selectedImg = undefined;
-    } else {
-      this.selectedImg = img;
-    }
-  }
-
-  public getTranslations(img: Mediaobject): string {
-    const trans = img.translations;
-    if (trans[this.vt.language]) {
-      if (trans[this.vt.language].description) {
-        return trans[this.vt.language].description;
-      }
-    }
-    const val = img.description;
-    if (val[this.vt.language]) {
-      return val[this.vt.language];
-    }
-    return val;
-  }
-  public get(object: any, name: string): string {
-    if (object) {
-      if (object[name]) {
-        return object[name];
-      }
-    }
-    return this.vt.translate('no.' + name);
-  }
-
-  public set(object: any, name: string, newValue: any): void {
-    if (object) {
-      object[name] = newValue;
-    }
-  }
-
-  public update(object: any, name: string, newValue: any): void {
-    this.start();
-    const mediaObject = new Mediaobject(object);
-    mediaObject[name] = newValue;
-    this.updateOrCreate(mediaObject, object, name, newValue);
-  }
-
-  private updateOrCreate(newM: Mediaobject, oldM: Mediaobject, name: string, newValue: any) {
-    if (newM.id === undefined) {
-      this.http.create(newM).subscribe(data => {
-        //TODO
-        this.end();
-      }, error => {
-        this.end(error);
-      });
-    } else {
-      this.http.update(newM.id.toString(), newM).subscribe(data => {
-        oldM[name] = newValue;
-        this.end();
-      }, error => {
-        this.end(error);
-      });
-    }
-  }
-
-  public delete(img: Mediaobject) {
-    this.start();
-    this.http.delete(img).subscribe(data => {
-      this._delete(img);
-    }, error => {
-      if (error.status === 404) { this._delete(img); }
-      else { this.end(error); }
-    });
-  }
-
-  private _delete(img: Mediaobject) {
-    const i = this.medias.indexOf(img);
-    if (i >= 0) {
-      this.medias.splice(i, 1);
-    }
-    this.end();
-  }
-
-  private start() {
-    this.loading = true;
-    this.errors = new FormErrors();
-  }
-
-  private end(error?: any | undefined) {
-    this.loading = false;
-    if (error) {
-      this.errors.formatError(error);
+      }); */
     }
   }
 }
