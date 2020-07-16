@@ -8,8 +8,16 @@ import { GalleriesComponent } from './_components/gallery/galleries.component';
 import { HomeComponent } from './_components/home/home.component';
 import { SigninComponent } from './_components/sign/in/signin/signin.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 
+
+const routerOptions: ExtraOptions = {
+  anchorScrolling: 'enabled',
+  useHash: false,
+  onSameUrlNavigation: 'reload',
+  scrollPositionRestoration: 'enabled',
+  scrollOffset: [0, 0],
+};
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

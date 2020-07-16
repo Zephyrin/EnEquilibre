@@ -8,35 +8,31 @@
                  [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"></ng-template>
   </div>
   <div class="row-img">
-    <div class="column-img">
-      <ng-container *ngFor="let gallery of galleries.c1">
-        <div class="container-img"
-             *ngIf="gallery.main?.hasUrl()">
-          <div class="text-block tcenter"
-               *ngIf="gallery.title">
-            {{gallery.title}}
-          </div>
-          <img [src]="gallery.main.url()"
-               [alt]="gallery.main.description">
-        </div>
-      </ng-container>
-    </div>
-    <div class="column-img">
-      <ng-container *ngFor="let gallery of galleries.c2">
-        <div class="container-img"
-             *ngIf="gallery.main?.hasUrl()">
-          <div class="text-block tcenter"
-               *ngIf="gallery.title">
-            {{gallery.title}}
-          </div>
-          <img [src]="gallery.main.url()"
-               [alt]="gallery.main.description">
-        </div>
-      </ng-container>
-    </div>
+    <ng-template [ngTemplateOutlet]="galleryColumn"
+                 [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
+    <ng-template [ngTemplateOutlet]="galleryColumn"
+                 [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
   </div>
 </div>
-
+<ng-template #galleryColumn
+             let-c="c">
+  <div class="column-img">
+    <ng-container *ngFor="let gallery of c">
+      <div class="container-img"
+           *ngIf="gallery.main?.hasUrl()">
+        <div class="text-block tcenter"
+             *ngIf="gallery.title">
+          {{gallery.title}}
+        </div>
+        <a routerLink="galleries"
+           [fragment]="gallery.title.split(' ').join('_')">
+          <img [src]="gallery.main.url()"
+               [alt]="gallery.main.description">
+        </a>
+      </div>
+    </ng-container>
+  </div>
+</ng-template>
 <ng-template #imgContainer
              let-name="name"
              let-small="small"

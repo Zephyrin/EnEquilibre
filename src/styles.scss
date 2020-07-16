@@ -30,7 +30,7 @@ $en-equilibre-theme: mat-light-theme($en-equilibre-primary, $en-equilibre-accent
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html { scroll-behavior: smooth; }
 .fill-remaining-space {
   flex: 1 1 auto;
 }

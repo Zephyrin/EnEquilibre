@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { RemoveDialogComponent } from './../../helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from './../../../_models/mediaobject';
 import { ImageDialogComponent } from './../../image-dialog/image-dialog.component';
@@ -14,12 +15,32 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class GalleryComponent implements OnInit {
   @Input() gallery: Gallery;
+  private fragment;
+
   constructor(
     public service: GalleryService,
     public vt: ViewTranslateService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private route: ActivatedRoute) {
+    this.route.fragment.subscribe((fragment: string) => {
+      this.fragment = fragment;
+    });
+  }
 
   ngOnInit(): void {
+    if (!!this.fragment) {
+      this.scroll(this.fragment);
+    }
+  }
+
+  scroll(id) {
+    setTimeout(() => {
+      const elmnt = document.getElementById(id);
+      if (elmnt !== null) {
+        elmnt.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+      }
+    }, 500);
+
   }
 
   openDialog(name: string) {
