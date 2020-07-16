@@ -14,6 +14,11 @@ import { Gallery } from '@app/_models';
 export class GalleryService {
   currentUser: User;
   public values: Gallery[];
+  /* Column 1 for the home page */
+  public c1: Gallery[];
+  /* Column 2 for the home page
+    If small screen, then this will be at the end. */
+  public c2: Gallery[];
   public selected: Gallery;
   public loading = false;
   public errors = new FormErrors();
@@ -31,12 +36,24 @@ export class GalleryService {
     if (this.edit$) {
       this.http.getAllMerchant().subscribe(response => {
         this.values = response.body.map((x) => new Gallery(x));
+        this.c2 = [];
+        this.c1 = [];
+        this.values.forEach(elt => {
+          if (this.c2.length < this.c1.length) { this.c2.push(elt); }
+          else { this.c1.push(elt); }
+        });
       }, err => {
         this.values = [];
       });
     } else {
       this.http.getAll().subscribe(response => {
         this.values = response.body.map(x => new Gallery(x));
+        this.c1 = [];
+        this.c2 = [];
+        this.values.forEach(elt => {
+          if (this.c2.length < this.c1.length) { this.c2.push(elt); }
+          else { this.c1.push(elt); }
+        });
       }, err => {
         this.values = [];
       });

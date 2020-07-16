@@ -51,6 +51,12 @@ $custom-file-text: (
   fr: "Ouvrir"
 );
 
+.tcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container-img {
   position: relative;
 }
@@ -69,6 +75,7 @@ $custom-file-text: (
   background-color:rgba(0,0,0,0.5);
   width: 100%;
   color: white;
+  min-height: 3em;
 }
 
 .text-block p, .text-block-top p, .text-block-top-center {

@@ -8,16 +8,31 @@
                  [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"></ng-template>
   </div>
   <div class="row-img">
-    <div class="column-img"
-         *ngFor="let gallery of galleries.values">
-      <div class="container-img"
-           *ngIf="gallery.main?.hasUrl()">
-        <div class="text-block">
-          {{gallery.title}}
+    <div class="column-img">
+      <ng-container *ngFor="let gallery of galleries.c1">
+        <div class="container-img"
+             *ngIf="gallery.main?.hasUrl()">
+          <div class="text-block tcenter"
+               *ngIf="gallery.title">
+            {{gallery.title}}
+          </div>
+          <img [src]="gallery.main.url()"
+               [alt]="gallery.main.description">
         </div>
-        <img [src]="gallery.main.url()"
-             [alt]="gallery.main.description">
-      </div>
+      </ng-container>
+    </div>
+    <div class="column-img">
+      <ng-container *ngFor="let gallery of galleries.c2">
+        <div class="container-img"
+             *ngIf="gallery.main?.hasUrl()">
+          <div class="text-block tcenter"
+               *ngIf="gallery.title">
+            {{gallery.title}}
+          </div>
+          <img [src]="gallery.main.url()"
+               [alt]="gallery.main.description">
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
