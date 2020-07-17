@@ -7,6 +7,7 @@ export class Mediaobject {
   filePath: string;
   protected img: SafeResourceUrl;
   translations: any;
+  error = false;
   get image(): SafeResourceUrl {
     return this.img;
   }
@@ -24,6 +25,7 @@ export class Mediaobject {
       this.image = mediaobject.image;
       this.timeStamp = mediaobject.timeStamp;
       this.translations = mediaobject.translations;
+      this.error = mediaobject.error ? true : false;
     } else {
       this.timeStamp = (new Date()).getTime();
     }
@@ -50,6 +52,10 @@ export class Mediaobject {
     } else {
       this.timeStamp = (new Date()).getTime();
     }
+  }
+
+  public onError() {
+    this.error = true;
   }
 
   toJSON(addId = false) {

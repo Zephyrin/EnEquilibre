@@ -23,7 +23,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog(name: string) {
+  openDialog($event: any, name: string) {
+    $event.stopPropagation();
     if (this.home.edit) {
       const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.home.get(undefined, name) });
       dialogRef.afterClosed().subscribe(result => {
@@ -35,13 +36,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  removePicture(name: string) {
+  removePicture($event: any, name: string) {
+    $event.stopPropagation();
     if (this.home.edit) {
       const dialogRef = this.dialog.open(RemoveDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
-        if (result.data === true) {
-          if (name === 'background') { this.home.removeBackground(); }
-          else if (name === 'separator') { this.home.removeSeparator(); }
+        if (result) {
+          if (result.data === true) {
+            if (name === 'background') { this.home.removeBackground(); }
+            else if (name === 'separator') { this.home.removeSeparator(); }
+          }
         }
       });
     }

@@ -70,6 +70,23 @@ export class HomeService {
     return '';
   }
 
+  public onError(name: string) {
+    if (this.home) {
+      if (this.home[name]) {
+        this.home[name].onError();
+      }
+    }
+  }
+
+  public hasError(name: string) {
+    if (this.home) {
+      if (this.home[name] && this.home[name].error === true) {
+        return this.home[name].error;
+      }
+    }
+    return false;
+  }
+
   public getDescription(name: string): string {
     if (this.home) {
       if (this.home[name]) {
@@ -96,6 +113,9 @@ export class HomeService {
 
   public border(name: string): boolean {
     if (this.home) {
+      if (this.home[name].error === true) {
+        return true;
+      }
       if (this.home[name]) {
         return false;
       }

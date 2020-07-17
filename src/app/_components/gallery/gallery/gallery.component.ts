@@ -43,7 +43,8 @@ export class GalleryComponent implements OnInit {
 
   }
 
-  openDialog(name: string) {
+  openDialog($event: any, name: string) {
+    $event.stopPropagation();
     if (this.service.edit) {
       const dialogRef = this.dialog.open(
         ImageDialogComponent, { data: this.service.get(this.gallery, name) });
@@ -55,11 +56,12 @@ export class GalleryComponent implements OnInit {
     }
   }
 
-  removePicture(name: string) {
+  removePicture($event: any, name: string) {
+    $event.stopPropagation();
     if (this.service.edit) {
       const dialogRef = this.dialog.open(RemoveDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
-        if (result.data === true) {
+        if (result && result.data === true) {
           this.service.remove(this.gallery, name);
         }
       });
@@ -82,7 +84,7 @@ export class GalleryComponent implements OnInit {
     if (this.service.edit) {
       const dialogRef = this.dialog.open(RemoveDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
-        if (result.data === true) {
+        if (result && result.data === true) {
           this.service.remove(this.gallery, 'medias', img);
         }
       });

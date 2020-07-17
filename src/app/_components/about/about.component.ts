@@ -21,7 +21,8 @@ export class AboutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog(name: string) {
+  openDialog($event: any, name: string) {
+    $event.stopPropagation();
     if (this.about.edit) {
       const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.about.get(undefined, name) });
       dialogRef.afterClosed().subscribe(result => {
@@ -33,11 +34,12 @@ export class AboutComponent implements OnInit {
     }
   }
 
-  removePicture(name: string) {
+  removePicture($event: any, name: string) {
+    $event.stopPropagation();
     if (this.about.edit) {
       const dialogRef = this.dialog.open(RemoveDialogComponent);
       dialogRef.afterClosed().subscribe(result => {
-        if (result.data === true) {
+        if (result && result.data === true) {
           if (name === 'background') { this.about.removeBackground(); }
           else if (name === 'separator') { this.about.removeSeparator(); }
         }

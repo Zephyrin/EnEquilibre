@@ -38,8 +38,8 @@
              let-small="small"
              let-separator="separator">
   <div class="container-img"
-       [ngClass]="{'edit-image': home.edit, separator: separator, 'min-size': home.edit}"
-       *ngIf="(!separator && home.hasImage(name)) || home.edit">
+       [ngClass]="{separator: separator, 'min-size': home.edit}"
+       *ngIf="(!separator && home.hasImage(name) && !home.hasError(name)) || home.edit">
     <div class="text-block-top-center d-flex flex-column align-items-center"
          *ngIf="!small && home.hasTitleOrSubtitle()">
       <div class="row align-items-center">
@@ -57,25 +57,30 @@
       </div>
     </div>
     <div class="text-block-top d-flex justify-content-between"
-         *ngIf="home.edit">
+         *ngIf="home.edit"
+         [ngClass]="{'edit-image': home.edit}"
+         (click)="openDialog($event, name)">
       <p class="align-self-center"
-         (click)="openDialog(name)"
          *ngIf="home.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
       <p class="align-self-center"
-         (click)="openDialog(name)"
          *ngIf="home.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
       <button *ngIf="home.getUrl(name) !== ''"
               mat-button
               [matTooltip]="vt.translate('remove.picture')"
-              (click)="removePicture(name)"
+              (click)="removePicture($event, name)"
               class="align-self-center">
         <mat-icon>image_not_supported</mat-icon>
       </button>
     </div>
     <img [src]="home.getUrl(name)"
          [alt]="home.getDescription(name)"
-         (click)="openDialog(name)"
-         [ngClass]="{ 'border': home.border(name), 'size': !small, 'edit-img': home.edit && !separator, 'edit-img-separator': home.edit && separator}"
+         (click)="openDialog($event, name)"
+         (error)="home.onError(name)"
+         [ngClass]="{ 'border': home.border(name),
+          'size': !small,
+          'edit-img': home.edit && !separator,
+          'edit-img-separator': home.edit && separator,
+          'edit-image': home.edit}"
          class="img-fluid"
          *ngIf="!separator || home.edit" />
 
