@@ -69,7 +69,8 @@ export class TextEditComponent implements OnInit {
     return val;
   }
 
-  onSubmit(): void {
+  onSubmit($event: any): void {
+    $event.stopPropagation();
     this.edit = false;
     const trans = this.input.value;
     const translations = this.service.get(this.value, 'translations');
@@ -78,4 +79,16 @@ export class TextEditComponent implements OnInit {
     this.service.update(this.value, this.field, trans);
   }
 
+  edition($event: any) {
+    $event.stopPropagation();
+    this.edit = true;
+  }
+
+  stopEdition($event: any) {
+    $event.stopPropagation();
+    this.edit = false;
+  }
+  stopPropagation($event: any) {
+    $event.stopPropagation();
+  }
 }

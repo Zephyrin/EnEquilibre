@@ -1,3 +1,4 @@
+import { Mediaobject } from './../../../_models/mediaobject';
 import { ViewTranslateService } from './../../../_services/view-translate.service';
 import { MediaobjectService } from './../../../_services/Mediaobject/mediaobject.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,4 +18,13 @@ export class ManageImageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  selectImg($event: any, img: Mediaobject) {
+    $event.stopPropagation();
+    this.service.selectImg(img);
+  }
+
+  delete($event: any, img: Mediaobject) {
+    $event.stopPropagation();
+    this.service.delete(img);
+  }
 }

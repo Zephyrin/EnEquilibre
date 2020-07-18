@@ -2,7 +2,7 @@
           [matTooltip]="vt.translate('edit.translation')"
           *ngIf="!edit && service.edit"
           class="small"
-          (click)="edit = true">
+          (click)="edition($event)">
     <mat-icon>edit</mat-icon>
   </button>
 </h1>
@@ -10,12 +10,14 @@
           [matTooltip]="vt.translate('edit.translation')"
           *ngIf="!edit && service.edit"
           class="small"
-          (click)="edit = true">
+          (click)="edition($event)">
     <mat-icon>edit</mat-icon>
   </button>
 </p>
 
-<form (ngSubmit)="onSubmit()"
+<form (ngSubmit)="onSubmit($event)"
+      (click)="stopPropagation($event)"
+      class="cursor-default"
       [formGroup]="form">
   <div class="d-flex align-items-center pl1"
        [ngClass]="{'visible': edit, 'hidden': !edit}">
@@ -29,13 +31,13 @@
        [ngClass]="{'visible': edit, 'hidden': !edit}">
     <button mat-button
             [matTooltip]="vt.translate('save.translation')"
-            (click)="onSubmit()"
+            (click)="onSubmit($event)"
             class="small">
       <mat-icon class="pointer">save</mat-icon>
     </button>
     <button mat-button
             [matTooltip]="vt.translate('cancel.translation')"
-            (click)="edit = false"
+            (click)="stopEdition($event)"
             class="small">
       <mat-icon class="pointer">cancel</mat-icon>
     </button>
