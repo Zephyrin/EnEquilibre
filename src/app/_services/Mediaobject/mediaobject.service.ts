@@ -55,12 +55,13 @@ export class MediaobjectService {
   public getTranslations(img: Mediaobject): string {
     const trans = img.translations;
     if (trans[this.vt.language]) {
-      if (trans[this.vt.language].description) {
+      if (trans[this.vt.language].description
+        || trans[this.vt.language].description === '') {
         return trans[this.vt.language].description;
       }
     }
     const val = img.description;
-    if (val[this.vt.language]) {
+    if (val[this.vt.language] || val[this.vt.language] === '') {
       return val[this.vt.language];
     }
     return val;
@@ -68,7 +69,7 @@ export class MediaobjectService {
 
   public get(object: any, name: string): string {
     if (object) {
-      if (object[name]) {
+      if (object[name] && object[name] !== '') {
         return object[name];
       }
     }

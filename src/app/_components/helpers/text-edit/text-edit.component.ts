@@ -33,7 +33,9 @@ export class TextEditComponent implements OnInit {
   set edit(edit: boolean) {
     if (edit) {
       let trans = this.service.get(this.value, 'translations');
+      this.oldValue = Object.assign({}, trans);
       if (typeof (trans) === 'string') {
+        this.oldValueIsString = true;
         trans = { en: [], fr: [] };
         trans.en[this.field] = '';
         trans.fr[this.field] = '';
@@ -48,7 +50,8 @@ export class TextEditComponent implements OnInit {
     this.edit$ = edit;
   }
   private edit$ = false;
-
+  oldValue: any;
+  oldValueIsString = false;
   constructor(public vt: ViewTranslateService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
@@ -58,12 +61,13 @@ export class TextEditComponent implements OnInit {
   getTranslation(): string {
     const trans = this.service.get(this.value, 'translations');
     if (trans[this.vt.language]) {
-      if (trans[this.vt.language][this.field]) {
+      if (trans[this.vt.language][this.field]
+        || trans[this.vt.language][this.field] === '') {
         return trans[this.vt.language][this.field];
       }
     }
     const val = this.service.get(this.value, this.field);
-    if (val[this.vt.language]) {
+    if (val[this.vt.language] || val[this.vt.language] === '') {
       return val[this.vt.language];
     }
     return val;
@@ -86,6 +90,7 @@ export class TextEditComponent implements OnInit {
 
   stopEdition($event: any) {
     $event.stopPropagation();
+    if (!this.oldValueIsString) { this.service.set(this.value, 'translation', this.oldValue); }
     this.edit = false;
   }
   stopPropagation($event: any) {

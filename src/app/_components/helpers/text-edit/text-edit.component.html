@@ -32,12 +32,14 @@
     <button mat-button
             [matTooltip]="vt.translate('save.translation')"
             (click)="onSubmit($event)"
+            type="submit"
             class="small">
       <mat-icon class="pointer">save</mat-icon>
     </button>
     <button mat-button
             [matTooltip]="vt.translate('cancel.translation')"
             (click)="stopEdition($event)"
+            type="button"
             class="small">
       <mat-icon class="pointer">cancel</mat-icon>
     </button>
