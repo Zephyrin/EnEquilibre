@@ -63,13 +63,18 @@ export class TextEditComponent implements OnInit {
     if (trans[this.vt.language]) {
       if (trans[this.vt.language][this.field]
         || trans[this.vt.language][this.field] === '') {
+        if (trans[this.vt.language][this.field] === '') { return this.vt.translate('no.' + this.field); }
         return trans[this.vt.language][this.field];
       }
     }
     const val = this.service.get(this.value, this.field);
     if (val[this.vt.language] || val[this.vt.language] === '') {
+      if (val[this.vt.language] === '') {
+        return this.vt.translate('no.' + this.field);
+      }
       return val[this.vt.language];
     }
+    if (val === '') { return this.vt.translate('no.' + this.field); }
     return val;
   }
 
