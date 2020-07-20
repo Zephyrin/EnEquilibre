@@ -36,7 +36,8 @@
       <img [src]="img.url()"
            [alt]="service.getTranslations(img)"
            class="img-fluid">
-      <div class="text-block">
+      <div class="text-block"
+           *ngIf="service.hasTranslation(img) || img.id === service.selectedImg?.id">
         <div class="d-flex align-items-center justify-content-between"
              *ngIf="img.id === service.selectedImg?.id">
           <app-text-edit #editor

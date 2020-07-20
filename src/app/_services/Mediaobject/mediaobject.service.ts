@@ -67,6 +67,21 @@ export class MediaobjectService {
     return val;
   }
 
+  public hasTranslation(img: Mediaobject): boolean {
+    const trans = img.translations;
+    if (trans[this.vt.language]) {
+      if (trans[this.vt.language].description
+        && trans[this.vt.language].description !== '') {
+        return true;
+      }
+    }
+    const val = img.description;
+    if (val[this.vt.language] && val[this.vt.language] !== '') {
+      return true;
+    }
+    return false;
+  }
+
   public get(object: any, name: string): string {
     if (object) {
       if (object[name] && object[name] !== '') {
