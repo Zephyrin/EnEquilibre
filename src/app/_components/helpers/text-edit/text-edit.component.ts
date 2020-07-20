@@ -70,11 +70,14 @@ export class TextEditComponent implements OnInit {
     const val = this.service.get(this.value, this.field);
     if (val[this.vt.language] || val[this.vt.language] === '') {
       if (val[this.vt.language] === '') {
-        return this.vt.translate('no.' + this.field);
+        if (this.service.edit) { return this.vt.translate('no.' + this.field); }
+        return '';
       }
       return val[this.vt.language];
     }
-    if (val === '') { return this.vt.translate('no.' + this.field); }
+    if (val === '') {
+      if (this.service.edit) { return this.vt.translate('no.' + this.field); }
+    }
     return val;
   }
 

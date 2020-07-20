@@ -5,3 +5,4 @@ export * from './home';
 export * from './translate';
 export * from './gallery';
 export * from './about';
+export * from './contact';

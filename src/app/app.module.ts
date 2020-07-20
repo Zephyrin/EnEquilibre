@@ -41,6 +41,7 @@ import { AboutComponent } from './_components/about/about.component';
 import { SignupComponent } from './_components/sign/up/signup/signup.component';
 import { ManageUserComponent } from './_components/admin/manage-user/manage-user.component';
 import { ManageImageComponent } from './_components/merchant/manage-image/manage-image.component';
+import { ContactComponent } from './_components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ManageImageComponent } from './_components/merchant/manage-image/manage
     TheadComponent,
     TopErrorsComponent,
     PaginationComponent,
-    ManageImageComponent
+    ManageImageComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

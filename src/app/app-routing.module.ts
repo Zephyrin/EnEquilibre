@@ -1,3 +1,4 @@
+import { ContactComponent } from './_components/contact/contact.component';
 import { Role } from './_enums/role.enum';
 import { AuthGuard } from './auth/auth.guard';
 import { ManageImageComponent } from './_components/merchant/manage-image/manage-image.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'manage-user', component: ManageUserComponent, canActivate: [AuthGuard],
     data: { roles: [Role.Admin, Role.SuperAdmin] }

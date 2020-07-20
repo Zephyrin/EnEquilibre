@@ -118,7 +118,9 @@ export class TranslateComponent implements MatFormFieldControl<Translate>, OnDes
 
   onContainerClick(event: MouseEvent) {
     if ((event.target as Element).tagName.toLowerCase() !== 'input') {
-      this.elRef.nativeElement.querySelector('input').focus();
+      if (this.elRef !== null) {
+        this.elRef.nativeElement.querySelector('input').focus();
+      }
     }
   }
 

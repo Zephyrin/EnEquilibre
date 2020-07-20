@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+  </div>
+  <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'background', separator: false}"></ng-template>
+  </div>
+  <div class="row justify-content-center">
+    <ng-template [ngTemplateOutlet]="imgContainer"
+                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="contact"
+                   [service]="contact"
+                   [placeholder]="'contact'"
+                   [field]="'contact'"></app-text-edit>
+  </div>
+  <div class="row justify-content-center"
+       [ngClass]="{'visible': isEditEmail(), 'hidden': !isEditEmail()}">
+    <form (ngSubmit)="onSubmitEmail($event)"
+          (click)="stopPropagation($event)"
+          class="cursor-default"
+          [formGroup]="form">
+      <div class="d-flex align-items-center pl1">
+        <mat-form-field class="full-width">
+          <input matInput
+                 #input
+                 class="mr-auto">
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <button mat-button
+                [matTooltip]="vt.translate('save.translation')"
+                type="submit"
+                class="small">
+          <mat-icon class="pointer">save</mat-icon>
+        </button>
+        <button mat-button
+                [matTooltip]="vt.translate('cancel.translation')"
+                (click)="stopEdition($event)"
+                type="button"
+                class="small">
+          <mat-icon class="pointer">cancel</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="row justify-content-center"
+       *ngIf="!isEditEmail()">
+    <p>{{contact?.contact?.email}}<button mat-button
+              [matTooltip]="vt.translate('edit.translation')"
+              *ngIf="!editEmail && contact.edit"
+              class="small"
+              (click)="editionEmail($event)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </p>
+  </div>
+</div>
+
+<ng-template #imgContainer
+             let-name="name"
+             let-separator="separator">
+  <div class="container-img"
+       [ngClass]="{separator: separator, main: !separator}"
+       *ngIf="(!separator && contact.hasImage(name)) || contact.edit">
+    <div class="text-block-top d-flex justify-content-between"
+         *ngIf="contact.edit"
+         (click)="openDialog($event, name)"
+         [ngClass]="{'edit-image': contact.edit}">
+      <p class="align-self-center"
+         *ngIf="contact.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+      <p class="align-self-center"
+         *ngIf="contact.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="contact.getUrl(name) !== ''"
+              mat-button
+              [matTooltip]="vt.translate('remove.picture')"
+              (click)="removePicture($event, name)"
+              class="align-self-center">
+        <mat-icon>image_not_supported</mat-icon>
+      </button>
+    </div>
+    <img [src]="contact.getUrl(name)"
+         [alt]="contact.getDescription(name)"
+         (click)="openDialog($event, name)"
+         [ngClass]="{ 'border': contact.border(name), 'edit-img': contact.edit && !separator, 'edit-img-separator': contact.edit && separator}"
+         class="img-fluid"
+         *ngIf="!separator || contact.edit" />
+
+  </div>
+  <div class="separator separator-background"
+       [ngStyle]="{'background-image': 'url(' + contact.getUrl(name) + ')'}"
+       *ngIf="separator && !contact.edit"></div>
+</ng-template>
+<div class="float-right-bottom">
+  <button mat-fab
+          color="primary"
+          class="action-bottom"
+          *ngIf="contact.canEdit"
+          (click)="contact.edit = !contact.edit"
+          [matTooltip]="vt.translate('aria.edit.contact')"
+          [attr.aria-label]="vt.translate('aria.edit.contact')">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>
