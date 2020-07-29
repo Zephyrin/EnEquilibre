@@ -19,6 +19,7 @@ export class GalleryService {
   /* Column 2 for the home page
     If small screen, then this will be at the end. */
   public c2: Gallery[];
+  public c3: Gallery[];
   public selected: Gallery;
   public loading = false;
   public errors = new FormErrors();
@@ -38,10 +39,15 @@ export class GalleryService {
         this.values = response.body.map((x) => new Gallery(x));
         this.c2 = [];
         this.c1 = [];
+        this.c3 = [];
         this.values.forEach(elt => {
           if (this.c2.length < this.c1.length) { this.c2.push(elt); }
           else { this.c1.push(elt); }
         });
+        if (this.c2.length < this.c1.length) {
+          this.c3.push(this.c1[this.c1.length - 1]);
+          this.c1.splice(this.c1.length - 1, 1);
+        }
       }, err => {
         this.values = [];
       });
@@ -50,10 +56,15 @@ export class GalleryService {
         this.values = response.body.map(x => new Gallery(x));
         this.c1 = [];
         this.c2 = [];
+        this.c3 = [];
         this.values.forEach(elt => {
           if (this.c2.length < this.c1.length) { this.c2.push(elt); }
           else { this.c1.push(elt); }
         });
+        if (this.c2.length < this.c1.length) {
+          this.c3.push(this.c1[this.c1.length - 1]);
+          this.c1.splice(this.c1.length - 1, 1);
+        }
       }, err => {
         this.values = [];
       });
@@ -158,6 +169,23 @@ export class GalleryService {
     } else {
       this.update(gallery, field, null);
     }
+  }
+
+  public delete(gallery: Gallery) {
+    this.start();
+    this.http.delete(gallery).subscribe(data => {
+      let i = this.c1.indexOf(gallery);
+      if (i >= 0) { this.c1.splice(i, 1); }
+      i = this.c2.indexOf(gallery);
+      if (i >= 0) { this.c2.splice(i, 1); }
+      i = this.c3.indexOf(gallery);
+      if (i >= 0) { this.c3.splice(i, 1); }
+      i = this.values.indexOf(gallery);
+      if (i >= 0) { this.values.splice(i, 1); }
+      this.end();
+    }, error => {
+      this.end(error);
+    });
   }
 
   private start() {

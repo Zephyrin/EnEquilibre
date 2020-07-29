@@ -11,6 +11,12 @@
                      [title]="true"
                      [field]="'title'"
                      class="mr-auto"></app-text-edit>
+      <button (click)="delete($event, gallery)"
+              *ngIf="service.edit"
+              mat-button
+              [matTooltip]="vt.translate('delete')">
+        <mat-icon>delete</mat-icon>
+      </button>
       <button (click)="service.orderUp(gallery)"
               *ngIf="!service.isFirst(gallery) && service.edit"
               mat-button
@@ -25,7 +31,7 @@
       </button>
     </div>
     <div class="scrolls max-height-carrousel justify-content-center"
-         *ngIf="gallery.medias && gallery.medias.length > 0">
+         *ngIf="(gallery.medias && gallery.medias.length > 0) || service.edit">
       <button (click)="addToCarrousel()"
               *ngIf="service.edit"
               mat-button

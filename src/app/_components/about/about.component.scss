@@ -1,16 +1,3 @@
-.separator {
-  overflow: hidden;
-  max-height: 10em;
-  min-height: 5em;
-  min-width: 100%;
-  width: 100%;
-}
-
-.separator-background {
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  width: 100%;
-}
 
 .main {
   min-width: 80%;
@@ -18,4 +5,8 @@
 
 .edit-image {
   cursor: pointer;
+}
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
 }

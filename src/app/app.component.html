@@ -12,6 +12,11 @@
       <a mat-list-item
          routerLinkActive="active-link"
          class="hover-link"
+         [routerLinkActiveOptions]="{ exact: true}"
+         routerLink="">{{vt.translate('home')}}</a>
+      <a mat-list-item
+         routerLinkActive="active-link"
+         class="hover-link"
          [routerLinkActiveOptions]="{ exact: true }"
          routerLink="boutique">{{vt.translate('shop')}}</a>
       <a mat-list-item

@@ -1,34 +1,87 @@
-<div class="container">
-  <div class="row justify-content-center mb-3">
+<div class="container"
+     *ngIf="(isHandset$ | async) === true">
+  <div class="row justify-content-center mb-2">
     <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'background', small: false, separator: false}"></ng-template>
+                 [ngTemplateOutletContext]="{
+                   name: 'background', small: false, separator: false}">
+    </ng-template>
   </div>
   <div class="row justify-content-center">
     <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"></ng-template>
+                 [ngTemplateOutletContext]="{
+                   name: 'separator', small: true, separator: true}">
+    </ng-template>
   </div>
-  <div class="row-img">
+  <div class="row-img"
+       [ngClass]="{'mb-1': galleries.c3?.length === 0}">
     <ng-template [ngTemplateOutlet]="galleryColumn"
                  [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
     <ng-template [ngTemplateOutlet]="galleryColumn"
                  [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
   </div>
+  <div class="row justify-content-center mb-2"
+       *ngIf="galleries.c3?.length > 0">
+    <ng-template [ngTemplateOutlet]="galleryColumn"
+                 [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
+  </div>
+</div>
+<div class="container full-height"
+     *ngIf="(isHandset$ | async) !== true">
+  <div class="row-img justify-content-center mb-2">
+    <div class="column-img mr-4">
+      <ng-template [ngTemplateOutlet]="imgContainer"
+                   [ngTemplateOutletContext]="{
+                   name: 'background', small: false, separator: false}">
+      </ng-template>
+    </div>
+    <div class="half-size">
+      <div class="row justify-content-center">
+        <ng-template [ngTemplateOutlet]="imgContainer"
+                     [ngTemplateOutletContext]="{
+                         name: 'separator', small: true, separator: true}">
+        </ng-template>
+      </div>
+      <div class="row-img"
+           [ngClass]="{'mb-2': galleries.c3?.length === 0}">
+        <ng-template [ngTemplateOutlet]="galleryColumn"
+                     [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
+        <ng-template [ngTemplateOutlet]="galleryColumn"
+                     [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
+      </div>
+      <div class="row justify-content-center mb-2"
+           *ngIf="galleries.c3?.length > 0">
+        <ng-template [ngTemplateOutlet]="galleryColumn"
+                     [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
+      </div>
+      <div class="row justify-content-center">
+        <ng-template [ngTemplateOutlet]="imgContainer"
+                     [ngTemplateOutletContext]="{
+                         name: 'separator', small: true, separator: true}">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
 </div>
 <ng-template #galleryColumn
              let-c="c">
   <div class="column-img">
     <ng-container *ngFor="let gallery of c">
-      <div class="container-img"
-           *ngIf="gallery.main?.hasUrl()">
-        <div class="text-block tcenter"
-             *ngIf="gallery.title">
-          {{gallery.title}}
+      <div class="border-double-outside mt-2">
+        <div class="border-double-inside">
+          <a routerLink="galleries"
+             [fragment]="gallery.title.split(' ').join('_')">
+            <div class="container-img"
+                 *ngIf="gallery.main?.hasUrl()">
+              <div class="text-block-white tcenter"
+                   *ngIf="gallery.title">
+                {{gallery.title}}
+              </div>
+              <img [src]="gallery.main.url()"
+                   [alt]="gallery.main.description">
+            </div>
+          </a>
         </div>
-        <a routerLink="galleries"
-           [fragment]="gallery.title.split(' ').join('_')">
-          <img [src]="gallery.main.url()"
-               [alt]="gallery.main.description">
-        </a>
       </div>
     </ng-container>
   </div>
@@ -37,6 +90,7 @@
              let-name="name"
              let-small="small"
              let-separator="separator">
+
   <div class="container-img"
        [ngClass]="{separator: separator, 'min-size': home.edit}"
        *ngIf="(!separator && home.hasImage(name) && !home.hasError(name)) || home.edit">

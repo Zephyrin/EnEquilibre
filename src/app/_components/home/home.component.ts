@@ -6,6 +6,9 @@ import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { HomeService } from '@app/_services/home/home.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +17,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HomeComponent implements OnInit {
   editTitle = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
   constructor(
+    private breakpointObserver: BreakpointObserver,
     public home: HomeService,
     public vt: ViewTranslateService,
     public galleries: GalleryService,

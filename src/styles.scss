@@ -28,9 +28,17 @@ $en-equilibre-theme: mat-light-theme($en-equilibre-primary, $en-equilibre-accent
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  background-color: #fff6e8;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #fff6e8;
+}
 html { scroll-behavior: smooth; }
+
 .fill-remaining-space {
   flex: 1 1 auto;
 }
@@ -71,15 +79,24 @@ $custom-file-text: (
   min-width: 100%;
   min-height: 250px;
 }
+
+.text-block-white {
+  position: absolute;
+  background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  width: 100%;
+  color: rgba(94, 62, 22, 0.6);
+  min-height: 3em;
+}
 .text-block, .text-block-top, .text-block-top-center {
   position: absolute;
-  background-color:rgba(0,0,0,0.5);
+  /* background-color:rgba(0,0,0,0.5); */
+  background-color: rgba(94, 62, 22, 0.6);
   width: 100%;
   color: white;
   min-height: 3em;
 }
 
-.text-block p, .text-block-top p, .text-block-top-center {
+.text-block p, .text-block-top p, .text-block-top-center, .text-block-white {
   color: white;
   font-weight: bold;
   opacity: 1.0;
@@ -88,6 +105,16 @@ $custom-file-text: (
   padding-left: 1em;
   padding-top: 0.8em;
   padding-bottom: 0.8em;
+  padding-right: 1em;
+}
+
+.text-block-white {
+  color: rgba(94, 62, 22, 0.6);
+  bottom: 0;
+  text-align: center;
+  padding-top: 3em;
+  padding-bottom: 0.2em;
+  padding-right: 1em;
 }
 
 /* .text-block button {
@@ -128,4 +155,40 @@ $custom-file-text: (
 .container{
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.separator {
+  overflow: hidden;
+  max-height: 10em;
+  min-height: 5em;
+  min-width: 100%;
+  width: 100%;
+}
+
+.separator-background {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100%;
+  background-size: cover;
+}
+
+/* .border-double {
+  border-style: double;
+  border-width: medium;
+  border-color: black;
+} */
+
+.border-double {
+    border: solid 8px #000;
+    box-shadow: 0 0 0 14px #000;
+    outline: solid 8px #fff;
+}
+
+.border-double-outside {
+  padding: 0.2em;
+}
+
+.border-double-outside, .border-double-inside {
+  border: solid 1.5px;
+  border-color: #5e3e16;
 }

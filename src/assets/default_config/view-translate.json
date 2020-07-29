@@ -2,7 +2,10 @@
   {
     "key": "menu",
     "translate": { "en": "Menu", "fr": "Menu" }
-  },{
+  }, {
+    "key": "home",
+    "translate": { "en": "Home", "fr": "Accueil" }
+  }, {
     "key": "shop",
     "translate": { "en": "Shop", "fr": "Boutique" }
   }, {
@@ -161,5 +164,8 @@
   }, {
     "key": "manage.images",
     "translate": { "en": "Manage images", "fr": "Gestion des images"}
+  }, {
+    "key": "edit.email",
+    "translate": { "en": "Email edit", "fr": "Édition de l'email" }
   }
 ]

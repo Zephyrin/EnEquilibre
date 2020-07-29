@@ -90,4 +90,16 @@ export class GalleryComponent implements OnInit {
       });
     }
   }
+
+  delete($event: any, gallery: Gallery) {
+    $event.stopPropagation();
+    if (this.service.edit) {
+      const dialogRef = this.dialog.open(RemoveDialogComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.data === true) {
+          this.service.delete(gallery);
+        }
+      });
+    }
+  }
 }
