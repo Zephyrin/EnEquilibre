@@ -92,6 +92,9 @@ b {
   font-size: x-large;
 }
 
+.min-size {
+  cursor: pointer;
+}
 .text-block-white {
   position: absolute;
   background-image: linear-gradient(to top, rgba(255, 246, 232, 1), rgba(255, 246, 232, 0));
@@ -171,7 +174,7 @@ b {
 
 .separator {
   overflow: hidden;
-  max-height: 10em;
+  max-height: 5em;
   min-height: 5em;
   min-width: 100%;
   width: 100%;
@@ -181,7 +184,7 @@ b {
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
-  background-size: contain;
+  background-size: auto;
 }
 
 /* .border-double {

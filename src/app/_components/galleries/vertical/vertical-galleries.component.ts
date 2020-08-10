@@ -1,6 +1,6 @@
-import { NewGalleryComponent } from './new-gallery/new-gallery.component';
-import { ViewTranslateService } from '../../_services/view-translate.service';
-import { GalleryService } from '../../_services/gallery/gallery.service';
+import { NewGalleryComponent } from '@app/_components/gallery/new-gallery/new-gallery.component';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { GalleryService } from '@app/_services/gallery/gallery.service';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Gallery } from '@app/_models';
@@ -9,11 +9,11 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-galleries',
-  templateUrl: './galleries.component.html',
-  styleUrls: ['./galleries.component.scss']
+  selector: 'app-vertical-galleries',
+  templateUrl: './vertical-galleries.component.html',
+  styleUrls: ['./vertical-galleries.component.scss']
 })
-export class GalleriesComponent implements OnInit {
+export class VerticalGalleriesComponent implements OnInit {
   editTitle = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

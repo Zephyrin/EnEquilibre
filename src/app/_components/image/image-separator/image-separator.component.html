@@ -1,0 +1,27 @@
+<div class="container-img separator"
+     [ngClass]="{'min-size': service.edit}"
+     *ngIf="service.edit">
+  <div class="text-block-top d-flex justify-content-between edit-image"
+       (click)="openDialog($event, name)">
+    <p class="align-self-center"
+       *ngIf="service.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+    <p class="align-self-center"
+       *ngIf="service.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+    <button *ngIf="service.getUrl(name) !== ''"
+            mat-button
+            [matTooltip]="vt.translate('remove.picture')"
+            (click)="removePicture($event, name)"
+            class="align-self-center">
+      <mat-icon>image_not_supported</mat-icon>
+    </button>
+  </div>
+  <img [src]="service.getUrl(name)"
+       [alt]="service.getDescription(name)"
+       (click)="openDialog($event, name)"
+       (error)="service.onError(name)"
+       class="img-fluid small edit-img-separator edit-image" />
+
+</div>
+<div class="separator separator-background"
+     [ngStyle]="{'background-image': 'url(' + service.getUrl(name) + ')'}"
+     *ngIf="!service.edit"></div>

@@ -5,7 +5,6 @@ import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog
 import { Mediaobject } from '@app/_models/mediaobject';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 
-
 interface Service {
   edit: boolean;
   hasImage(name: string): boolean;
@@ -18,21 +17,18 @@ interface Service {
 
   get(object: any, name: string): string;
 
-  removeBackground(): void;
-  updateBackground(media: Mediaobject): void;
+  removeSeparator(): void;
+  updateSeparator(media: Mediaobject): void;
 }
 
 @Component({
-  selector: 'app-image-title',
-  templateUrl: './image-title.component.html',
-  styleUrls: ['./image-title.component.scss']
+  selector: 'app-image-separator',
+  templateUrl: './image-separator.component.html',
+  styleUrls: ['./image-separator.component.scss']
 })
-export class ImageTitleComponent implements OnInit {
+export class ImageSeparatorComponent implements OnInit {
   @Input() service: Service;
   @Input() name: string;
-  @Input() titleName: string;
-  @Input() subtitleName: string;
-
   constructor(
     public vt: ViewTranslateService,
     public dialog: MatDialog
@@ -47,7 +43,7 @@ export class ImageTitleComponent implements OnInit {
       const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.service.get(undefined, name) });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.service.updateBackground(new Mediaobject(result.data));
+          this.service.updateSeparator(new Mediaobject(result.data));
         }
       });
     }
@@ -60,7 +56,7 @@ export class ImageTitleComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           if (result.data === true) {
-            this.service.removeBackground();
+            this.service.removeSeparator();
           }
         }
       });

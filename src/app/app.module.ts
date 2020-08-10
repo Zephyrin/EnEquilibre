@@ -34,7 +34,7 @@ import { FileUploadComponent } from './_components/helpers/file-upload/file-uplo
 import { TranslateComponent } from './_components/helpers/translate/translate.component';
 import { RemoveDialogComponent } from './_components/helpers/remove-dialog/remove-dialog.component';
 import { TextEditComponent } from './_components/helpers/text-edit/text-edit.component';
-import { GalleriesComponent } from './_components/gallery/galleries.component';
+import { VerticalGalleriesComponent } from './_components/galleries/vertical/vertical-galleries.component';
 import { NewGalleryComponent } from './_components/gallery/new-gallery/new-gallery.component';
 import { GalleryComponent } from './_components/gallery/gallery/gallery.component';
 import { AboutComponent } from './_components/about/about.component';
@@ -45,6 +45,8 @@ import { ContactComponent } from './_components/contact/contact.component';
 import { GalleryDesktopComponent } from './_components/gallery/gallery-desktop/gallery-desktop.component';
 import { ImageFullHeightComponent } from './_components/image/image-full-height/image-full-height.component';
 import { ImageTitleComponent } from './_components/image/image-title/image-title.component';
+import { ImageSeparatorComponent } from './_components/image/image-separator/image-separator.component';
+import { HorizontalGalleriesComponent } from './_components/galleries/horizontal/horizontal-galleries/horizontal-galleries.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,7 @@ import { ImageTitleComponent } from './_components/image/image-title/image-title
     TranslateComponent,
     RemoveDialogComponent,
     TextEditComponent,
-    GalleriesComponent,
+    VerticalGalleriesComponent,
     NewGalleryComponent,
     GalleryComponent,
     AboutComponent,
@@ -71,7 +73,9 @@ import { ImageTitleComponent } from './_components/image/image-title/image-title
     ContactComponent,
     GalleryDesktopComponent,
     ImageFullHeightComponent,
-    ImageTitleComponent
+    ImageTitleComponent,
+    ImageSeparatorComponent,
+    HorizontalGalleriesComponent
   ],
   imports: [
     BrowserModule,

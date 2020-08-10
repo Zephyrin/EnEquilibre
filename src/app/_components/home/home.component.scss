@@ -105,9 +105,8 @@ html, body {
    &::-webkit-scrollbar {
     display: none;
   }
-  overflow-y: auto;
+  overflow-x: auto;
   min-width: 100%;
-  flex-flow: column;
 }
 
 .top, .bottom {
