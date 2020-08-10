@@ -1,0 +1,45 @@
+<div class="container-img"
+     [ngClass]="{'min-size': service.edit}"
+     *ngIf="(service.hasImage(name) && !service.hasError(name)) || service.edit">
+  <div class="text-block-top-center d-flex flex-column align-items-center"
+       *ngIf="service.hasTitleOrSubtitle()">
+    <div class="row align-items-center">
+      <app-text-edit [value]="service"
+                     [service]="service"
+                     [placeholder]="titleName"
+                     [title]="true"
+                     [field]="titleName"></app-text-edit>
+    </div>
+    <div class="row">
+      <app-text-edit [value]="service"
+                     [service]="service"
+                     [placeholder]="subtitleName"
+                     [field]="subtitleName"></app-text-edit>
+    </div>
+  </div>
+  <div class="text-block-top d-flex justify-content-between"
+       *ngIf="service.edit"
+       [ngClass]="{'edit-image': service.edit}"
+       (click)="openDialog($event, name)">
+    <p class="align-self-center"
+       *ngIf="service.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+    <p class="align-self-center"
+       *ngIf="service.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
+    <button *ngIf="service.getUrl(name) !== ''"
+            mat-button
+            [matTooltip]="vt.translate('remove.picture')"
+            (click)="removePicture($event, name)"
+            class="align-self-center">
+      <mat-icon>image_not_supported</mat-icon>
+    </button>
+  </div>
+  <img [src]="service.getUrl(name)"
+       [alt]="service.getDescription(name)"
+       (click)="openDialog($event, name)"
+       (error)="service.onError(name)"
+       [ngClass]="{ 'border': service.border(name),
+          'edit-img': service.edit,
+          'edit-image': service.edit}"
+       class="img-fluid" />
+
+</div>

@@ -1,10 +1,14 @@
 <div class="container"
      *ngIf="(isHandset$ | async) === true">
   <div class="row justify-content-center mb-2">
-    <ng-template [ngTemplateOutlet]="imgContainer"
+    <app-image-title [service]="home"
+                     [name]="'background'"
+                     [titleName]="'title'"
+                     [subtitleName]="'subtitle'"></app-image-title>
+    <!-- <ng-template [ngTemplateOutlet]="imgContainer"
                  [ngTemplateOutletContext]="{
                    name: 'background', small: false, separator: false}">
-    </ng-template>
+    </ng-template> -->
   </div>
   <div class="row justify-content-center">
     <ng-template [ngTemplateOutlet]="imgContainer"
@@ -12,7 +16,7 @@
                    name: 'separator', small: true, separator: true}">
     </ng-template>
   </div>
-  <div class="row-img"
+  <div class="row-img ml-2 mr-2"
        [ngClass]="{'mb-1': galleries.c3?.length === 0}">
     <ng-template [ngTemplateOutlet]="galleryColumn"
                  [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
@@ -27,33 +31,43 @@
 </div>
 <div class="container full-height"
      *ngIf="(isHandset$ | async) !== true">
+  <!-- <img [src]="home.getUrl('background')"
+       [alt]="home.getDescription('background')"
+       class="img-fluid" /> -->
   <div class="row-img justify-content-center mb-2">
     <div class="column-img mr-4">
-      <ng-template [ngTemplateOutlet]="imgContainer"
+      <app-image-title [service]="home"
+                       [name]="'background'"
+                       [titleName]="'title'"
+                       [subtitleName]="'subtitle'"></app-image-title>
+      <!-- <ng-template [ngTemplateOutlet]="imgContainer"
                    [ngTemplateOutletContext]="{
                    name: 'background', small: false, separator: false}">
-      </ng-template>
+      </ng-template> -->
     </div>
     <div class="half-size">
-      <div class="row justify-content-center">
+      <div class="row justify-content-center top">
         <ng-template [ngTemplateOutlet]="imgContainer"
                      [ngTemplateOutletContext]="{
                          name: 'separator', small: true, separator: true}">
         </ng-template>
       </div>
-      <div class="row-img"
-           [ngClass]="{'mb-2': galleries.c3?.length === 0}">
-        <ng-template [ngTemplateOutlet]="galleryColumn"
-                     [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
-        <ng-template [ngTemplateOutlet]="galleryColumn"
-                     [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
+      <div class="limitHeight">
+        <div class="row-img align-items-center">
+          <!-- [ngClass]="{'mb-2': galleries.c3?.length === 0}" -->
+          <ng-template [ngTemplateOutlet]="galleryColumn"
+                       [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
+          <ng-template [ngTemplateOutlet]="galleryColumn"
+                       [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
+        </div>
+        <!-- <div class="row justify-content-center mb-2"
+             *ngIf="galleries.c3?.length > 0">
+          <ng-template [ngTemplateOutlet]="galleryColumn"
+                       [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
+        </div> -->
       </div>
-      <div class="row justify-content-center mb-2"
-           *ngIf="galleries.c3?.length > 0">
-        <ng-template [ngTemplateOutlet]="galleryColumn"
-                     [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
-      </div>
-      <div class="row justify-content-center">
+
+      <div class="row justify-content-center bottom">
         <ng-template [ngTemplateOutlet]="imgContainer"
                      [ngTemplateOutletContext]="{
                          name: 'separator', small: true, separator: true}">
@@ -67,7 +81,7 @@
              let-c="c">
   <div class="column-img">
     <ng-container *ngFor="let gallery of c">
-      <div class="border-double-outside mt-2">
+      <div class="border-double-outside">
         <div class="border-double-inside">
           <a routerLink="galleries"
              [fragment]="gallery.title.split(' ').join('_')">
@@ -75,7 +89,7 @@
                  *ngIf="gallery.main?.hasUrl()">
               <div class="text-block-white tcenter"
                    *ngIf="gallery.title">
-                {{gallery.title}}
+                <b>{{gallery.title}}</b>
               </div>
               <img [src]="gallery.main.url()"
                    [alt]="gallery.main.description">

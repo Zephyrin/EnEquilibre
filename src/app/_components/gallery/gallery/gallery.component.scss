@@ -10,6 +10,8 @@
    &::-webkit-scrollbar {
     display: none;
   }
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .inline-carrousel {
@@ -27,6 +29,10 @@
 .padding {
   padding-right: 1em;
   padding-bottom: 1em;
+}
+
+.padding:first-child {
+  padding-left: 1em;
 }
 
 .padding-top-bottom {

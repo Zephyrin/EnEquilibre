@@ -7,7 +7,11 @@
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
+$custom-typography: mat-typography-config(
+  $font-family: 'cursive'
+  /* $font-family: 'CmmercialScript BT' */
+);
+@include mat-core($custom-typography);
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -21,6 +25,10 @@ $en-equilibre-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $en-equilibre-theme: mat-light-theme($en-equilibre-primary, $en-equilibre-accent, $en-equilibre-warn);
 
+$custom-background-color: #fff6e8;
+$background: map-get($en-equilibre-theme, background);
+$background: map_merge($background, (background: $custom-background-color));
+$en-equilibre-theme: map_merge($en-equilibre-theme, (background: $background));
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -34,9 +42,9 @@ html, body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #fff6e8;
+  font-size: x-large;
 }
+
 html { scroll-behavior: smooth; }
 
 .fill-remaining-space {
@@ -80,9 +88,13 @@ $custom-file-text: (
   min-height: 250px;
 }
 
+b {
+  font-size: x-large;
+}
+
 .text-block-white {
   position: absolute;
-  background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  background-image: linear-gradient(to top, rgba(255, 246, 232, 1), rgba(255, 246, 232, 0));
   width: 100%;
   color: rgba(94, 62, 22, 0.6);
   min-height: 3em;
@@ -169,7 +181,7 @@ $custom-file-text: (
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: 100%;
-  background-size: cover;
+  background-size: contain;
 }
 
 /* .border-double {
@@ -186,6 +198,11 @@ $custom-file-text: (
 
 .border-double-outside {
   padding: 0.2em;
+  margin-top: 1em;
+}
+
+.border-double-outside:first-child {
+  margin-top: 0em;
 }
 
 .border-double-outside, .border-double-inside {

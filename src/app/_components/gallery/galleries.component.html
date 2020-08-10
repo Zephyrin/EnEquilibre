@@ -1,11 +1,17 @@
 <div class="img-row"
-     *ngIf="gallery.values?.length > 0">
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) === true">
   <ng-container *ngFor="let img of gallery.values; index as i">
     <div class="img-column">
       <app-gallery [gallery]="img"></app-gallery>
       <div *ngIf="!gallery.isLast(img)"
            class="center">~</div>
     </div>
+  </ng-container>
+</div>
+<div class="vertical-scroll"
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+  <ng-container *ngFor="let img of gallery.values; index as i">
+    <app-gallery-desktop [gallery]="img"></app-gallery-desktop>
   </ng-container>
 </div>
 <div class="float-right-bottom">

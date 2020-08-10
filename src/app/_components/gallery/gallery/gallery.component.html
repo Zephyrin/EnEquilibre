@@ -30,30 +30,32 @@
         <mat-icon>arrow_downward</mat-icon>
       </button>
     </div>
-    <div class="scrolls max-height-carrousel justify-content-center"
-         *ngIf="(gallery.medias && gallery.medias.length > 0) || service.edit">
-      <button (click)="addToCarrousel()"
-              *ngIf="service.edit"
-              mat-button
-              class="max-height-carrousel-btn inline-carrousel"
-              [matTooltip]="vt.translate('add.carroussel')">
-        <mat-icon>add</mat-icon>
-      </button>
+    <div class="justify-content-center">
+      <div class="scrolls max-height-carrousel"
+           *ngIf="(gallery.medias && gallery.medias.length > 0) || service.edit">
+        <button (click)="addToCarrousel()"
+                *ngIf="service.edit"
+                mat-button
+                class="max-height-carrousel-btn inline-carrousel"
+                [matTooltip]="vt.translate('add.carroussel')">
+          <mat-icon>add</mat-icon>
+        </button>
 
-      <div class="padding inline-carrousel"
-           *ngFor="let img of gallery.medias">
-        <div class="container-img">
-          <div class="text-block-top d-flex flex-row-reverse"
-               *ngIf="service.edit">
-            <button mat-button
-                    [matTooltip]="vt.translate('remove.picture.carrousel')"
-                    (click)="removeFromCarrousel(img)"
-                    class="right">
-              <mat-icon>image_not_supported</mat-icon>
-            </button>
+        <div class="padding inline-carrousel"
+             *ngFor="let img of gallery.medias">
+          <div class="container-img">
+            <div class="text-block-top d-flex flex-row-reverse"
+                 *ngIf="service.edit">
+              <button mat-button
+                      [matTooltip]="vt.translate('remove.picture.carrousel')"
+                      (click)="removeFromCarrousel(img)"
+                      class="right">
+                <mat-icon>image_not_supported</mat-icon>
+              </button>
+            </div>
+            <img [src]="img.url()"
+                 [alt]="img.description" />
           </div>
-          <img [src]="img.url()"
-               [alt]="img.description" />
         </div>
       </div>
     </div>

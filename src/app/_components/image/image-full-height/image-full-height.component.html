@@ -1,0 +1,23 @@
+<div class="container-img"
+     *ngIf="image.hasUrl() || service.edit">
+  <div class="text-block-top d-flex justify-content-between"
+       *ngIf="service.edit"
+       [ngClass]="{'edit-image': service.edit}"
+       (click)="openDialog($event, name)">
+    <p class="align-self-center mr-auto"
+       *ngIf="image.url() === ''">{{vt.translate('click.add.' + name)}}</p>
+    <p class="align-self-center mr-auto"
+       *ngIf="image.url() !== ''">{{vt.translate('click.update.' + name)}}</p>
+    <button *ngIf="image.url() !== ''"
+            mat-button
+            [matTooltip]="vt.translate('remove.picture')"
+            (click)="removePicture($event, name)"
+            class="align-self-center">
+      <mat-icon>image_not_supported</mat-icon>
+    </button>
+  </div>
+  <img [src]="image.url()"
+       (click)="openDialog($event, name)"
+       [alt]="image.description"
+       class="img-full-height" />
+</div>

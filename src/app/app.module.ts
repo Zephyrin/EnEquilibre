@@ -42,6 +42,9 @@ import { SignupComponent } from './_components/sign/up/signup/signup.component';
 import { ManageUserComponent } from './_components/admin/manage-user/manage-user.component';
 import { ManageImageComponent } from './_components/merchant/manage-image/manage-image.component';
 import { ContactComponent } from './_components/contact/contact.component';
+import { GalleryDesktopComponent } from './_components/gallery/gallery-desktop/gallery-desktop.component';
+import { ImageFullHeightComponent } from './_components/image/image-full-height/image-full-height.component';
+import { ImageTitleComponent } from './_components/image/image-title/image-title.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { ContactComponent } from './_components/contact/contact.component';
     TopErrorsComponent,
     PaginationComponent,
     ManageImageComponent,
-    ContactComponent
+    ContactComponent,
+    GalleryDesktopComponent,
+    ImageFullHeightComponent,
+    ImageTitleComponent
   ],
   imports: [
     BrowserModule,
