@@ -32,21 +32,9 @@
 <ng-template #galleryColumn
              let-c="c">
   <ng-container *ngFor="let gallery of c">
-    <div class="border-double-outside right-margin">
-      <div class="border-double-inside">
-        <a routerLink="galleries"
-           [fragment]="gallery.title.split(' ').join('_')">
-          <div class="container-img"
-               *ngIf="gallery.main?.hasUrl()">
-            <div class="text-block-white tcenter"
-                 *ngIf="gallery.title">
-              <b>{{gallery.title}}</b>
-            </div>
-            <img [src]="gallery.main.url()"
-                 [alt]="gallery.main.description">
-          </div>
-        </a>
-      </div>
-    </div>
+    <app-image-double-border [routerLink]="'galleries'"
+                             [fragmentLink]="gallery.title.split(' ').join('_')"
+                             [image]="gallery.main"
+                             [title]="gallery.title"></app-image-double-border>
   </ng-container>
 </ng-template>

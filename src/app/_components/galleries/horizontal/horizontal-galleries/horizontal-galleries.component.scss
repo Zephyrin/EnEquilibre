@@ -27,11 +27,6 @@
   align-items: center;
 }
 
-.row-img img {
-  min-width: 180px;
-  max-width: 100%;
-  height: auto;
-}
 .top, .bottom {
   position: absolute;
   width: 100%;
@@ -45,32 +40,3 @@
   bottom: 0px;
 }
 
-.inline-carrousel {
-  flex: 0 0 auto;
-}
-
-.padding {
-  padding-right: 1em;
-  padding-bottom: 1em;
-}
-
-.padding:first-child {
-  padding-left: 1em;
-}
-
-.padding-top-bottom {
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
-.right {
-  margin-right: 0;
-}
-
-.right-margin {
-  margin-right: 1em;
-}
-
-.right-margin:last-child {
-  margin-right: 0;
-}

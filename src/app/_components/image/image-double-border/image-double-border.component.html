@@ -1,0 +1,21 @@
+<div class="border-double-outside right-margin">
+  <a [routerLink]="routerLink"
+     [fragment]="fragmentLink"
+     *ngIf="routerLink; else doubleBorder">
+    <ng-template [ngTemplateOutlet]="doubleBorder"></ng-template>
+  </a>
+</div>
+
+<ng-template #doubleBorder>
+  <div class="border-double-inside">
+    <div class="container-img"
+         *ngIf="image?.hasUrl()">
+      <div class="text-block-white tcenter"
+           *ngIf="title">
+        <b>{{title}}</b>
+      </div>
+      <img [src]="image.url()"
+           [alt]="image.description">
+    </div>
+  </div>
+</ng-template>
