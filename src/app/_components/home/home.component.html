@@ -33,33 +33,7 @@
                        [subtitleName]="'subtitle'"></app-image-title>
     </div>
     <div class="half-size">
-      <div class="row justify-content-center top">
-        <app-image-separator [service]="home"
-                             [name]="'separator'"></app-image-separator>
-      </div>
-      <div class="limitHeight align-items-center">
-        <div class="row-img mb-2">
-          <ng-template [ngTemplateOutlet]="galleryColumn"
-                       [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
-        </div>
-        <div class="row-img mb-2">
-          <ng-template [ngTemplateOutlet]="galleryColumn"
-                       [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
-        </div>
-        <div class="row-img mb-2">
-          <ng-container *ngIf="galleries.c3?.length > 0">
-            <ng-template [ngTemplateOutlet]="galleryColumn"
-                         [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
-
-          </ng-container>
-        </div>
-      </div>
-
-      <div class="row justify-content-center bottom">
-        <app-image-separator [service]="home"
-                             [name]="'separator'"></app-image-separator>
-
-      </div>
+      <app-horizontal-galleries [service]="home"></app-horizontal-galleries>
     </div>
 
   </div>

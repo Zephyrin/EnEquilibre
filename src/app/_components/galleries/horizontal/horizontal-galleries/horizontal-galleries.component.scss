@@ -1,0 +1,76 @@
+
+.scrolls {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+   &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-left: auto;
+  margin-right: auto;
+  top: 5em;
+  bottom: 5em;
+  position: absolute;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  right: 0;
+  left: 0;
+}
+
+.row-img {
+  display: flex;
+  flex: 50%;
+  max-height: 50%;
+  flex-direction: row;
+  align-items: center;
+}
+
+.row-img img {
+  min-width: 180px;
+  max-width: 100%;
+  height: auto;
+}
+.top, .bottom {
+  position: absolute;
+  width: 100%;
+  min-width: 100%;
+}
+.top {
+  top: 0px;
+}
+
+.bottom {
+  bottom: 0px;
+}
+
+.inline-carrousel {
+  flex: 0 0 auto;
+}
+
+.padding {
+  padding-right: 1em;
+  padding-bottom: 1em;
+}
+
+.padding:first-child {
+  padding-left: 1em;
+}
+
+.padding-top-bottom {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.right {
+  margin-right: 0;
+}
+
+.right-margin {
+  margin-right: 1em;
+}
+
+.right-margin:last-child {
+  margin-right: 0;
+}

@@ -1,18 +1,20 @@
 <div class="horizontalScroll">
   <!-- Top Separator -->
-  <div class="row justify-content-center top">
+  <div class="justify-content-center top">
     <app-image-separator [service]="service"
                          [name]="'separator'"></app-image-separator>
   </div>
   <!-- Gallery -->
-  <div class="limitHeight align-items-center">
+  <div class="scrolls max-height-carrousel">
     <!-- Galleries first row -->
     <div class="row-img mb-2">
       <ng-template [ngTemplateOutlet]="galleryColumn"
                    [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
+      <ng-template [ngTemplateOutlet]="galleryColumn"
+                   [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
     </div>
     <!-- Galleries second row -->
-    <div class="row-img mb-2">
+    <div class="row-img mt-1">
       <ng-template [ngTemplateOutlet]="galleryColumn"
                    [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
     </div>
@@ -20,7 +22,7 @@
 
   </div>
   <!-- Bottom separator -->
-  <div class="row justify-content-center bottom">
+  <div class="justify-content-center bottom">
     <app-image-separator [service]="service"
                          [name]="'separator'"></app-image-separator>
 
@@ -29,24 +31,22 @@
 
 <ng-template #galleryColumn
              let-c="c">
-  <div class="column-img">
-    <ng-container *ngFor="let gallery of c">
-      <div class="border-double-outside">
-        <div class="border-double-inside">
-          <a routerLink="galleries"
-             [fragment]="gallery.title.split(' ').join('_')">
-            <div class="container-img"
-                 *ngIf="gallery.main?.hasUrl()">
-              <div class="text-block-white tcenter"
-                   *ngIf="gallery.title">
-                <b>{{gallery.title}}</b>
-              </div>
-              <img [src]="gallery.main.url()"
-                   [alt]="gallery.main.description">
+  <ng-container *ngFor="let gallery of c">
+    <div class="border-double-outside right-margin">
+      <div class="border-double-inside">
+        <a routerLink="galleries"
+           [fragment]="gallery.title.split(' ').join('_')">
+          <div class="container-img"
+               *ngIf="gallery.main?.hasUrl()">
+            <div class="text-block-white tcenter"
+                 *ngIf="gallery.title">
+              <b>{{gallery.title}}</b>
             </div>
-          </a>
-        </div>
+            <img [src]="gallery.main.url()"
+                 [alt]="gallery.main.description">
+          </div>
+        </a>
       </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </ng-template>
