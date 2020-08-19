@@ -8,11 +8,26 @@
     </div>
   </ng-container>
 </div>
-<div class="vertical-scroll"
-     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+<div class="container vertical-scroll"
+     #mainContainer
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true"
+     (wheel)="divScroll($event)">
+
   <ng-container *ngFor="let img of gallery.values; index as i">
     <app-gallery-desktop [gallery]="img"></app-gallery-desktop>
   </ng-container>
+</div>
+<div class="float-right-middle"
+     (click)="next()"
+     [ngClass]="{ 'disabled': disabledNext }"
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+  <mat-icon>arrow_forward_ios</mat-icon>
+</div>
+<div class="float-left-middle"
+     (click)="previous()"
+     [ngClass]="{ 'disabled': disabledPrev}"
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+  <mat-icon>arrow_back_ios</mat-icon>
 </div>
 <div class="float-right-bottom">
   <button mat-fab

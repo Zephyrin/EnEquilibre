@@ -75,7 +75,7 @@ $custom-file-text: (
 
 .container-img {
   position: relative;
-  min-height: 150px;
+  min-height: 100px;
 }
 
 .edit-img {
@@ -181,7 +181,7 @@ b {
 }
 
 .separator-background {
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-attachment: fixed;
   width: 100%;
   background-size: auto;
@@ -207,3 +207,44 @@ b {
   border: solid 1.5px;
   border-color: #5e3e16;
 }
+
+.half-size {
+  max-width: 47%;
+  min-width: 47%;
+  position: relative;
+  max-height: 100%;
+}
+
+.half-size:first-child {
+  margin-right: 1em;
+}
+
+.half-size:last-child {
+  margin-left: 1em;
+}
+
+.vertical-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+   &::-webkit-scrollbar {
+    display: none;
+  }
+  margin-left: auto;
+  margin-right: auto;
+  top: 64px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+}
+
+.flex-vcenter {
+  display: flex;
+  align-items: center;
+}
+
+
+
+

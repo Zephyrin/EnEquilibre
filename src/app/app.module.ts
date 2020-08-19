@@ -48,6 +48,9 @@ import { ImageTitleComponent } from './_components/image/image-title/image-title
 import { ImageSeparatorComponent } from './_components/image/image-separator/image-separator.component';
 import { HorizontalGalleriesComponent } from './_components/galleries/horizontal/horizontal-galleries/horizontal-galleries.component';
 import { ImageDoubleBorderComponent } from './_components/image/image-double-border/image-double-border.component';
+import { ImageMainComponent } from './_components/image/image-main/image-main.component';
+import { ToolsEditComponent } from './_components/tools/tools-edit/tools-edit.component';
+import { ImageFullHeightDoubleBorderComponent } from './_components/image/image-full-height-double-border/image-full-height-double-border.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +80,10 @@ import { ImageDoubleBorderComponent } from './_components/image/image-double-bor
     ImageTitleComponent,
     ImageSeparatorComponent,
     HorizontalGalleriesComponent,
-    ImageDoubleBorderComponent
+    ImageDoubleBorderComponent,
+    ImageMainComponent,
+    ToolsEditComponent,
+    ImageFullHeightDoubleBorderComponent
   ],
   imports: [
     BrowserModule,

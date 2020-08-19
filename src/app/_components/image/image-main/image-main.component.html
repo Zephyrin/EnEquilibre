@@ -1,8 +1,11 @@
-<div class="container-img separator"
-     [ngClass]="{'min-size': service.edit}"
-     *ngIf="service.edit">
-  <div class="text-block-top d-flex justify-content-between edit-image"
-       (click)="openDialog($event, name)">
+<div class="container-img"
+     class="main"
+     *ngIf="service.hasImage(name, child) || service.edit"
+     [ngClass]="{pointer: service.edit}">
+  <div class="text-block-top d-flex justify-content-between"
+       *ngIf="service.edit"
+       (click)="openDialog($event, name)"
+       [ngClass]="{'edit-image': service.edit}">
     <p class="align-self-center"
        *ngIf="service.getUrl(name, child) === ''">{{vt.translate('click.add.' + name)}}</p>
     <p class="align-self-center"
@@ -18,10 +21,7 @@
   <img [src]="service.getUrl(name, child)"
        [alt]="service.getDescription(name, child)"
        (click)="openDialog($event, name)"
-       (error)="service.onError(name, child)"
-       class="img-fluid small edit-img-separator edit-image" />
+       [ngClass]="{ 'border': service.border(name, child), 'edit-img': service.edit}"
+       class="img-fluid" />
 
 </div>
-<div class="separator separator-background"
-     [ngStyle]="{'background-image': 'url(' + service.getUrl(name, child) + ')'}"
-     *ngIf="!service.edit"></div>

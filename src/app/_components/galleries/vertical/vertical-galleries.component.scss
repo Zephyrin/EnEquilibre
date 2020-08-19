@@ -3,13 +3,36 @@
 }
 
 .vertical-scroll {
+  overflow-x: hidden;
+}
+.btn-back-next {
+  top: 0px;
+  bottom: 0px;
+  background: transparent;
+  border: none;
+}
+
+.float-left-middle, .float-right-middle {
+  position: absolute;
+  top: 64px;
+  bottom: 0px;
+  cursor: pointer;
+  vertical-align: center;
+  z-index: 1026;
+  background: transparent;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-   &::-webkit-scrollbar {
-    display: none;
-  }
-  margin-left: auto;
-  margin-right: auto;
+  align-items: center;
+  vertical-align: center;
+}
+
+.disabled {
+  cursor: default;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.float-right-middle {
+  right: 0px;
+}
+.float-left-middle {
+  left: 0px;
 }

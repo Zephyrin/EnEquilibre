@@ -12,9 +12,19 @@ interface ServiceInterface {
 })
 export class HorizontalGalleriesComponent implements OnInit {
   @Input() service: ServiceInterface;
+  @Input() child: any;
+  @Input() routerLink: string | any[];
   constructor(public galleries: GalleryService) { }
 
   ngOnInit(): void {
+  }
+
+  divWheel(evt) {
+    if (evt) {
+      if (evt.deltaY === 0) {
+        evt.stopPropagation();
+      }
+    }
   }
 
 }

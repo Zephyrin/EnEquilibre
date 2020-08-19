@@ -4,18 +4,21 @@
   <ng-template [ngTemplateOutlet]="doubleBorder"></ng-template>
 </a>
 <ng-template #doubleBorder>
-  <div class="border-double-outside right-margin width">
-    <div class="border-double-inside">
-      <div class="container-img"
+  <div class="full-height-border-double-outside right-margin width">
+    <div class="full-height-border-double-inside">
+      <div #containerImg
+           class="full-height-container-img"
+           (window.resize)="onResize($event)"
            *ngIf="image?.hasUrl()">
         <div class="text-block-white tcenter"
              *ngIf="title">
           <b>{{title}}</b>
         </div>
-        <img [src]="image.url()"
-             [alt]="image.description">
+        <img #img
+             [src]="image.url()"
+             [alt]="image.description"
+             [style.width.px]="width">
       </div>
     </div>
   </div>
-
 </ng-template>

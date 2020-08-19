@@ -75,16 +75,16 @@
              let-separator="separator">
   <div class="container-img"
        [ngClass]="{separator: separator}"
-       *ngIf="(!separator && service.has(gallery, name)) || service.edit">
+       *ngIf="(!separator && service.has(name, gallery)) || service.edit">
     <div class="text-block-top d-flex justify-content-between"
          *ngIf="service.edit"
          [ngClass]="{'edit-image': service.edit}"
          (click)="openDialog($event, name)">
       <p class="align-self-center mr-auto"
-         *ngIf="service.getUrl(gallery, name) === ''">{{vt.translate('click.add.' + name)}}</p>
+         *ngIf="service.getUrl(name, gallery) === ''">{{vt.translate('click.add.' + name)}}</p>
       <p class="align-self-center mr-auto"
-         *ngIf="service.getUrl(gallery, name) !== ''">{{vt.translate('click.update.' + name)}}</p>
-      <button *ngIf="service.getUrl(gallery, name) !== ''"
+         *ngIf="service.getUrl(name, gallery) !== ''">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="service.getUrl(name, gallery) !== ''"
               mat-button
               [matTooltip]="vt.translate('remove.picture')"
               (click)="removePicture($event, name)"
@@ -92,10 +92,10 @@
         <mat-icon>image_not_supported</mat-icon>
       </button>
     </div>
-    <img [src]="service.getUrl(gallery, name)"
-         [alt]="service.getDescription(gallery, name)"
+    <img [src]="service.getUrl(name, gallery)"
+         [alt]="service.getDescription(name, gallery)"
          (click)="openDialog($event, name)"
-         [ngClass]="{ 'border': service.border(gallery, name),
+         [ngClass]="{ 'border': service.border(name, gallery),
           'size': !small,
           'edit-img': service.edit && !separator,
           'edit-img-separator': service.edit && separator,
@@ -105,6 +105,6 @@
 
   </div>
   <div class="separator separator-background"
-       [ngStyle]="{'background-image': 'url(' + service.getUrl(gallery, name) + ')'}"
-       *ngIf="separator && !service.edit && service.getUrl(gallery, name)"></div>
+       [ngStyle]="{'background-image': 'url(' + service.getUrl(name, gallery) + ')'}"
+       *ngIf="separator && !service.edit && service.getUrl(name, gallery)"></div>
 </ng-template>

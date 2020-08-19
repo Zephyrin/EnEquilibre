@@ -1,30 +1,30 @@
-<div class="horizontalScroll">
+<div class="horizontalScroll"
+     (wheel)="divWheel($event)">
   <!-- Top Separator -->
   <div class="justify-content-center top">
     <app-image-separator [service]="service"
-                         [name]="'separator'"></app-image-separator>
+                         [name]="'separator'"
+                         [child]="child"></app-image-separator>
   </div>
   <!-- Gallery -->
   <div class="scrolls max-height-carrousel">
-    <!-- Galleries first row -->
     <div class="row-img mb-2">
       <ng-template [ngTemplateOutlet]="galleryColumn"
                    [ngTemplateOutletContext]="{c: galleries.c1}"></ng-template>
       <ng-template [ngTemplateOutlet]="galleryColumn"
                    [ngTemplateOutletContext]="{c: galleries.c3}"></ng-template>
     </div>
-    <!-- Galleries second row -->
     <div class="row-img mt-1">
       <ng-template [ngTemplateOutlet]="galleryColumn"
                    [ngTemplateOutletContext]="{c: galleries.c2}"></ng-template>
     </div>
-    <!-- Galleries impair picture at the end -->
 
   </div>
   <!-- Bottom separator -->
   <div class="justify-content-center bottom">
     <app-image-separator [service]="service"
-                         [name]="'separator'"></app-image-separator>
+                         [name]="'separator'"
+                         [child]="child"></app-image-separator>
 
   </div>
 </div>
@@ -32,9 +32,10 @@
 <ng-template #galleryColumn
              let-c="c">
   <ng-container *ngFor="let gallery of c">
-    <app-image-double-border [routerLink]="'galleries'"
-                             [fragmentLink]="gallery.title.split(' ').join('_')"
-                             [image]="gallery.main"
-                             [title]="gallery.title"></app-image-double-border>
+    <app-image-full-height-double-border [routerLink]="routerLink"
+                                         [fragmentLink]="gallery.title.split(' ').join('_')"
+                                         [image]="gallery.main"
+                                         [title]="gallery.title"
+                                         class="mr-2"></app-image-full-height-double-border>
   </ng-container>
 </ng-template>

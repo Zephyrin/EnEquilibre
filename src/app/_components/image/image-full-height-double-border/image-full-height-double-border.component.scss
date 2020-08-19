@@ -1,0 +1,26 @@
+:host {
+  height: 100%;
+  width: inherit;
+}
+
+.d-content {
+  display: contents;
+}
+.full-height-border-double-outside {
+  padding: 0.2em;
+}
+
+.full-height-border-double-outside, .full-height-border-double-inside {
+  border: solid 1.5px;
+  border-color: #5e3e16;
+  height: 100%;
+}
+
+.full-height-container-img {
+  height: 100%;
+  position: relative;
+}
+
+:host img {
+  max-height: 100%;
+}

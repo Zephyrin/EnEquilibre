@@ -1,15 +1,19 @@
-.full-height {
-  /* top: 64px;
-  bottom: 0px;
-  position: fixed;
-  right: 0px;
-  left: 130px;
-  display: inline-block; */
-}
-
-.container {
+:host {
   height: 100%;
   width: 100%;
-  padding-top: 2em;
-  padding-bottom: 2em;
+  min-width: 100%;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.row-img {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  /* padding: 0 4px; */
+}
+
+.column-img {
+  width: 50%;
+  height: 50%;
 }

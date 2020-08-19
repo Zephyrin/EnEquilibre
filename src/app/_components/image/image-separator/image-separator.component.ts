@@ -1,3 +1,4 @@
+import { EditComponent } from './../../../_helpers/edit-component';
 import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit, Input } from '@angular/core';
 import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';
@@ -26,41 +27,15 @@ interface Service {
   templateUrl: './image-separator.component.html',
   styleUrls: ['./image-separator.component.scss']
 })
-export class ImageSeparatorComponent implements OnInit {
-  @Input() service: Service;
+export class ImageSeparatorComponent extends EditComponent implements OnInit {
   @Input() name: string;
   constructor(
     public vt: ViewTranslateService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    super(vt, dialog);
+  }
 
   ngOnInit(): void {
   }
-
-  openDialog($event: any, name: string) {
-    $event.stopPropagation();
-    if (this.service.edit) {
-      const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.service.get(undefined, name) });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          this.service.updateSeparator(new Mediaobject(result.data));
-        }
-      });
-    }
-  }
-
-  removePicture($event: any, name: string) {
-    $event.stopPropagation();
-    if (this.service.edit) {
-      const dialogRef = this.dialog.open(RemoveDialogComponent);
-      dialogRef.afterClosed().subscribe(result => {
-        if (result) {
-          if (result.data === true) {
-            this.service.removeSeparator();
-          }
-        }
-      });
-    }
-  }
-
 }

@@ -105,7 +105,7 @@ export class GalleryService {
     }
   }
 
-  public border(value: Gallery, name: string): boolean {
+  public border(name: string, value: Gallery): boolean {
     if (value) {
       if (value[name]) {
         return false;
@@ -114,11 +114,27 @@ export class GalleryService {
     return this.edit;
   }
 
-  public has(value: Gallery, name: string): boolean {
+  public has(name: string, value: Gallery): boolean {
     return value && (value[name] || this.edit);
   }
 
-  public getUrl(value: Gallery, name: string): string {
+  public hasError(name: string, child: any): boolean {
+    if (child) {
+      if (child[name] && child[name].error === true) {
+        return child[name].error;
+      }
+    }
+  }
+
+  public hasTitleOrSubtitle(child: any): boolean {
+    return false;
+  }
+
+  public hasImage(name: string, value: any): boolean {
+    return value && value[name];
+  }
+
+  public getUrl(name: string, value: Gallery): string {
     if (value) {
       if (value[name]) {
         return value[name].url();
@@ -127,13 +143,21 @@ export class GalleryService {
     return '';
   }
 
-  public getDescription(value: Gallery, name: string): string {
+  public getDescription(name: string, value: Gallery): string {
     if (value) {
       if (value[name]) {
         return value[name].description;
       }
     }
     return '';
+  }
+
+  public onError(name: string, child: any) {
+    if (child) {
+      if (child[name]) {
+        child[name].onError();
+      }
+    }
   }
 
   public update(value: Gallery, name: string, newValue: any): void {

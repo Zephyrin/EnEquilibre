@@ -1,23 +1,23 @@
 <div class="container">
   <div class="row justify-content-center">
-    <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+    <app-image-separator [service]="contact"
+                         [name]="'separator'"></app-image-separator>
   </div>
   <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
-    <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'background', separator: false}"></ng-template>
+    <app-image-main [service]="contact"
+                    [name]="'background'"></app-image-main>
   </div>
   <div class="row justify-content-center">
-    <ng-template [ngTemplateOutlet]="imgContainer"
-                 [ngTemplateOutletContext]="{name: 'separator', separator: true}"></ng-template>
+    <app-image-separator [service]="contact"
+                         [name]="'separator'"></app-image-separator>
   </div>
   <div class="row justify-content-center">
     <app-text-edit [value]="contact"
                    [service]="contact"
                    [placeholder]="'contact'"
-                   [field]="'contact'"
-                   class="full-width"></app-text-edit>
+                   [field]="'contact'"></app-text-edit>
   </div>
+  <!-- Text not traductible but updatable. No container yet... -->
   <div class="row justify-content-center"
        [ngClass]="{'visible': isEditEmail(), 'hidden': !isEditEmail()}">
     <form (ngSubmit)="onSubmitEmail($event)"
@@ -61,48 +61,4 @@
   </div>
 </div>
 
-<ng-template #imgContainer
-             let-name="name"
-             let-separator="separator">
-  <div class="container-img"
-       [ngClass]="{separator: separator, main: !separator}"
-       *ngIf="(!separator && contact.hasImage(name)) || contact.edit">
-    <div class="text-block-top d-flex justify-content-between"
-         *ngIf="contact.edit"
-         (click)="openDialog($event, name)"
-         [ngClass]="{'edit-image': contact.edit}">
-      <p class="align-self-center"
-         *ngIf="contact.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
-      <p class="align-self-center"
-         *ngIf="contact.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
-      <button *ngIf="contact.getUrl(name) !== ''"
-              mat-button
-              [matTooltip]="vt.translate('remove.picture')"
-              (click)="removePicture($event, name)"
-              class="align-self-center">
-        <mat-icon>image_not_supported</mat-icon>
-      </button>
-    </div>
-    <img [src]="contact.getUrl(name)"
-         [alt]="contact.getDescription(name)"
-         (click)="openDialog($event, name)"
-         [ngClass]="{ 'border': contact.border(name), 'edit-img': contact.edit && !separator, 'edit-img-separator': contact.edit && separator}"
-         class="img-fluid"
-         *ngIf="!separator || contact.edit" />
-
-  </div>
-  <div class="separator separator-background"
-       [ngStyle]="{'background-image': 'url(' + contact.getUrl(name) + ')'}"
-       *ngIf="separator && !contact.edit"></div>
-</ng-template>
-<div class="float-right-bottom">
-  <button mat-fab
-          color="primary"
-          class="action-bottom"
-          *ngIf="contact.canEdit"
-          (click)="contact.edit = !contact.edit"
-          [matTooltip]="vt.translate('aria.edit.contact')"
-          [attr.aria-label]="vt.translate('aria.edit.contact')">
-    <mat-icon>edit</mat-icon>
-  </button>
-</div>
+<app-tools-edit [service]="contact"></app-tools-edit>

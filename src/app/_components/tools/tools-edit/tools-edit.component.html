@@ -1,0 +1,11 @@
+<div class="float-right-bottom">
+  <button mat-fab
+          color="primary"
+          class="action-bottom"
+          *ngIf="service.canEdit"
+          (click)="service.edit = !service.edit"
+          [matTooltip]="vt.translate('aria.edit.about')"
+          [attr.aria-label]="vt.translate('aria.edit.about')">
+    <mat-icon>edit</mat-icon>
+  </button>
+</div>

@@ -1,45 +1,35 @@
-import { MatDialog } from '@angular/material/dialog';
-import { Component, OnInit, Input } from '@angular/core';
 import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';
+import { Mediaobject } from '@app/_models';
 import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog.component';
-import { Mediaobject } from '@app/_models/mediaobject';
+import { MatDialog } from '@angular/material/dialog';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { Input } from '@angular/core';
 
-
-interface IService {
+export interface IService {
   edit: boolean;
-  hasImage(name: string): boolean;
-  hasError(name: string): boolean;
-  hasTitleOrSubtitle(): boolean;
-  getUrl(name: string): string;
-  getDescription(name: string): string;
-  border(name: string): boolean;
-  onError(name: string): void;
+  has(name: string, child: any | undefined): boolean;
+  hasImage(name: string, child: any | undefined): boolean;
+  hasError(name: string, child: any | undefined): boolean;
+  hasTitleOrSubtitle(child: any | undefined): boolean;
+  getUrl(name: string, child: any | undefined): string;
+  getDescription(name: string, child: any | undefined): string;
+  border(name: string, child: any | undefined): boolean;
+  onError(name: string, child: any | undefined): void;
 
   get(object: any, name: string): string;
 
-  removeBackground(): void;
-  updateBackground(media: Mediaobject): void;
+  update(object: any, name: string, mediaObject: Mediaobject): void;
+  remove(object: any, name: string, old: any): void;
 }
 
-@Component({
-  selector: 'app-image-title',
-  templateUrl: './image-title.component.html',
-  styleUrls: ['./image-title.component.scss']
-})
-export class ImageTitleComponent implements OnInit {
+export class EditComponent {
   @Input() service: IService;
-  @Input() name: string;
-  @Input() titleName: string;
-  @Input() subtitleName: string;
+  @Input() child: any;
 
   constructor(
     public vt: ViewTranslateService,
     public dialog: MatDialog
   ) { }
-
-  ngOnInit(): void {
-  }
 
   openDialog($event: any, name: string) {
     $event.stopPropagation();
@@ -47,7 +37,7 @@ export class ImageTitleComponent implements OnInit {
       const dialogRef = this.dialog.open(ImageDialogComponent, { data: this.service.get(undefined, name) });
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.service.updateBackground(new Mediaobject(result.data));
+          this.service.update(this.child, name, new Mediaobject(result.data));
         }
       });
     }
@@ -60,11 +50,10 @@ export class ImageTitleComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
           if (result.data === true) {
-            this.service.removeBackground();
+            this.service.remove(this.child, name, null);
           }
         }
       });
     }
   }
-
 }
