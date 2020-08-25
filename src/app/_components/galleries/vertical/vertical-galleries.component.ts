@@ -59,6 +59,7 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     if (this.resizeSubscription$) { this.resizeSubscription$.unsubscribe(); }
+    if (this.gallery) { this.gallery.edit = false; }
   }
 
   afterViewInit() {
