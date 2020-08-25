@@ -2,6 +2,10 @@
      (wheel)="divWheel($event)">
   <!-- Top Separator -->
   <div class="justify-content-center top">
+    <div class="top-text-separator"
+         *ngIf="!service.edit">
+      <p>{{vt.translate('shop')}}</p>
+    </div>
     <app-image-separator [service]="service"
                          [name]="'separator'"
                          [child]="child"></app-image-separator>

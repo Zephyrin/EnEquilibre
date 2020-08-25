@@ -4,6 +4,7 @@
 
 .vertical-scroll {
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .btn-back-next {
   top: 0px;
@@ -35,4 +36,6 @@
 }
 .float-left-middle {
   left: 0px;
+  display: flex;
+  justify-content: right;
 }

@@ -26,6 +26,7 @@ export class HomeService {
         return;
       }
     }
+    if (edit === this.edit$ && this.home !== undefined) { return; }
     this.edit$ = edit;
     if (this.edit$) {
       this.http.getMerchant('').subscribe(data => {

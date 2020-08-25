@@ -1,13 +1,44 @@
 <div class="row-img justify-content-center">
   <div class="half-size flex-vcenter"
        [attr.id]="gallery.title.split(' ').join('_')">
-    <app-image-main [service]="service"
-                    [name]="'main'"
-                    [child]="gallery"></app-image-main>
+    <div class="absolute">
+      <div class="text-flex-center"
+           *ngIf="service.edit">
+        <app-text-edit [value]="gallery"
+                       [service]="service"
+                       [placeholder]="'title'"
+                       [title]="false"
+                       [field]="'title'"></app-text-edit>
+        <button (click)="delete($event, gallery)"
+                *ngIf="service.edit"
+                mat-button
+                [matTooltip]="vt.translate('delete')">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button (click)="service.orderUp(gallery)"
+                *ngIf="!service.isFirst(gallery) && service.edit"
+                mat-button
+                [matTooltip]="vt.translate('left')">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <button (click)="service.orderDown(gallery)"
+                *ngIf="!service.isLast(gallery) && service.edit"
+                mat-button
+                [matTooltip]="vt.translate('right')">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div class="full"
+           [ngClass]="{ 'edit-gallery': service.edit}">
+        <app-image-main [service]="service"
+                        [name]="'main'"
+                        [child]="gallery"></app-image-main>
+      </div>
+    </div>
   </div>
   <div class="half-size">
-    <app-horizontal-galleries [service]="service"
-                              [child]="gallery"></app-horizontal-galleries>
+    <app-horizontal-medias [service]="service"
+                           [child]="gallery"></app-horizontal-medias>
   </div>
 
 </div>

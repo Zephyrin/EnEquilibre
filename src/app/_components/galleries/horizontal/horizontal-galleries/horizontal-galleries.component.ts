@@ -1,3 +1,4 @@
+import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { GalleryService } from './../../../../_services/gallery/gallery.service';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -14,7 +15,7 @@ export class HorizontalGalleriesComponent implements OnInit {
   @Input() service: ServiceInterface;
   @Input() child: any;
   @Input() routerLink: string | any[];
-  constructor(public galleries: GalleryService) { }
+  constructor(public galleries: GalleryService, public vt: ViewTranslateService) { }
 
   ngOnInit(): void {
   }

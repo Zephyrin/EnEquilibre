@@ -33,6 +33,7 @@ export class GalleryService {
         return;
       }
     }
+    if (edit === this.edit$ && this.values !== undefined) { return; }
     this.edit$ = edit;
     if (this.edit$) {
       this.http.getAllMerchant().subscribe(response => {
@@ -71,7 +72,7 @@ export class GalleryService {
     }
   }
   public get edit() { return this.edit$; }
-  private edit$ = false;
+  private edit$ = undefined;
 
   public get canEdit() {
     return this.currentUser

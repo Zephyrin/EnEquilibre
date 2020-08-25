@@ -51,6 +51,7 @@ import { ImageDoubleBorderComponent } from './_components/image/image-double-bor
 import { ImageMainComponent } from './_components/image/image-main/image-main.component';
 import { ToolsEditComponent } from './_components/tools/tools-edit/tools-edit.component';
 import { ImageFullHeightDoubleBorderComponent } from './_components/image/image-full-height-double-border/image-full-height-double-border.component';
+import { HorizontalMediasComponent } from './_components/galleries/horizontal/horizontal-medias/horizontal-medias.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ImageFullHeightDoubleBorderComponent } from './_components/image/image-
     ImageDoubleBorderComponent,
     ImageMainComponent,
     ToolsEditComponent,
-    ImageFullHeightDoubleBorderComponent
+    ImageFullHeightDoubleBorderComponent,
+    HorizontalMediasComponent
   ],
   imports: [
     BrowserModule,

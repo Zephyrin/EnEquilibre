@@ -67,6 +67,10 @@ $custom-file-text: (
   fr: "Ouvrir"
 );
 
+.active-link {
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.04);
+}
 .tcenter {
   display: flex;
   align-items: center;
@@ -94,6 +98,22 @@ b {
 
 .min-size {
   cursor: pointer;
+}
+
+p {
+  font-weight: 800!important;
+  font-size: x-large;
+  margin: 0!important;
+}
+h1 {
+  font-weight: 900!important;
+  font-size: xxx-large!important;
+  margin-bottom: 0.5em !important;
+  margin-top: 0.5em !important;
+}
+
+.color {
+  color: rgba(94, 62, 22, 0.6);
 }
 .text-block-white {
   position: absolute;

@@ -14,8 +14,10 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './vertical-galleries.component.html',
   styleUrls: ['./vertical-galleries.component.scss']
 })
-export class VerticalGalleriesComponent implements OnInit, OnDestroy, AfterViewInit {
+export class VerticalGalleriesComponent implements OnInit, OnDestroy {
   @ViewChild('mainContainer') mainContainer: ElementRef;
+  @ViewChild('rightArrow') rightArrow: ElementRef;
+  @ViewChild('leftArrow') leftArrow: ElementRef;
   editTitle = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -46,6 +48,9 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy, AfterViewI
     this.route.fragment.subscribe((fragment: string) => {
       this.fragment = fragment;
     });
+    this.isHandset$.subscribe(isHandset => {
+      if (isHandset === false) { this.afterViewInit(); }
+    });
   }
 
   ngOnInit(): void {
@@ -56,22 +61,26 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy, AfterViewI
     if (this.resizeSubscription$) { this.resizeSubscription$.unsubscribe(); }
   }
 
-  ngAfterViewInit() {
-    if (this.mainContainer) {
+  afterViewInit() {
+    if (this.mainContainer !== undefined) {
       setTimeout(() => {
         let offset = 0;
+        this.rightArrow.nativeElement.style.width
+          = this.leftArrow.nativeElement.style.width
+          = this.mainContainer.nativeElement.offsetLeft + 'px';
         if (this.fragment) {
           const elt = document.getElementById(this.fragment);
           if (elt !== null) {
             offset = elt.offsetLeft;
+            if (offset < this.mainContainer.nativeElement.clientWidth) {
+              offset = 0;
+            }
           }
         }
         this.smoothScroll(offset);
       }, 500);
     } else {
-      setTimeout(() => {
-        this.ngAfterViewInit();
-      }, 100);
+      setTimeout(() => { this.afterViewInit(); }, 100);
     }
   }
 

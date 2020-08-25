@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,34 +14,21 @@ import { Mediaobject } from '@app/_models/mediaobject';
   templateUrl: './gallery-desktop.component.html',
   styleUrls: ['./gallery-desktop.component.scss']
 })
-export class GalleryDesktopComponent implements OnInit {
+export class GalleryDesktopComponent implements OnInit, OnDestroy {
   @Input() gallery: Gallery;
-  private fragment;
 
   constructor(
     public service: GalleryService,
     public vt: ViewTranslateService,
-    public dialog: MatDialog,
-    private route: ActivatedRoute) {
-    this.route.fragment.subscribe((fragment: string) => {
-      this.fragment = fragment;
-    });
+    public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
-    if (!!this.fragment) {
-      this.scroll(this.fragment);
-    }
+
   }
 
-  scroll(id) {
-    setTimeout(() => {
-      const elmnt = document.getElementById(id);
-      if (elmnt !== null) {
-        elmnt.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
-      }
-    }, 500);
-
+  ngOnDestroy(): void {
+    if (this.service) { this.service.edit = false; }
   }
 
   openDialog($event: any, name: string) {

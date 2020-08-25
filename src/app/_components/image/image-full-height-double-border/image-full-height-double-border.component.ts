@@ -1,3 +1,7 @@
+import { IService } from '@app/_helpers/edit-component';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from '@app/_models';
 import { Component, OnInit, Input, ViewChild, ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
@@ -25,14 +29,23 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
 
   @Input() title: string;
 
-  public width: number;
+  @Input() service: IService;
+
+  @Input() child: any;
+
+  public width = 100;
 
   private containerHeight: number;
 
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
+  loadObservable$: Observable<Event>;
+  loadSubscription$: Subscription;
 
-  constructor() { }
+  constructor(
+    public vt: ViewTranslateService,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.resizeObservable$ = fromEvent(window, 'resize');
@@ -43,25 +56,43 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
 
   ngOnDestroy() {
     this.resizeSubscription$.unsubscribe();
+    this.loadSubscription$.unsubscribe();
   }
 
   ngAfterViewInit(): void {
-    this.resize(null);
+    this.loadObservable$ = fromEvent(this.img.nativeElement, 'load');
+    this.loadSubscription$ = this.loadObservable$.subscribe(() => {
+      this.onLoadImage();
+    });
   }
 
   onResize(evt): void {
     this.resize(evt);
   }
 
+  removeFromCarrousel(img: Mediaobject) {
+    if (this.service.edit) {
+      const dialogRef = this.dialog.open(RemoveDialogComponent);
+      dialogRef.afterClosed().subscribe(result => {
+        if (result && result.data === true) {
+          this.service.remove(this.child, 'medias', img);
+        }
+      });
+    }
+  }
+
   private resize(evt): void {
     setTimeout(() => {
       this.containerHeight = this.containerImg.nativeElement.offsetHeight;
       this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
-      if (this.width === undefined) {
-        setTimeout(() => {
-          this.resize(evt);
-        }, 100);
+      if (this.width === undefined || this.width === 100) {
+        this.resize(evt);
       }
-    }, 100);
+    }, 200);
+  }
+
+  public onLoadImage(): void {
+    this.containerHeight = this.containerImg.nativeElement.offsetHeight;
+    this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
   }
 }

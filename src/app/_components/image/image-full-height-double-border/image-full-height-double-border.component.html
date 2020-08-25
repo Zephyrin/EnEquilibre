@@ -10,9 +10,18 @@
            class="full-height-container-img"
            (window.resize)="onResize($event)"
            *ngIf="image?.hasUrl()">
+        <div class="text-block-top d-flex flex-row-reverse"
+             *ngIf="service?.edit">
+          <button mat-button
+                  [matTooltip]="vt.translate('remove.picture.carrousel')"
+                  (click)="removeFromCarrousel(image)"
+                  class="right">
+            <mat-icon>image_not_supported</mat-icon>
+          </button>
+        </div>
         <div class="text-block-white tcenter"
              *ngIf="title">
-          <b>{{title}}</b>
+          <p><b>{{title}}</b></p>
         </div>
         <img #img
              [src]="image.url()"

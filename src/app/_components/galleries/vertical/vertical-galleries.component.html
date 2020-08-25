@@ -20,13 +20,15 @@
 <div class="float-right-middle"
      (click)="next()"
      [ngClass]="{ 'disabled': disabledNext }"
-     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true"
+     #rightArrow>
   <mat-icon>arrow_forward_ios</mat-icon>
 </div>
 <div class="float-left-middle"
      (click)="previous()"
      [ngClass]="{ 'disabled': disabledPrev}"
-     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true">
+     *ngIf="gallery.values?.length > 0 && (isHandset$ | async) !== true"
+     #leftArrow>
   <mat-icon>arrow_back_ios</mat-icon>
 </div>
 <div class="float-right-bottom">

@@ -4,7 +4,7 @@ import { Mediaobject } from '@app/_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { HomeService } from '@app/_services/home/home.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -15,7 +15,7 @@ import { map, shareReplay } from 'rxjs/operators';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   editTitle = false;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -32,6 +32,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.editTitle = false;
+    this.home.edit = false;
+  }
   openDialog($event: any, name: string) {
     $event.stopPropagation();
     if (this.home.edit) {

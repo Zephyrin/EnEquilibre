@@ -1,0 +1,57 @@
+<div class="horizontalScroll"
+     (wheel)="divWheel($event)">
+  <!-- Top Separator -->
+  <div class="justify-content-center top">
+    <div class="top-text-separator"
+         *ngIf="!service.edit">
+      <app-text-edit [value]="child"
+                     [service]="service"
+                     [placeholder]="'title'"
+                     [title]="false"
+                     [field]="'title'"></app-text-edit>
+    </div>
+    <app-image-separator [service]="service"
+                         [name]="'separator'"
+                         [child]="child"></app-image-separator>
+  </div>
+  <!-- Gallery -->
+  <div class="scrolls max-height-carrousel"
+       #scrollDiv>
+    <div class="row-img mb-2">
+      <button (click)="addToCarrousel()"
+              *ngIf="service.edit"
+              mat-button
+              class="max-height-carrousel-btn inline-carrousel"
+              [matTooltip]="vt.translate('add.carroussel')">
+        <mat-icon>add</mat-icon>
+      </button>
+      <ng-template [ngTemplateOutlet]="galleryColumn"
+                   [ngTemplateOutletContext]="{c: child.medias, isTop: true}"></ng-template>
+    </div>
+    <div class="row-img mt-1">
+      <ng-template [ngTemplateOutlet]="galleryColumn"
+                   [ngTemplateOutletContext]="{c: child.medias, isTop: false}"></ng-template>
+    </div>
+
+  </div>
+  <!-- Bottom separator -->
+  <div class="justify-content-center bottom">
+    <app-image-separator [service]="service"
+                         [name]="'separator'"
+                         [child]="child"></app-image-separator>
+
+  </div>
+</div>
+
+<ng-template #galleryColumn
+             let-c="c"
+             let-isTop="isTop">
+  <ng-container *ngFor="let gallery of c; index as i">
+    <app-image-full-height-double-border [image]="gallery"
+                                         [service]="service"
+                                         [child]="child"
+                                         class="mr-3"
+                                         *ngIf="(isTop && i % 2 === 0) || (!isTop && i % 2 !== 0)">
+    </app-image-full-height-double-border>
+  </ng-container>
+</ng-template>
