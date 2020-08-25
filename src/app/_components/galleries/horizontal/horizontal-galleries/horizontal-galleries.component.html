@@ -37,7 +37,7 @@
              let-c="c">
   <ng-container *ngFor="let gallery of c">
     <app-image-full-height-double-border [routerLink]="routerLink"
-                                         [fragmentLink]="gallery.title.split(' ').join('_')"
+                                         [fragmentLink]="gallery?.title?.split(' ').join('_')"
                                          [image]="gallery.main"
                                          [title]="gallery.title"
                                          class="mr-2"></app-image-full-height-double-border>
