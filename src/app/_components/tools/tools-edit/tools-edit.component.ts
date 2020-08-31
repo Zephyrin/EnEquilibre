@@ -20,4 +20,7 @@ export class ToolsEditComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeEdit(evt: any): void {
+    this.service.edit = !this.service.edit;
+  }
 }

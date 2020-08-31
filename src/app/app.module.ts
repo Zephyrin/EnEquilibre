@@ -3,7 +3,7 @@ import { TopErrorsComponent } from './_components/helpers/top-errors/top-errors.
 import { TheadComponent } from './_components/helpers/remove-dialog/thead.component';
 import { JwtInterceptor } from './auth/jwt.interceptor';
 import { ErrorInterceptor } from './auth/error.interceptor';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -52,6 +52,7 @@ import { ImageMainComponent } from './_components/image/image-main/image-main.co
 import { ToolsEditComponent } from './_components/tools/tools-edit/tools-edit.component';
 import { ImageFullHeightDoubleBorderComponent } from './_components/image/image-full-height-double-border/image-full-height-double-border.component';
 import { HorizontalMediasComponent } from './_components/galleries/horizontal/horizontal-medias/horizontal-medias.component';
+import { ImageCropperComponent } from './_components/helpers/image-cropper/image-cropper.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { HorizontalMediasComponent } from './_components/galleries/horizontal/ho
     ImageMainComponent,
     ToolsEditComponent,
     ImageFullHeightDoubleBorderComponent,
-    HorizontalMediasComponent
+    HorizontalMediasComponent,
+    ImageCropperComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +107,8 @@ import { HorizontalMediasComponent } from './_components/galleries/horizontal/ho
     MatTabsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    NgbModule
+    NgbModule,
+    HammerModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

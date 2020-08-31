@@ -52,3 +52,15 @@
 .h150 {
   min-height: 150px;
 }
+
+app-image-cropper {
+  height: 25em;
+}
+
+.rot90 {
+  transform: rotate(90deg);
+}
+
+button.active {
+  background: lightblue;
+}

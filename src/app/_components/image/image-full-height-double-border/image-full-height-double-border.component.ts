@@ -55,15 +55,17 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
   }
 
   ngOnDestroy() {
-    this.resizeSubscription$.unsubscribe();
-    this.loadSubscription$.unsubscribe();
+    if (this.resizeSubscription$) { this.resizeSubscription$.unsubscribe(); }
+    if (this.loadSubscription$) { this.loadSubscription$.unsubscribe(); }
   }
 
   ngAfterViewInit(): void {
-    this.loadObservable$ = fromEvent(this.img.nativeElement, 'load');
-    this.loadSubscription$ = this.loadObservable$.subscribe(() => {
-      this.onLoadImage();
-    });
+    if (this.img) {
+      this.loadObservable$ = fromEvent(this.img.nativeElement, 'load');
+      this.loadSubscription$ = this.loadObservable$.subscribe(() => {
+        this.onLoadImage();
+      });
+    }
   }
 
   onResize(evt): void {
@@ -83,10 +85,12 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
 
   private resize(evt): void {
     setTimeout(() => {
-      this.containerHeight = this.containerImg.nativeElement.offsetHeight;
-      this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
-      if (this.width === undefined || this.width === 100) {
-        this.resize(evt);
+      if (this.containerHeight) {
+        this.containerHeight = this.containerImg.nativeElement.offsetHeight;
+        this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
+        if (this.width === undefined || this.width === 100) {
+          this.resize(evt);
+        }
       }
     }, 200);
   }

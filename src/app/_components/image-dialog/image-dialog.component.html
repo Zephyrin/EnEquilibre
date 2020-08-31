@@ -10,11 +10,11 @@
             <mat-icon *ngIf="!imageSrc"
                       class="align-self-center">photo</mat-icon>
             <img [src]="imageSrc"
-                 *ngIf="imageSrc"
+                 *ngIf="imageSrc !== undefined"
                  class="img-thumbnail rounded mx-auto d-block" />
             <div class="input-group align-self-center ml-2">
               <div class="input-group-prepend"
-                   *ngIf="imageSrc">
+                   *ngIf="imageSrc !== undefined">
                 <button type="button"
                         class="btn btn-outline-secondary btn-icon"
                         (click)="deleteLogo()">
@@ -42,6 +42,127 @@
               {{child}}
             </div>
           </mat-error>
+        </div>
+        <div class="col">
+          <div class="toolbox">
+            <button mat-button
+                    type="button"
+                    (click)="zoomOut()">
+              <mat-icon>zoom_out</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="zoomIn()"
+                    class="align-self-center">
+              <mat-icon>zoom_in</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="rotateLeft()"
+                    class="align-self-center">
+              <mat-icon>rotate_left</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="rotateRight()"
+                    class="align-self-center">
+              <mat-icon>rotate_right</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="flipHorizontal()"
+                    class="align-self-center">
+              <mat-icon>flip</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="flipVertical()"
+                    class="align-self-center">
+              <mat-icon class="rot90">flip</mat-icon>
+            </button>
+
+            <button mat-button
+                    type="button"
+                    (click)="toggleContainWithinAspectRatio()"
+                    active="containWithinAspectRatio"
+                    [ngClass]="{'active': containWithinAspectRatio }"
+                    class="align-self-center">
+              <mat-icon>aspect_ratio</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="toggleMaintainAspectRatio()"
+                    [ngClass]="{'active': maintainAspectRatio}"
+                    class="align-self-center">
+              <mat-icon>crop_free</mat-icon>
+            </button>
+
+            <button mat-button
+                    type="button"
+                    (click)="resetImage()"
+                    class="align-self-center">
+              <mat-icon>format_clear</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(16 / 9)"
+                    [ngClass]="{'active': aspectRatio == 16 / 9}"
+                    class="align-self-center">
+              <mat-icon>crop_16_9</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(9 / 16)"
+                    [ngClass]="{'active': aspectRatio == 9 / 16}"
+                    class="align-self-center">
+              <mat-icon class="rot90">crop_16_9</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(4 / 3)"
+                    [ngClass]="{'active': aspectRatio == 4 / 3}"
+                    class="align-self-center">
+              <mat-icon>crop_5_4</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(3 / 4)"
+                    [ngClass]="{'active': aspectRatio == 3 / 4}"
+                    class="align-self-center">
+              <mat-icon class="rot90">crop_5_4</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(1)"
+                    [ngClass]="{'active': aspectRatio == 1}"
+                    class="align-self-center">
+              <mat-icon>crop_square</mat-icon>
+            </button>
+            <button mat-button
+                    type="button"
+                    (click)="crop(undefined)"
+                    [ngClass]="{'active': aspectRatio == undefined}"
+                    class="align-self-center">
+              <mat-icon>crop_original</mat-icon>
+            </button>
+          </div>
+          <app-image-cropper [imageChangedEvent]="imageChangedEvent"
+                             [maintainAspectRatio]="true"
+                             [containWithinAspectRatio]="containWithinAspectRatio"
+                             [maintainAspectRatio]="maintainAspectRatio"
+                             [aspectRatio]="aspectRatio"
+                             [cropperMinWidth]="128"
+                             [onlyScaleDown]="true"
+                             [roundCropper]="false"
+                             [canvasRotation]="canvasRotation"
+                             [transform]="transform"
+                             [alignImage]="'left'"
+                             [style.display]="showCropper ? null : 'none'"
+                             [format]="format"
+                             (imageCropped)="imageCropped($event)"
+                             (imageLoaded)="imageLoaded()"
+                             (cropperReady)="cropperReady($event)"
+                             (loadImageFailed)="loadImageFailed()"></app-image-cropper>
         </div>
         <div class="col">
           <mat-form-field class="full-width">

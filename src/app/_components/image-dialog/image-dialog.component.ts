@@ -11,6 +11,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
+import { Dimensions, ImageCroppedEvent, ImageTransform } from '@app/_interfaces/index';
+import { base64ToFile } from '@app/_helpers/utils/blob.utils';
+
 @Component({
   selector: 'app-image-dialog',
   templateUrl: './image-dialog.component.html',
@@ -28,6 +31,19 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   tabPosition = 0;
   edit = false;
   get f() { return this.form.controls; }
+
+  // Image cropper
+  imageChangedEvent: any = '';
+  croppedImage: any = '';
+  canvasRotation = 0;
+  rotation = 0;
+  scale = 1;
+  showCropper = false;
+  containWithinAspectRatio = false;
+  transform: ImageTransform = {};
+  aspectRatio = 4 / 3;
+  maintainAspectRatio = true;
+  format = 'png';
 
   constructor(
     public vt: ViewTranslateService,
@@ -87,14 +103,16 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       this.fileName = file.name;
+      this.format = file.name.split('.').pop();
       this.imageSrc = '';
-      reader.readAsDataURL(file);
+      this.imageChangedEvent = event;
+      /* reader.readAsDataURL(file);
       reader.onload = () => {
         this.imageSrc = this.domSanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
         this.form.patchValue({
           image: reader.result
         });
-      };
+      }; */
     }
   }
 
@@ -143,5 +161,105 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
         this.loading = false;
       }); */
     }
+  }
+
+  // Image cropper function
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
+
+  imageCropped(event: ImageCroppedEvent) {
+    this.imageSrc = event.base64;
+    this.form.patchValue({
+      image: event.base64
+    });
+  }
+
+  imageLoaded() {
+    this.showCropper = true;
+  }
+
+  cropperReady(sourceImageDimensions: Dimensions) {
+  }
+
+  loadImageFailed() {
+    console.log('Load failed');
+  }
+
+  rotateLeft() {
+    this.canvasRotation--;
+    this.flipAfterRotate();
+  }
+
+  rotateRight() {
+    this.canvasRotation++;
+    this.flipAfterRotate();
+  }
+
+  private flipAfterRotate() {
+    const flippedH = this.transform.flipH;
+    const flippedV = this.transform.flipV;
+    this.transform = {
+      ...this.transform,
+      flipH: flippedV,
+      flipV: flippedH
+    };
+  }
+
+
+  flipHorizontal() {
+    this.transform = {
+      ...this.transform,
+      flipH: !this.transform.flipH
+    };
+  }
+
+  flipVertical() {
+    this.transform = {
+      ...this.transform,
+      flipV: !this.transform.flipV
+    };
+  }
+
+  resetImage() {
+    this.scale = 1;
+    this.rotation = 0;
+    this.canvasRotation = 0;
+    this.transform = {};
+  }
+
+  zoomOut() {
+    this.scale -= .1;
+    this.transform = {
+      ...this.transform,
+      scale: this.scale
+    };
+  }
+
+  zoomIn() {
+    this.scale += .1;
+    this.transform = {
+      ...this.transform,
+      scale: this.scale
+    };
+  }
+
+  toggleContainWithinAspectRatio() {
+    this.containWithinAspectRatio = !this.containWithinAspectRatio;
+  }
+
+  toggleMaintainAspectRatio() {
+    this.maintainAspectRatio = !this.maintainAspectRatio;
+  }
+
+  crop(val): void {
+    this.aspectRatio = val;
+  }
+
+  updateRotation() {
+    this.transform = {
+      ...this.transform,
+      rotate: this.rotation
+    };
   }
 }

@@ -4,7 +4,8 @@
   <ng-template [ngTemplateOutlet]="doubleBorder"></ng-template>
 </a>
 <ng-template #doubleBorder>
-  <div class="full-height-border-double-outside right-margin width">
+  <div class="full-height-border-double-outside right-margin width"
+       *ngIf="image?.hasUrl()">
     <div class="full-height-border-double-inside">
       <div #containerImg
            class="full-height-container-img"

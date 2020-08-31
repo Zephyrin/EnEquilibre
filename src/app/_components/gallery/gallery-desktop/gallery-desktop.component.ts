@@ -28,7 +28,6 @@ export class GalleryDesktopComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.service) { this.service.edit = false; }
   }
 
   openDialog($event: any, name: string) {

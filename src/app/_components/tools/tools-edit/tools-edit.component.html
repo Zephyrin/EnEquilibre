@@ -3,9 +3,9 @@
           color="primary"
           class="action-bottom"
           *ngIf="service.canEdit"
-          (click)="service.edit = !service.edit"
-          [matTooltip]="vt.translate('aria.edit.about')"
-          [attr.aria-label]="vt.translate('aria.edit.about')">
+          (click)="changeEdit($event)"
+          [matTooltip]="vt.translate('aria.edit')"
+          [attr.aria-label]="vt.translate('aria.edit')">
     <mat-icon>edit</mat-icon>
   </button>
 </div>
