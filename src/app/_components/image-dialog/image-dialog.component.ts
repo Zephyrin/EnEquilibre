@@ -41,8 +41,8 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   showCropper = false;
   containWithinAspectRatio = false;
   transform: ImageTransform = {};
-  aspectRatio = 4 / 3;
-  maintainAspectRatio = true;
+  aspectRatio = undefined;
+  maintainAspectRatio = false;
   format = 'png';
 
   constructor(

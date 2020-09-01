@@ -1,8 +1,3 @@
-.img-thumbnail {
-  max-height: 250px;
-  max-width: 250px;
-}
-
 .wrap {
   flex-wrap: wrap;
 }
@@ -55,6 +50,13 @@
 
 app-image-cropper {
   height: 25em;
+  min-height: 25em;
+  width: 50%;
+}
+
+.image-helper {
+  min-height: 30em;
+  overflow-y: auto;
 }
 
 .rot90 {
@@ -63,4 +65,26 @@ app-image-cropper {
 
 button.active {
   background: lightblue;
+}
+.preview {
+  height: 25em;
+  min-height: 25em;
+  max-height: 25em;
+  width: 50%;
+}
+
+.preview img {
+  height: 100%;
+  width: auto;
+}
+.displayNone {
+  display: none;
+}
+@media screen and (max-width: 600px) {
+  .preview {
+    width: 100%;
+  }
+  app-image-cropper {
+    width: 100%;
+  }
 }

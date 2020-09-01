@@ -167,5 +167,62 @@
   }, {
     "key": "edit.email",
     "translate": { "en": "Email edit", "fr": "Édition de l'email" }
+  }, {
+    "key": "zoom",
+    "translate": { "en": "Zoom", "fr": "Zoom" }
+  }, {
+    "key": "zoom.in",
+    "translate": { "en": "Zoom in", "fr": "Plus petit" }
+  }, {
+    "key": "zoom.out",
+    "translate": { "en": "Zoom out", "fr": "Plus grand" }
+  }, {
+    "key": "rotate.flip",
+    "translate": { "en": "Rotate and flip", "fr": "Rotation et flip" }
+  }, {
+    "key": "rotate.left",
+    "translate": { "en": "Left rotation", "fr": "Rotation à gauche" }
+  }, {
+    "key": "rotate.right",
+    "translate": { "en": "Right rotation", "fr": "Rotation à droite" }
+  }, {
+    "key": "flip.horizontal",
+    "translate": { "en": "Horizontal flip", "fr": "Flip horizontal" }
+  }, {
+    "key": "flip.vertical",
+    "translate": { "en": "Vertical flip", "fr": "Flip vertical" }
+  }, {
+    "key": "aspect.ratio.management",
+    "translate": { "en": "Manage aspect ratio", "fr": "Gestion du ratio" }
+  }, {
+    "key": "aspect.ratio.contain.within",
+    "translate": { "en": "Keep the selecting box inside image", "fr": "Garde la boite de sélection à l'interieur de l'image" }
+  }, {
+    "key": "aspect.ratio.maintain",
+    "translate": { "en": "Keep selecting box ratio", "fr": "Garde le ratio de la boite de sélection" }
+  }, {
+    "key": "reset.image",
+    "translate": { "en": "Reset image", "fr": "Reset image" }
+  }, {
+    "key": "crop",
+    "translate": { "en": "Crop", "fr": "Rognage" }
+  }, {
+    "key": "crop.16.9",
+    "translate": { "en": "16/9 crop", "fr": "Rognage 16/9" }
+  }, {
+    "key": "crop.9.16",
+    "translate": { "en": "9/16 crop", "fr": "Rognage 9/16" }
+  }, {
+    "key": "crop.4.3",
+    "translate": { "en": "4/3 crop", "fr": "Rognage 4/3" }
+  }, {
+    "key": "crop.3.4",
+    "translate": { "en": "3/4 crop", "fr": "Rognage 3/4" }
+  }, {
+    "key": "crop.square",
+    "translate": { "en": "Square crop", "fr": "Rognage en carré" }
+  }, {
+    "key": "crop.original",
+    "translate": { "en": "Original crop", "fr": "Rognage original" }
   }
 ]

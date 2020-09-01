@@ -7,11 +7,6 @@
             (ngSubmit)="onSubmit()">
         <div class="col mt-1">
           <div class="d-flex flex-column flex-md-row">
-            <mat-icon *ngIf="!imageSrc"
-                      class="align-self-center">photo</mat-icon>
-            <img [src]="imageSrc"
-                 *ngIf="imageSrc !== undefined"
-                 class="img-thumbnail rounded mx-auto d-block" />
             <div class="input-group align-self-center ml-2">
               <div class="input-group-prepend"
                    *ngIf="imageSrc !== undefined">
@@ -34,6 +29,200 @@
               </div>
             </div>
           </div>
+          <div class="col">
+            <div class="toolbox align"
+                 *ngIf="imageSrc">
+              <button mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="menuZoom"
+                      aria-label="Zoom's menu"
+                      [matTooltip]="vt.translate('zoom')">
+                <mat-icon>search</mat-icon>
+              </button>
+              <mat-menu #menuZoom="matMenu">
+                <button mat-icon-button
+                        mat-button
+                        type="button"
+                        (click)="zoomOut()"
+                        [matTooltip]="vt.translate('zoom.out')">
+                  <mat-icon>zoom_out</mat-icon>
+                </button>
+                <button mat-icon-button
+                        mat-button
+                        type="button"
+                        (click)="zoomIn()"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('zoom.in')">
+                  <mat-icon>zoom_in</mat-icon>
+                </button>
+              </mat-menu>
+              <button mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="menuRotateFlip"
+                      aria-label="Rotate's menu"
+                      [matTooltip]="vt.translate('rotate.flip')">
+                <mat-icon>rotate_90_degrees_ccw</mat-icon>
+              </button>
+              <mat-menu #menuRotateFlip="matMenu">
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="rotateLeft()"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('rotate.left')">
+                  <mat-icon>rotate_left</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="rotateRight()"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('rotate.right')">
+                  <mat-icon>rotate_right</mat-icon>
+                </button>
+                <br />
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="flipHorizontal()"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('flip.horizontal')">
+                  <mat-icon>flip</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="flipVertical()"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('flip.vertical')">
+                  <mat-icon class="rot90">flip</mat-icon>
+                </button>
+              </mat-menu>
+
+              <button mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="menuAspectRatio"
+                      aria-label="Rotate's menu"
+                      [matTooltip]="vt.translate('aspect.ratio.management')">
+                <mat-icon>image_aspect_ratio</mat-icon>
+              </button>
+              <mat-menu #menuAspectRatio="matMenu">
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="toggleContainWithinAspectRatio()"
+                        active="containWithinAspectRatio"
+                        [ngClass]="{'active': containWithinAspectRatio }"
+                        [matTooltip]="vt.translate('aspect.ratio.contain.within')"
+                        class="align-self-center">
+                  <mat-icon>aspect_ratio</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="toggleMaintainAspectRatio()"
+                        [ngClass]="{'active': maintainAspectRatio}"
+                        [matTooltip]="vt.translate('aspect.ratio.maintain')"
+                        class="align-self-center">
+                  <mat-icon>crop_free</mat-icon>
+                </button>
+              </mat-menu>
+              <button mat-icon-button
+                      type="button"
+                      [matMenuTriggerFor]="menuCrop"
+                      aria-label="Rotate's menu"
+                      [matTooltip]="vt.translate('crop')">
+                <mat-icon>crop</mat-icon>
+              </button>
+              <mat-menu #menuCrop="matMenu">
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(16 / 9)"
+                        [ngClass]="{'active': aspectRatio == 16 / 9}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.16.9')">
+                  <mat-icon>crop_16_9</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(9 / 16)"
+                        [ngClass]="{'active': aspectRatio == 9 / 16}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.9.16')">
+                  <mat-icon class="rot90">crop_16_9</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(4 / 3)"
+                        [ngClass]="{'active': aspectRatio == 4 / 3}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.4.3')">
+                  <mat-icon>crop_5_4</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(3 / 4)"
+                        [ngClass]="{'active': aspectRatio == 3 / 4}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.3.4')">
+                  <mat-icon class="rot90">crop_5_4</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(1)"
+                        [ngClass]="{'active': aspectRatio == 1}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.square')">
+                  <mat-icon>crop_square</mat-icon>
+                </button>
+                <button mat-button
+                        mat-icon-button
+                        type="button"
+                        (click)="crop(undefined)"
+                        [ngClass]="{'active': aspectRatio == undefined}"
+                        class="align-self-center"
+                        [matTooltip]="vt.translate('crop.original')">
+                  <mat-icon>crop_original</mat-icon>
+                </button>
+              </mat-menu>
+              <button mat-button
+                      type="button"
+                      (click)="resetImage()"
+                      class="align-self-center"
+                      [matTooltip]="vt.translate('reset.image')">
+                <mat-icon>format_clear</mat-icon>
+              </button>
+            </div>
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-center"
+                 [ngClass]="{'image-helper': imageSrc, 'displayNone': !imageSrc}">
+              <app-image-cropper [imageChangedEvent]="imageChangedEvent"
+                                 [containWithinAspectRatio]="containWithinAspectRatio"
+                                 [maintainAspectRatio]="maintainAspectRatio"
+                                 [aspectRatio]="aspectRatio"
+                                 [cropperMinWidth]="128"
+                                 [onlyScaleDown]="true"
+                                 [roundCropper]="false"
+                                 [canvasRotation]="canvasRotation"
+                                 [transform]="transform"
+                                 [alignImage]="'left'"
+                                 [style.display]="showCropper ? null : 'none'"
+                                 [format]="format"
+                                 (imageCropped)="imageCropped($event)"
+                                 (imageLoaded)="imageLoaded()"
+                                 (cropperReady)="cropperReady($event)"
+                                 (loadImageFailed)="loadImageFailed()"></app-image-cropper>
+              <div class="preview"
+                   *ngIf="imageSrc">
+                <img [src]="imageSrc"
+                     class="img-thumbnail rounded mx-auto d-block" />
+              </div>
+            </div>
+          </div>
           <mat-error *ngIf="submitted && f.filePathUser.errors">
             <div *ngIf="f.filePathUser.errors.required">{{vt.translate('picture.required')}}</div>
           </mat-error>
@@ -42,127 +231,6 @@
               {{child}}
             </div>
           </mat-error>
-        </div>
-        <div class="col">
-          <div class="toolbox">
-            <button mat-button
-                    type="button"
-                    (click)="zoomOut()">
-              <mat-icon>zoom_out</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="zoomIn()"
-                    class="align-self-center">
-              <mat-icon>zoom_in</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="rotateLeft()"
-                    class="align-self-center">
-              <mat-icon>rotate_left</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="rotateRight()"
-                    class="align-self-center">
-              <mat-icon>rotate_right</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="flipHorizontal()"
-                    class="align-self-center">
-              <mat-icon>flip</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="flipVertical()"
-                    class="align-self-center">
-              <mat-icon class="rot90">flip</mat-icon>
-            </button>
-
-            <button mat-button
-                    type="button"
-                    (click)="toggleContainWithinAspectRatio()"
-                    active="containWithinAspectRatio"
-                    [ngClass]="{'active': containWithinAspectRatio }"
-                    class="align-self-center">
-              <mat-icon>aspect_ratio</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="toggleMaintainAspectRatio()"
-                    [ngClass]="{'active': maintainAspectRatio}"
-                    class="align-self-center">
-              <mat-icon>crop_free</mat-icon>
-            </button>
-
-            <button mat-button
-                    type="button"
-                    (click)="resetImage()"
-                    class="align-self-center">
-              <mat-icon>format_clear</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(16 / 9)"
-                    [ngClass]="{'active': aspectRatio == 16 / 9}"
-                    class="align-self-center">
-              <mat-icon>crop_16_9</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(9 / 16)"
-                    [ngClass]="{'active': aspectRatio == 9 / 16}"
-                    class="align-self-center">
-              <mat-icon class="rot90">crop_16_9</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(4 / 3)"
-                    [ngClass]="{'active': aspectRatio == 4 / 3}"
-                    class="align-self-center">
-              <mat-icon>crop_5_4</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(3 / 4)"
-                    [ngClass]="{'active': aspectRatio == 3 / 4}"
-                    class="align-self-center">
-              <mat-icon class="rot90">crop_5_4</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(1)"
-                    [ngClass]="{'active': aspectRatio == 1}"
-                    class="align-self-center">
-              <mat-icon>crop_square</mat-icon>
-            </button>
-            <button mat-button
-                    type="button"
-                    (click)="crop(undefined)"
-                    [ngClass]="{'active': aspectRatio == undefined}"
-                    class="align-self-center">
-              <mat-icon>crop_original</mat-icon>
-            </button>
-          </div>
-          <app-image-cropper [imageChangedEvent]="imageChangedEvent"
-                             [maintainAspectRatio]="true"
-                             [containWithinAspectRatio]="containWithinAspectRatio"
-                             [maintainAspectRatio]="maintainAspectRatio"
-                             [aspectRatio]="aspectRatio"
-                             [cropperMinWidth]="128"
-                             [onlyScaleDown]="true"
-                             [roundCropper]="false"
-                             [canvasRotation]="canvasRotation"
-                             [transform]="transform"
-                             [alignImage]="'left'"
-                             [style.display]="showCropper ? null : 'none'"
-                             [format]="format"
-                             (imageCropped)="imageCropped($event)"
-                             (imageLoaded)="imageLoaded()"
-                             (cropperReady)="cropperReady($event)"
-                             (loadImageFailed)="loadImageFailed()"></app-image-cropper>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
