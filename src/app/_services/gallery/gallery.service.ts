@@ -1,3 +1,4 @@
+import { Observable, observable, Subject } from 'rxjs';
 import { ViewTranslateService } from './../view-translate.service';
 import { FormErrors } from './../../_helpers/form-error';
 import { Mediaobject } from './../../_models/mediaobject';
@@ -5,7 +6,7 @@ import { Role } from './../../_enums/role.enum';
 import { User } from './../../_models/user';
 import { AuthenticationService } from './../authentication.service';
 import { GalleryHttpService } from './gallery-http.service';
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Gallery } from '@app/_models';
 
 @Injectable({
@@ -20,7 +21,17 @@ export class GalleryService {
     If small screen, then this will be at the end. */
   public c2: Gallery[];
   public c3: Gallery[];
-  public selected: Gallery;
+  private selected$: Gallery;
+  public set selected(gallery: Gallery) {
+    if (this.selected$ !== gallery) {
+      this.selected$ = gallery;
+      this.selectedEvt.emit(this.selected$);
+    }
+  }
+  public get selected(): Gallery {
+    return this.selected$;
+  }
+  public selectedEvt: EventEmitter<Gallery> = new EventEmitter<Gallery>();
   public loading = false;
   public errors = new FormErrors();
   public set edit(edit: boolean) {

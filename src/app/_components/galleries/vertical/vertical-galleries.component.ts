@@ -38,6 +38,8 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
 
   private fragment;
 
+  private gallerySubscription: Subscription;
+
   constructor(
     private breakpointObserver: BreakpointObserver,
     public gallery: GalleryService,
@@ -51,6 +53,14 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
     this.isHandset$.subscribe(isHandset => {
       if (isHandset === false) { this.afterViewInit(); }
     });
+    this.gallerySubscription = this.gallery.selectedEvt.subscribe(selected => {
+      if (selected) {
+        setTimeout(() => {
+          this.fragment = selected.title.split(' ').join('_');
+          this.scrollToFragment();
+        }, 500);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -60,29 +70,34 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.resizeSubscription$) { this.resizeSubscription$.unsubscribe(); }
     if (this.gallery) { this.gallery.edit = false; }
+    if (this.gallerySubscription) { this.gallerySubscription.unsubscribe(); }
   }
 
   afterViewInit() {
     if (this.mainContainer !== undefined) {
       setTimeout(() => {
-        let offset = 0;
         this.rightArrow.nativeElement.style.width
           = this.leftArrow.nativeElement.style.width
           = this.mainContainer.nativeElement.offsetLeft + 'px';
-        if (this.fragment) {
-          const elt = document.getElementById(this.fragment);
-          if (elt !== null) {
-            offset = elt.offsetLeft;
-            if (offset < this.mainContainer.nativeElement.clientWidth) {
-              offset = 0;
-            }
-          }
-        }
-        this.smoothScroll(offset);
+        this.scrollToFragment();
       }, 500);
     } else {
       setTimeout(() => { this.afterViewInit(); }, 100);
     }
+  }
+
+  private scrollToFragment(): void {
+    let offset = 0;
+    if (this.fragment) {
+      const elt = document.getElementById(this.fragment);
+      if (elt !== null) {
+        offset = elt.offsetLeft;
+        if (offset < this.mainContainer.nativeElement.clientWidth) {
+          offset = 0;
+        }
+      }
+    }
+    this.smoothScroll(offset);
   }
 
   addGallery() {
