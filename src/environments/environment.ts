@@ -3,17 +3,19 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
   /* apiUrl: 'http://192.168.1.50:8000/api',
   mediaUrl: 'http://192.168.1.50:8000/media'*/
   /* apiUrl: 'http://10.42.0.1:8000/api',
   mediaUrl: 'http://10.42.0.1:8000/media' */
-  /*apiUrl: 'http://192.168.43.150:8000/api',
-  mediaUrl: 'http://192.168.43.150:8000/media'*/
+  /* apiUrl: 'http://192.168.43.150:8000/api',
+  mediaUrl: 'http://192.168.43.150:8000/media' */
+  apiUrl: 'http://192.168.42.154:8000/api',
+  mediaUrl: 'http://192.168.42.154:8000/media'
   /*apiUrl: 'http://127.0.0.1:8000/api',
   mediaUrl: 'http://127.0.0.1:8000/media'*/
-  apiUrl: 'https://en-equilibre-back.herokuapp.com/api',
-  mediaUrl: 'https://en-equilibre-back.herokuapp.com/media'
+  /* apiUrl: 'https://en-equilibre-back.herokuapp.com/api',
+  mediaUrl: 'https://en-equilibre-back.herokuapp.com/media' */
 };
 
 /*

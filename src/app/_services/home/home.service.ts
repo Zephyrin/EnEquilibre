@@ -167,6 +167,10 @@ export class HomeService {
     this.updateOrCreate(home);
   }
 
+  public remove(child: any, name: string, old: any): void {
+    if (name === 'separator') { this.removeSeparator(); }
+    else if (name === 'background') { this.removeBackground(); }
+  }
   private start() {
     this.loading = true;
     this.errors = new FormErrors();

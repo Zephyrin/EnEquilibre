@@ -78,7 +78,7 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.rightArrow.nativeElement.style.width
           = this.leftArrow.nativeElement.style.width
-          = this.mainContainer.nativeElement.offsetLeft + 'px';
+          = Math.max(this.mainContainer.nativeElement.offsetLeft, 40) + 'px';
         this.scrollToFragment();
       }, 500);
     } else {

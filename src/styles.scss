@@ -85,11 +85,14 @@ $custom-file-text: (
 .edit-img {
   min-width: 100%;
   min-height: 250px;
+  height: 100% !important;
+  width: 100% !important;
 }
 
 .edit-img-separator {
   min-width: 100%;
-  min-height: 250px;
+  min-height: 6em;
+  width: 100% !important;
 }
 
 b {
@@ -273,6 +276,6 @@ h1 {
 
 .edit-image {
   cursor: pointer;
-  min-width: 30em;
+
 }
 
