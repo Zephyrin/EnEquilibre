@@ -60,10 +60,12 @@
       <a mat-list-item
          routerLinkActive="menu-active-link"
          routerLink="signup"
+         [queryParams]="{returnUrl: router.url}"
          *ngIf="!currentUser">{{vt.translate('signup')}}</a>
       <a mat-list-item
          routerLinkActive="menu-active-link"
          routerLink="signin"
+         [queryParams]="{returnUrl: router.url}"
          *ngIf="!currentUser">{{vt.translate('signin')}}</a>
       <a mat-list-item
          routerLinkActive="menu-active-link"
@@ -88,11 +90,13 @@
            routerLinkActive="menu-active-link"
            class="menu-hover-link"
            routerLink="signup"
+           [queryParams]="{returnUrl: router.url}"
            *ngIf="!currentUser">{{vt.translate('signup')}}</a>
         <a mat-button
            routerLinkActive="menu-active-link"
            class="menu-hover-link"
            routerLink="signin"
+           [queryParams]="{returnUrl: router.url}"
            *ngIf="!currentUser">{{vt.translate('signin')}}</a>
         <a mat-button
            routerLinkActive="menu-active-link"

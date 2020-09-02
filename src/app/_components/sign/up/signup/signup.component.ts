@@ -1,6 +1,6 @@
 import { ViewTranslateService } from './../../../../_services/view-translate.service';
 import { AuthenticationService } from './../../../../_services/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormErrors } from './../../../../_helpers/form-error';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
@@ -21,18 +21,28 @@ export class SignupComponent implements OnInit, AfterViewInit {
   loading = false;
   submitted = false;
   errors = new FormErrors();
+  returnUrl: string;
+  returnUrlQuery: string;
 
   hide = true;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     public vt: ViewTranslateService
   ) {
     // redirect to home if already logged in
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams[`returnUrl`] || '/';
+    const index = this.returnUrl.indexOf('#');
+    if (index >= 0) {
+      this.returnUrlQuery = this.returnUrl.substring(index + 1);
+      this.returnUrl = this.returnUrl.substring(0, index);
+    } else { this.returnUrlQuery = undefined; }
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
+      this.router.navigate([this.returnUrl], { fragment: this.returnUrlQuery });
     }
 
   }
@@ -66,7 +76,7 @@ export class SignupComponent implements OnInit, AfterViewInit {
         data => {
           this.authenticationService.getUser(this.f.username.value, data).subscribe(x => {
             this.loading = false;
-            this.router.navigate(['/']);
+            this.router.navigate([this.returnUrl], { fragment: this.returnUrlQuery });
           }, error => {
             this.manageError(error);
           });
