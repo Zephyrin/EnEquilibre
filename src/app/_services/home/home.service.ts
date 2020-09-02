@@ -113,7 +113,7 @@ export class HomeService {
   }
 
   public border(name: string): boolean {
-    if (this.home) {
+    if (this.home && this.home[name]) {
       if (this.home[name].error === true) {
         return true;
       }
