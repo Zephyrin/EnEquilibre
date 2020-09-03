@@ -47,6 +47,12 @@ export class SignupComponent implements OnInit, AfterViewInit {
 
   }
 
+  get returnRoute(): string {
+    let ret = this.returnUrl;
+    if (this.returnUrlQuery) { ret += this.returnUrlQuery; }
+    return ret;
+  }
+
   ngAfterViewInit(): void {
     this.setFocus();
   }

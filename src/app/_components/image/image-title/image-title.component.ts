@@ -77,14 +77,14 @@ export class ImageTitleComponent implements OnInit, AfterViewInit, OnDestroy {
     this.resize(evt);
   }
 
-  private resize(evt): void {
+  private resize(evt, firstTime = true): void {
     setTimeout(() => {
       if (this.element !== undefined && this.img !== undefined) {
         this.containerHeight = this.element.nativeElement.offsetHeight;
         this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
-        if (this.width === undefined) {
+        if (this.width === undefined || (this.width === 100 && firstTime)) {
           setTimeout(() => {
-            this.resize(evt);
+            this.resize(evt, false);
           }, 500);
         }
       } else {

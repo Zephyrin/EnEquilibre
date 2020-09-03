@@ -66,6 +66,7 @@
   <span class="d-flex justify-content-center align-items-center mt-3">
     {{vt.translate('don.t.have.account')}}
     <a routerLink="/signup"
+       [queryParams]="{returnUrl: returnRoute }"
        mat-button>{{vt.translate('signup')}}</a>
   </span>
 </div>

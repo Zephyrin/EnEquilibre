@@ -58,6 +58,12 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
   }
 
+  get returnRoute(): string {
+    let ret = this.returnUrl;
+    if (this.returnUrlQuery) { ret += this.returnUrlQuery; }
+    return ret;
+  }
+
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 

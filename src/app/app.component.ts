@@ -1,6 +1,6 @@
 import { ViewTranslateService } from './_services';
 import { Role } from './_enums/role.enum';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, NavigationStart, NavigationError } from '@angular/router';
 import { map, shareReplay, withLatestFrom, filter } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   currentUser: User;
   resizeObservable$: Observable<Event>;
   resizeSubscription$: Subscription;
+  returnUrl: string;
   @ViewChild('drawer') drawer: MatSidenav;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit {
   constructor(
     private breakpointObserver: BreakpointObserver,
     public router: Router,
+    public route: ActivatedRoute,
     private authenticationService: AuthenticationService,
     public vt: ViewTranslateService
   ) {
@@ -41,6 +43,21 @@ export class AppComponent implements OnInit {
       withLatestFrom(this.isHandset$),
       filter(([a, b]) => b && a instanceof NavigationEnd)
     ).subscribe(_ => { if (this.drawer) { this.drawer.close(); } });
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        // Show loading indicator
+      }
+
+      if (event instanceof NavigationEnd) {
+        if (!event.url.startsWith('/sign')) {
+          this.returnUrl = event.url;
+        }
+      }
+
+      if (event instanceof NavigationError) {
+        console.warn(event.error);
+      }
+    });
   }
 
   get isAdmin() {
