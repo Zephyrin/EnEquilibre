@@ -146,6 +146,17 @@ export class AboutService {
     this.updateOrCreate(about);
   }
 
+  public remove(child: any, name: string, old: any): void {
+    if (name === 'separator') { this.removeSeparator(); }
+    if (name === 'background') { this.removeBackground(); }
+  }
+
+  public onError(name: string, child: any) {
+    if (this.about && this.about[name]) {
+      this.about[name].onError();
+    }
+  }
+
   private start() {
     this.loading = true;
     this.errors = new FormErrors();

@@ -1,0 +1,35 @@
+<div class="container vertical-scroll">
+  <div class="full-height">
+    <div class="row-img justify-content-center">
+      <div class="half-size">
+        <div class="justify-content-center top">
+          <app-image-separator [service]="service"
+                               [name]="'separator'"></app-image-separator>
+        </div>
+        <div class="center justify-content-center">
+          <app-image-main [service]="service"
+                          [name]="'background'"></app-image-main>
+        </div>
+        <div class="justify-content-center bottom">
+          <app-image-separator [service]="service"
+                               [name]="'separator'"></app-image-separator>
+        </div>
+      </div>
+      <div class="half-size vcenter">
+        <div class="justify-content-center mb-2">
+          <app-text-edit [value]="service"
+                         [service]="service"
+                         [placeholder]="'about'"
+                         [field]="'about'"></app-text-edit>
+        </div>
+        <div class="justify-content-center">
+          <app-text-edit [value]="service"
+                         [service]="service"
+                         [placeholder]="'comment'"
+                         [area]="true"
+                         [field]="'comment'"></app-text-edit>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

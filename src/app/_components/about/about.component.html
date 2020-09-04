@@ -1,29 +1,6 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <app-image-separator [service]="about"
-                         [name]="'separator'"></app-image-separator>
-  </div>
-  <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
-    <app-image-main [service]="about"
-                    [name]="'background'"></app-image-main>
-  </div>
-  <div class="row justify-content-center">
-    <app-image-separator [service]="about"
-                         [name]="'separator'"></app-image-separator>
-  </div>
-  <div class="row justify-content-center">
-    <app-text-edit [value]="about"
-                   [service]="about"
-                   [placeholder]="'about'"
-                   [field]="'about'"></app-text-edit>
-  </div>
-  <div class="row justify-content-center">
-    <app-text-edit [value]="about"
-                   [service]="about"
-                   [placeholder]="'comment'"
-                   [area]="true"
-                   [field]="'comment'"></app-text-edit>
-  </div>
-</div>
+<app-about-mobile [service]="about"
+                  *ngIf="(isHandset$ | async) === true"></app-about-mobile>
+<app-about-desktop [service]="about"
+                   *ngIf="(isHandset$ | async) === false"></app-about-desktop>
 
 <app-tools-edit [service]="about"></app-tools-edit>

@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <app-image-separator [service]="service"
+                         [name]="'separator'"></app-image-separator>
+  </div>
+  <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
+    <app-image-main [service]="service"
+                    [name]="'background'"></app-image-main>
+  </div>
+  <div class="row justify-content-center">
+    <app-image-separator [service]="service"
+                         [name]="'separator'"></app-image-separator>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="service"
+                   [service]="service"
+                   [placeholder]="'about'"
+                   [field]="'about'"></app-text-edit>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="service"
+                   [service]="service"
+                   [placeholder]="'comment'"
+                   [area]="true"
+                   [field]="'comment'"></app-text-edit>
+  </div>
+</div>

@@ -53,6 +53,8 @@ import { ToolsEditComponent } from './_components/tools/tools-edit/tools-edit.co
 import { ImageFullHeightDoubleBorderComponent } from './_components/image/image-full-height-double-border/image-full-height-double-border.component';
 import { HorizontalMediasComponent } from './_components/galleries/horizontal/horizontal-medias/horizontal-medias.component';
 import { ImageCropperComponent } from './_components/helpers/image-cropper/image-cropper.component';
+import { AboutDesktopComponent } from './_components/about/about-desktop/about-desktop.component';
+import { AboutMobileComponent } from './_components/about/about-mobile/about-mobile.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +89,9 @@ import { ImageCropperComponent } from './_components/helpers/image-cropper/image
     ToolsEditComponent,
     ImageFullHeightDoubleBorderComponent,
     HorizontalMediasComponent,
-    ImageCropperComponent
+    ImageCropperComponent,
+    AboutDesktopComponent,
+    AboutMobileComponent
   ],
   imports: [
     BrowserModule,

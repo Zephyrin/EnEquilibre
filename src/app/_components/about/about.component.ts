@@ -1,3 +1,6 @@
+import { map, shareReplay } from 'rxjs/operators';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 import { RemoveDialogComponent } from './../helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from './../../_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';
@@ -13,7 +16,13 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AboutComponent implements OnInit {
   editTitle = false;
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
   constructor(
+    private breakpointObserver: BreakpointObserver,
     public about: AboutService,
     public vt: ViewTranslateService,
     public dialog: MatDialog) { }
