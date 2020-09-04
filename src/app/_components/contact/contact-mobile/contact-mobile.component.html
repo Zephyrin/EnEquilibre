@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <app-image-separator [service]="service"
+                         [name]="'separator'"></app-image-separator>
+  </div>
+  <div class="row justify-content-center mb-3 mt-3 mr-3 ml-3">
+    <app-image-main [service]="service"
+                    [name]="'background'"></app-image-main>
+  </div>
+  <div class="row justify-content-center">
+    <app-image-separator [service]="service"
+                         [name]="'separator'"></app-image-separator>
+  </div>
+  <div class="row justify-content-center">
+    <app-text-edit [value]="service"
+                   [service]="service"
+                   [placeholder]="'contact'"
+                   [field]="'contact'"></app-text-edit>
+  </div>
+  <!-- Text not traductible but updatable. No container yet... -->
+  <div class="row justify-content-center"
+       [ngClass]="{'visible': isEditEmail(), 'hidden': !isEditEmail()}">
+    <form (ngSubmit)="onSubmitEmail($event)"
+          (click)="stopPropagation($event)"
+          class="cursor-default"
+          [formGroup]="form">
+      <div class="d-flex align-items-center pl1">
+        <mat-form-field class="full-width">
+          <input matInput
+                 #input
+                 class="mr-auto">
+        </mat-form-field>
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <button mat-button
+                [matTooltip]="vt.translate('save.translation')"
+                type="submit"
+                class="small">
+          <mat-icon class="pointer">save</mat-icon>
+        </button>
+        <button mat-button
+                [matTooltip]="vt.translate('cancel.translation')"
+                (click)="stopEdition($event)"
+                type="button"
+                class="small">
+          <mat-icon class="pointer">cancel</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="row justify-content-center"
+       *ngIf="!isEditEmail()">
+    <p>{{service?.get(null, 'email')}}<button mat-button
+              [matTooltip]="vt.translate('edit.email')"
+              *ngIf="!editEmail && service.edit"
+              class="small"
+              (click)="editionEmail($event)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </p>
+  </div>
+</div>

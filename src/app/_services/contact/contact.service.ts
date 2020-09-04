@@ -147,6 +147,16 @@ export class ContactService {
     this.updateOrCreate(contact);
   }
 
+  public remove(child: any, name: string, old: any): void {
+    if (name === 'separator') { this.removeSeparator(); }
+    if (name === 'background') { this.removeBackground(); }
+  }
+
+  public onError(name: string, child: any) {
+    if (this.contact && this.contact[name]) {
+      this.contact[name].onError();
+    }
+  }
   private start() {
     this.loading = true;
     this.errors = new FormErrors();

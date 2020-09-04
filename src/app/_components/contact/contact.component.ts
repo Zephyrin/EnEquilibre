@@ -1,3 +1,6 @@
+import { map, shareReplay } from 'rxjs/operators';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { RemoveDialogComponent } from './../helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from './../../_models/mediaobject';
@@ -14,17 +17,19 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ContactComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
-  editEmail = false;
-  editTitle = false;
-  form: FormGroup;
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
   constructor(
+    private breakpointObserver: BreakpointObserver,
     public contact: ContactService,
     public vt: ViewTranslateService,
-    private formBuilder: FormBuilder,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({});
   }
 
   openDialog($event: any, name: string) {
@@ -52,30 +57,4 @@ export class ContactComponent implements OnInit {
       });
     }
   }
-
-  onSubmitEmail($event: any): void {
-    $event.stopPropagation();
-    this.editEmail = false;
-    const email = this.input.nativeElement.value;
-    this.contact.update(this.contact.contact, 'email', email);
-  }
-
-  editionEmail($event: any) {
-    $event.stopPropagation();
-    this.input.nativeElement.value = this.contact.contact.email;
-    this.editEmail = true;
-  }
-
-  stopEdition($event: any) {
-    $event.stopPropagation();
-    this.editEmail = false;
-  }
-  stopPropagation($event: any) {
-    $event.stopPropagation();
-  }
-
-  isEditEmail() {
-    return this.contact.edit && this.editEmail;
-  }
-
 }

@@ -55,6 +55,8 @@ import { HorizontalMediasComponent } from './_components/galleries/horizontal/ho
 import { ImageCropperComponent } from './_components/helpers/image-cropper/image-cropper.component';
 import { AboutDesktopComponent } from './_components/about/about-desktop/about-desktop.component';
 import { AboutMobileComponent } from './_components/about/about-mobile/about-mobile.component';
+import { ContactMobileComponent } from './_components/contact/contact-mobile/contact-mobile.component';
+import { ContactDesktopComponent } from './_components/contact/contact-desktop/contact-desktop.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +93,9 @@ import { AboutMobileComponent } from './_components/about/about-mobile/about-mob
     HorizontalMediasComponent,
     ImageCropperComponent,
     AboutDesktopComponent,
-    AboutMobileComponent
+    AboutMobileComponent,
+    ContactMobileComponent,
+    ContactDesktopComponent
   ],
   imports: [
     BrowserModule,
