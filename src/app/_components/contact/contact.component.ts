@@ -16,7 +16,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
-  @ViewChild('input') input: ElementRef;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

@@ -1,8 +1,6 @@
 <app-contact-mobile [service]="contact"
-                    [input]="input"
                     *ngIf="(isHandset$ | async) === true"></app-contact-mobile>
 <app-contact-desktop [service]="contact"
-                     [input]="input"
                      *ngIf="(isHandset$ | async) === false"></app-contact-desktop>
 
 <app-tools-edit [service]="contact"></app-tools-edit>

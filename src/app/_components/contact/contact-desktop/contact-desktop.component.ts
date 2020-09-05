@@ -1,7 +1,7 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { IService } from '@app/_helpers/edit-component';
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-contact-desktop',
@@ -10,7 +10,7 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
 })
 export class ContactDesktopComponent implements OnInit {
   @Input() service: IService;
-  @Input() input: ElementRef;
+  @ViewChild('input') input: ElementRef;
   editEmail = false;
   editTitle = false;
   form: FormGroup;
