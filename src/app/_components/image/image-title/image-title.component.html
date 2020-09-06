@@ -36,7 +36,6 @@
       </button>
     </div>
     <img #img
-         [src]="service.getUrl(name)"
          [alt]="service.getDescription(name)"
          (click)="openDialog($event, name)"
          (error)="service.onError(name)"
