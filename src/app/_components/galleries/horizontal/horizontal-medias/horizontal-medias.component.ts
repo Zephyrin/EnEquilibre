@@ -1,8 +1,8 @@
-import { IService } from './../../../../_helpers/edit-component';
-import { ImageDialogComponent } from './../../../image-dialog/image-dialog.component';
-import { Mediaobject } from './../../../../_models/mediaobject';
+import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog.component';
+import { IService } from '@app/_services/iservice';
+import { Mediaobject } from '@app/_models/mediaobject';
 import { MatDialog } from '@angular/material/dialog';
-import { ViewTranslateService } from './../../../../_services/view-translate.service';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({

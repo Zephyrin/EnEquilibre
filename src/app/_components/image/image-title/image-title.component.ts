@@ -1,3 +1,4 @@
+import { IService } from '@app/_services/iservice';
 import { map, shareReplay } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable, Subscription, fromEvent } from 'rxjs';
@@ -7,23 +8,6 @@ import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/re
 import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog.component';
 import { Mediaobject } from '@app/_models/mediaobject';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
-
-
-interface IService {
-  edit: boolean;
-  hasImage(name: string): boolean;
-  hasError(name: string): boolean;
-  hasTitleOrSubtitle(): boolean;
-  getUrl(name: string): string;
-  getDescription(name: string): string;
-  border(name: string): boolean;
-  onError(name: string): void;
-
-  get(object: any, name: string): string;
-
-  removeBackground(): void;
-  updateBackground(media: Mediaobject): void;
-}
 
 @Component({
   selector: 'app-image-title',

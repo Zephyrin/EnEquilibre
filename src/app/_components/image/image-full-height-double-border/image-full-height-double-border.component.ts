@@ -1,4 +1,4 @@
-import { IService } from '@app/_helpers/edit-component';
+import { IService } from '@app/_services/iservice';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';

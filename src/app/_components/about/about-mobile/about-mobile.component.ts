@@ -1,4 +1,4 @@
-import { IService } from './../../../_helpers/edit-component';
+import { IService } from '@app/_services/iservice';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

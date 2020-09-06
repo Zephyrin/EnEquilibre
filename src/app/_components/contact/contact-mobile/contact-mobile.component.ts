@@ -1,6 +1,6 @@
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
-import { IService } from '@app/_helpers/edit-component';
+import { IService } from '@app/_services/iservice';
 import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 
 @Component({

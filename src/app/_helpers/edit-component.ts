@@ -4,23 +4,7 @@ import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { Input } from '@angular/core';
-
-export interface IService {
-  edit: boolean;
-  has(name: string, child: any | undefined): boolean;
-  hasImage(name: string, child: any | undefined): boolean;
-  hasError(name: string, child: any | undefined): boolean;
-  hasTitleOrSubtitle(child: any | undefined): boolean;
-  getUrl(name: string, child: any | undefined): string;
-  getDescription(name: string, child: any | undefined): string;
-  border(name: string, child: any | undefined): boolean;
-  onError(name: string, child: any | undefined): void;
-
-  get(object: any, name: string): string;
-
-  update(object: any, name: string, mediaObject: Mediaobject): void;
-  remove(object: any, name: string, old: any): void;
-}
+import { IService } from '@app/_services/iservice';
 
 export class EditComponent {
   @Input() service: IService;

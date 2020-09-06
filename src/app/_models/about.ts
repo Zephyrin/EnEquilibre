@@ -21,6 +21,8 @@ export class About {
       this.comment = about.comment;
     }
   }
+  public static create() { return new About(); }
+  public static createCpy(about: About) { return new About(about); }
 
   toJSON() {
     const data = {};
