@@ -14,7 +14,8 @@ export interface IService {
 
   hasTitleOrSubtitle(child: any | undefined): boolean;
 
-  getUrl(name: string, child: any | undefined): string;
+  getUrl(name: string, width: number, child: any | undefined): string;
+  hasUrl(name: string, child: any | undefined): boolean;
 
   getDescription(name: string, child: any | undefined): string;
 
@@ -33,7 +34,7 @@ export interface IService {
 }
 
 export abstract class CService<T> implements IService {
-  currentUser: User;
+  protected currentUser: User;
   public model: T;
   public loading = false;
   public errors = new FormErrors();
@@ -64,7 +65,7 @@ export abstract class CService<T> implements IService {
     }
   }
   public get edit() { return this.edit$; }
-  private edit$ = false;
+  protected edit$ = false;
 
   public get canEdit() {
     return this.currentUser
@@ -75,9 +76,9 @@ export abstract class CService<T> implements IService {
   }
 
   public constructor(
-    private http: HttpService<T>,
-    private authenticationService: AuthenticationService,
-    private vt: ViewTranslateService,
+    protected http: HttpService<T>,
+    protected authenticationService: AuthenticationService,
+    protected vt: ViewTranslateService,
     private createCpy: new (obj: any) => T,
     private create: new () => T
   ) {
@@ -93,6 +94,11 @@ export abstract class CService<T> implements IService {
   public hasImage(name: string, child: T | undefined): boolean {
     if (this.model && this.model[name]) { return true; }
     return this.edit;
+  }
+
+  public hasUrl(name: string, child: T | undefined): boolean {
+    if (child) { return child[name] !== undefined; }
+    return this.model[name] !== undefined;
   }
 
   public hasError(name: string, child: T): boolean {
@@ -112,10 +118,10 @@ export abstract class CService<T> implements IService {
     return false;
   }
 
-  public getUrl(name: string, child: T | undefined): string {
+  public getUrl(name: string, width: number, child: T | undefined): string {
     if (this.model) {
       if (this.model[name]) {
-        return this.model[name].url();
+        return this.model[name].url(width);
       }
     }
     return '';
@@ -130,16 +136,18 @@ export abstract class CService<T> implements IService {
     return '';
   }
 
-  public border(name: string): boolean {
+  public border(name: string, child: T | undefined): boolean {
     if (this.model) {
-      if (this.model[name]) {
+      if (this.model[name] === undefined) {
         return false;
+      } else if (this.model[name].error === true) {
+        return true;
       }
     }
     return this.edit;
   }
 
-  public onError(name: string, child: any) {
+  public onError(name: string, child: any | undefined) {
     if (child) {
       if (child[name]) {
         child[name].onError();

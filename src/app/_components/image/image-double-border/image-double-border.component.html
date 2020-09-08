@@ -13,7 +13,7 @@
              *ngIf="title">
           <b>{{title}}</b>
         </div>
-        <img [src]="image.url()"
+        <img [src]="image.url(element.nativeElement.offsetWidth)"
              [alt]="image.description">
       </div>
     </div>

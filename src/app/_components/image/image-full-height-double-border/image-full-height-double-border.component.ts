@@ -43,6 +43,7 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
   loadSubscription$: Subscription;
 
   constructor(
+    public element: ElementRef,
     public vt: ViewTranslateService,
     public dialog: MatDialog
   ) { }

@@ -33,7 +33,7 @@
        (click)="selectImg($event, img)"
        [ngClass]="{'img-selected': img.id === service.selectedImg?.id}">
     <div class="container-img">
-      <img [src]="img.url()"
+      <img [src]="img.url(200)"
            [alt]="service.getTranslations(img)"
            class="img-fluid">
       <div class="text-block"

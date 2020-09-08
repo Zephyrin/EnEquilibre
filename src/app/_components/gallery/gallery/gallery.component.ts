@@ -1,12 +1,12 @@
 import { ActivatedRoute } from '@angular/router';
-import { RemoveDialogComponent } from './../../helpers/remove-dialog/remove-dialog.component';
-import { Mediaobject } from './../../../_models/mediaobject';
-import { ImageDialogComponent } from './../../image-dialog/image-dialog.component';
-import { Gallery } from './../../../_models/gallery';
+import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';
+import { Mediaobject } from '@app/_models/mediaobject';
+import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog.component';
+import { Gallery } from '@app/_models/gallery';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
-import { GalleryService } from './../../../_services/gallery/gallery.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { GalleryService } from '@app/_services/gallery/gallery.service';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-gallery',
@@ -18,6 +18,7 @@ export class GalleryComponent implements OnInit {
   private fragment;
 
   constructor(
+    public element: ElementRef,
     public service: GalleryService,
     public vt: ViewTranslateService,
     public dialog: MatDialog,

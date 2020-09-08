@@ -25,6 +25,9 @@ export class Contact {
     }
   }
 
+  public static create() { return new Contact(); }
+  public static createCpy(contact: Contact) { return new Contact(contact); }
+
   toJSON() {
     const data = {};
     if (this.background) { data[`background`] = this.background.id; }

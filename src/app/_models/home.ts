@@ -22,6 +22,9 @@ export class Home {
     }
   }
 
+  public static create() { return new Home(); }
+  public static createCpy(home: Home) { return new Home(home); }
+
   toJSON() {
     const data = {};
     if (this.background) { data[`background`] = this.background.id; }

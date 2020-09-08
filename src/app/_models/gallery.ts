@@ -34,6 +34,9 @@ export class Gallery {
     }
   }
 
+  public static create() { return new Gallery(); }
+  public static createCpy(gallery: Gallery) { return new Gallery(gallery); }
+
   toJSON() {
     const data = {};
     if (this.main) { data[`main`] = this.main.id; }

@@ -3,7 +3,7 @@ import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog
 import { ViewTranslateService } from '@app/_services/view-translate.service';
 import { RemoveDialogComponent } from '@app/_components/helpers/remove-dialog/remove-dialog.component';
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 interface ServiceInterface {
@@ -21,6 +21,7 @@ export class ImageFullHeightComponent implements OnInit {
   @Input() service: ServiceInterface;
   @Input() name: string;
   constructor(
+    public element: ElementRef,
     public dialog: MatDialog,
     public vt: ViewTranslateService
   ) { }

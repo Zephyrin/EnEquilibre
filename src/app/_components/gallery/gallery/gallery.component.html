@@ -81,10 +81,10 @@
          [ngClass]="{'edit-image': service.edit}"
          (click)="openDialog($event, name)">
       <p class="align-self-center mr-auto"
-         *ngIf="service.getUrl(name, gallery) === ''">{{vt.translate('click.add.' + name)}}</p>
+         *ngIf="service.hasUrl(name, gallery)">{{vt.translate('click.add.' + name)}}</p>
       <p class="align-self-center mr-auto"
-         *ngIf="service.getUrl(name, gallery) !== ''">{{vt.translate('click.update.' + name)}}</p>
-      <button *ngIf="service.getUrl(name, gallery) !== ''"
+         *ngIf="service.hasUrl(name, gallery)">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="service.hasUrl(name, gallery)"
               mat-button
               [matTooltip]="vt.translate('remove.picture')"
               (click)="removePicture($event, name)"
@@ -92,7 +92,7 @@
         <mat-icon>image_not_supported</mat-icon>
       </button>
     </div>
-    <img [src]="service.getUrl(name, gallery)"
+    <img [src]="service.getUrl(name, element.nativeElement.offsetWidth, gallery)"
          [alt]="service.getDescription(name, gallery)"
          (click)="openDialog($event, name)"
          [ngClass]="{ 'border': service.border(name, gallery),
@@ -105,6 +105,6 @@
 
   </div>
   <div class="separator separator-background"
-       [ngStyle]="{'background-image': 'url(' + service.getUrl(name, gallery) + ')'}"
-       *ngIf="separator && !service.edit && service.getUrl(name, gallery)"></div>
+       [ngStyle]="{'background-image': 'url(' + service.getUrl(name, element.nativeElement.offsetWidth, gallery) + ')'}"
+       *ngIf="separator && !service.edit && service.hasUrl(name, gallery)"></div>
 </ng-template>

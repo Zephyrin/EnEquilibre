@@ -105,7 +105,7 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
       const dialogRef = this.dialog.open(NewGalleryComponent);
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          this.gallery.updateOrCreate(new Gallery(result.data), undefined, undefined, undefined);
+          this.gallery.updateOrCreateGallery(new Gallery(result.data), undefined, undefined, undefined);
         }
       });
     }

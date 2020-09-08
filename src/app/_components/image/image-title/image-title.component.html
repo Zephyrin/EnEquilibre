@@ -1,10 +1,11 @@
 <div class="container-img"
      #containerImg
-     [ngClass]="{'min-size': service.edit}"
-     *ngIf="(service.hasImage(name) && !service.hasError(name)) || service.edit">
-  <div (window.resize)="onResize($event)">
+     [ngClass]="{'min-size': service.edit, 'edit-img': service.edit}"
+     *ngIf="(service.hasImage(name, undefined) && !service.hasError(name, undefined)) || service.edit">
+  <div (window.resize)="onResize($event)"
+       [ngClass]="{'edit-img': service.edit}">
     <div class="text-block-top-center d-flex flex-column align-items-center"
-         *ngIf="service.hasTitleOrSubtitle()">
+         *ngIf="service.hasTitleOrSubtitle(undefined)">
       <div class="row align-items-center">
         <app-text-edit [value]="service"
                        [service]="service"
@@ -24,10 +25,10 @@
          [ngClass]="{'edit-image': service.edit}"
          (click)="openDialog($event, name)">
       <p class="align-self-center"
-         *ngIf="service.getUrl(name) === ''">{{vt.translate('click.add.' + name)}}</p>
+         *ngIf="!service.hasUrl(name, undefined)">{{vt.translate('click.add.' + name)}}</p>
       <p class="align-self-center"
-         *ngIf="service.getUrl(name) !== ''">{{vt.translate('click.update.' + name)}}</p>
-      <button *ngIf="service.getUrl(name) !== ''"
+         *ngIf="service.hasUrl(name, undefined)">{{vt.translate('click.update.' + name)}}</p>
+      <button *ngIf="service.hasUrl(name, undefined)"
               mat-button
               [matTooltip]="vt.translate('remove.picture')"
               (click)="removePicture($event, name)"
@@ -36,10 +37,10 @@
       </button>
     </div>
     <img #img
-         [alt]="service.getDescription(name)"
+         [alt]="service.getDescription(name, undefined)"
          (click)="openDialog($event, name)"
-         (error)="service.onError(name)"
-         [ngClass]="{ 'border': service.border(name),
+         (error)="service.onError(name, undefined)"
+         [ngClass]="{ 'border': service.border(name, undefined),
           'edit-img': service.edit,
           'edit-image': service.edit}"
          class="img-fluid"

@@ -1,18 +1,16 @@
-import { Observable, observable, Subject } from 'rxjs';
-import { ViewTranslateService } from './../view-translate.service';
-import { FormErrors } from './../../_helpers/form-error';
-import { Mediaobject } from './../../_models/mediaobject';
-import { Role } from './../../_enums/role.enum';
-import { User } from './../../_models/user';
-import { AuthenticationService } from './../authentication.service';
+import { CService } from '@app/_services/iservice';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { AuthenticationService } from '@app/_services';
+import { Role } from '@app/_enums/role.enum';
+import { FormErrors } from '@app/_helpers/form-error';
 import { GalleryHttpService } from './gallery-http.service';
 import { Injectable, EventEmitter } from '@angular/core';
-import { Gallery } from '@app/_models';
+import { Gallery, User, Mediaobject } from '@app/_models';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GalleryService {
+export class GalleryService extends CService<Gallery> {
   currentUser: User;
   public values: Gallery[];
   /* Column 1 for the home page */
@@ -47,7 +45,7 @@ export class GalleryService {
     if (edit === this.edit$ && this.values !== undefined) { return; }
     this.edit$ = edit;
     if (this.edit$) {
-      this.http.getAllMerchant().subscribe(response => {
+      this.http.getAllMerchant(null).subscribe(response => {
         this.values = response.body.map((x) => new Gallery(x));
         this.c2 = [];
         this.c1 = [];
@@ -64,7 +62,7 @@ export class GalleryService {
         this.values = [];
       });
     } else {
-      this.http.getAll().subscribe(response => {
+      this.http.getAll(null).subscribe(response => {
         this.values = response.body.map(x => new Gallery(x));
         this.c1 = [];
         this.c2 = [];
@@ -83,7 +81,6 @@ export class GalleryService {
     }
   }
   public get edit() { return this.edit$; }
-  private edit$ = undefined;
 
   public get canEdit() {
     return this.currentUser
@@ -94,12 +91,10 @@ export class GalleryService {
   }
 
   constructor(
-    private http: GalleryHttpService,
-    private authenticationService: AuthenticationService,
-    private vt: ViewTranslateService) {
-    this.edit = false;
-    this.authenticationService.currentUser.subscribe(
-      x => { this.currentUser = x; });
+    private h: GalleryHttpService,
+    private as: AuthenticationService,
+    private v: ViewTranslateService) {
+    super(h, as, v, Gallery, Gallery);
   }
 
   public get(object: any, name: string): string {
@@ -108,7 +103,7 @@ export class GalleryService {
         return object[name];
       }
     }
-    return this.edit ? this.vt.translate('no.' + name) : '';
+    return this.edit ? this.v.translate('no.' + name) : '';
   }
 
   public set(object: any, name: string, newValue: any): void {
@@ -146,10 +141,21 @@ export class GalleryService {
     return value && value[name];
   }
 
-  public getUrl(name: string, value: Gallery): string {
+  public getUrl(name: string, width: number, value: Gallery): string {
     if (value) {
       if (value[name]) {
-        return value[name].url();
+        let url = value[name].url();
+        if (width < 1001 && width > 900) { url = url.replace('/media/', '/media/w_1000_'); }
+        else if (width < 901 && width > 800) { url = url.replace('/media/', '/media/w_900_'); }
+        else if (width < 801 && width > 700) { url = url.replace('/media/', '/media/w_800_'); }
+        else if (width < 701 && width > 600) { url = url.replace('/media/', '/media/w_700_'); }
+        else if (width < 601 && width > 500) { url = url.replace('/media/', '/media/w_600_'); }
+        else if (width < 501 && width > 400) { url = url.replace('/media/', '/media/w_500_'); }
+        else if (width < 401 && width > 300) { url = url.replace('/media/', '/media/w_400_'); }
+        else if (width < 301 && width > 200) { url = url.replace('/media/', '/media/w_300_'); }
+        else if (width < 201 && width > 100) { url = url.replace('/media/', '/media/w_200_'); }
+        else if (width < 101) { url = url.replace('/media/', '/media/w_100_'); }
+        return url;
       }
     }
     return '';
@@ -182,10 +188,10 @@ export class GalleryService {
       });
       newValueArray.push(newValue);
       gallery.medias = newValueArray;
-      this.updateOrCreate(value, name, newValueArray, gallery);
+      this.updateOrCreateGallery(value, name, newValueArray, gallery);
     } else {
       gallery[name] = newValue;
-      this.updateOrCreate(value, name, newValue, gallery);
+      this.updateOrCreateGallery(value, name, newValue, gallery);
     }
   }
 
@@ -200,7 +206,7 @@ export class GalleryService {
           if (elt.id !== img.id) { newValue.push(elt); }
         });
         newGallery.medias = newValue;
-        this.updateOrCreate(gallery, field, newValue, newGallery);
+        this.updateOrCreateGallery(gallery, field, newValue, newGallery);
       }
     } else {
       this.update(gallery, field, null);
@@ -224,19 +230,7 @@ export class GalleryService {
     });
   }
 
-  private start() {
-    this.loading = true;
-    this.errors = new FormErrors();
-  }
-
-  private end(error?: any | undefined) {
-    this.loading = false;
-    if (error) {
-      this.errors.formatError(error);
-    }
-  }
-
-  public updateOrCreate(value: Gallery, field: string, newValue: any, object: Gallery) {
+  public updateOrCreateGallery(value: Gallery, field: string, newValue: any, object: Gallery) {
     if (value.id === undefined) {
       this.http.create(value).subscribe(data => {
         this.selected = new Gallery(data);
@@ -288,4 +282,7 @@ export class GalleryService {
       return true;
     }
   }
+
+  removeBackground(): void { }
+  updateBackground(): void { }
 }

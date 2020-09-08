@@ -7,10 +7,10 @@
        (click)="openDialog($event, name)"
        [ngClass]="{'edit-image': service.edit}">
     <p class="align-self-center"
-       *ngIf="service.getUrl(name, child) === ''">{{vt.translate('click.add.' + name)}}</p>
+       *ngIf="!service.hasUrl(name, child)">{{vt.translate('click.add.' + name)}}</p>
     <p class="align-self-center"
-       *ngIf="service.getUrl(name, child) !== ''">{{vt.translate('click.update.' + name)}}</p>
-    <button *ngIf="service.getUrl(name, child) !== ''"
+       *ngIf="service.hasUrl(name, child)">{{vt.translate('click.update.' + name)}}</p>
+    <button *ngIf="service.hasUrl(name, child)"
             mat-button
             [matTooltip]="vt.translate('remove.picture')"
             (click)="removePicture($event, name)"
@@ -18,7 +18,7 @@
       <mat-icon>image_not_supported</mat-icon>
     </button>
   </div>
-  <img [src]="service.getUrl(name, child)"
+  <img [src]="service.getUrl(name, element.nativeElement.offsetWidth, child)"
        [alt]="service.getDescription(name, child)"
        (click)="openDialog($event, name)"
        [ngClass]="{ 'border': service.border(name, child), 'edit-img': service.edit}"

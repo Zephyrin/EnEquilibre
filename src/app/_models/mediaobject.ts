@@ -31,11 +31,25 @@ export class Mediaobject {
     }
   }
 
-  public url(): string {
-    if (this.timeStamp) {
-      return `${environment.mediaUrl}/${this.filePath}` + '?' + this.timeStamp;
+  public url(width: number): string {
+    if (width === undefined) {
+      throw new Error('Width undefined');
     }
-    return `${environment.mediaUrl}/${this.filePath}`;
+    let w$ = 'w_';
+    if (width < 1001 && width > 900) { w$ += '1000_'; }
+    else if (width < 901 && width > 800) { w$ += '900_'; }
+    else if (width < 801 && width > 700) { w$ += '800_'; }
+    else if (width < 701 && width > 600) { w$ += '700_'; }
+    else if (width < 601 && width > 500) { w$ += '600_'; }
+    else if (width < 501 && width > 400) { w$ += '500_'; }
+    else if (width < 401 && width > 300) { w$ += '400_'; }
+    else if (width < 301 && width > 200) { w$ += '300_'; }
+    else if (width < 201 && width > 100) { w$ += '200_'; }
+    else if (width < 101) { w$ += '100_'; }
+    if (this.timeStamp) {
+      return `${environment.mediaUrl}/${w$}${this.filePath}` + '?' + this.timeStamp;
+    }
+    return `${environment.mediaUrl}/${w$}${this.filePath}`;
   }
 
   public hasUrl(): boolean {

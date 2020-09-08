@@ -4,10 +4,10 @@
   <div class="text-block-top d-flex justify-content-between edit-image"
        (click)="openDialog($event, name)">
     <p class="align-self-center"
-       *ngIf="service.getUrl(name, child) === ''">{{vt.translate('click.add.' + name)}}</p>
+       *ngIf="!service.hasUrl(name, child)">{{vt.translate('click.add.' + name)}}</p>
     <p class="align-self-center"
-       *ngIf="service.getUrl(name, child) !== ''">{{vt.translate('click.update.' + name)}}</p>
-    <button *ngIf="service.getUrl(name, child) !== ''"
+       *ngIf="service.hasUrl(name, child)">{{vt.translate('click.update.' + name)}}</p>
+    <button *ngIf="service.hasUrl(name, child)"
             mat-button
             [matTooltip]="vt.translate('remove.picture')"
             (click)="removePicture($event, name)"
@@ -15,7 +15,7 @@
       <mat-icon>image_not_supported</mat-icon>
     </button>
   </div>
-  <img [src]="service.getUrl(name, child)"
+  <img [src]="service.getUrl(name, element.nativeElement.offsetWidth, child)"
        [alt]="service.getDescription(name, child)"
        (click)="openDialog($event, name)"
        (error)="service.onError(name, child)"
@@ -23,5 +23,5 @@
 
 </div>
 <div class="separator separator-background"
-     [ngStyle]="{'background-image': 'url(' + service.getUrl(name, child) + ')'}"
+     [ngStyle]="{'background-image': 'url(' + service.getUrl(name, element.nativeElement.offsetWidth, child) + ')'}"
      *ngIf="!service.edit"></div>

@@ -1,5 +1,5 @@
 import { Mediaobject } from '@app/_models';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-image-double-border',
@@ -22,7 +22,9 @@ export class ImageDoubleBorderComponent implements OnInit {
 
   @Input() title: string;
 
-  constructor() { }
+  constructor(
+    public element: ElementRef
+  ) { }
 
   ngOnInit(): void {
   }
