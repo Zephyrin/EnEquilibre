@@ -86,7 +86,7 @@ export class ImageFullHeightDoubleBorderComponent implements OnInit, AfterViewIn
 
   private resize(evt): void {
     setTimeout(() => {
-      if (this.containerHeight) {
+      if (this.containerHeight && this.img) {
         this.containerHeight = this.containerImg.nativeElement.offsetHeight;
         this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
         if (this.width === undefined || this.width === 100) {

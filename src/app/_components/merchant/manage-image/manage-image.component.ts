@@ -1,6 +1,6 @@
-import { Mediaobject } from './../../../_models/mediaobject';
-import { ViewTranslateService } from './../../../_services/view-translate.service';
-import { MediaobjectService } from './../../../_services/Mediaobject/mediaobject.service';
+import { Mediaobject } from '@app/_models/mediaobject';
+import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { MediaobjectService } from '@app/_services/Mediaobject/mediaobject.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

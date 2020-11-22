@@ -28,6 +28,7 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   errors = new FormErrors();
   imageSrc: SafeResourceUrl;
   fileName: string;
+  blobImage: File;
   tabPosition = 0;
   edit = false;
   get f() { return this.form.controls; }
@@ -104,15 +105,22 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
       const [file] = event.target.files;
       this.fileName = file.name;
       this.format = file.name.split('.').pop();
+      this.blobImage = file;
       this.imageSrc = '';
       this.imageChangedEvent = event;
-      /* reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imageSrc = this.domSanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
-        this.form.patchValue({
-          image: reader.result
-        });
-      }; */
+      reader.readAsArrayBuffer(file);
+      reader.onload = (evt) => {
+        if (evt.target.readyState === FileReader.DONE) {
+          const array = new Uint8Array(evt.target.result as ArrayBuffer);
+          const fileByteArray = [];
+          array.forEach(byte => {
+            fileByteArray.push(byte);
+          });
+          this.form.patchValue({
+            image: fileByteArray
+          });
+        }
+      };
     }
   }
 
@@ -170,9 +178,9 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
 
   imageCropped(event: ImageCroppedEvent) {
     this.imageSrc = event.base64;
-    this.form.patchValue({
-      image: event.base64
-    });
+    /* this.form.patchValue({
+      image: this.blobImage
+    }); */
   }
 
   imageLoaded() {

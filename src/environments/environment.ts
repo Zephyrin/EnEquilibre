@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  /* apiUrl: 'http://192.168.1.50:8000/api',
+  production: false,
+  /* apiUrl: 'htt p://192.168.1.50:8000/api',
   mediaUrl: 'http://192.168.1.50:8000/media'*/
   /* apiUrl: 'http://10.42.0.1:8000/api',
   mediaUrl: 'http://10.42.0.1:8000/media' */
@@ -14,8 +14,12 @@ export const environment = {
   mediaUrl: 'http://192.168.42.154:8000/media'*/
   /*apiUrl: 'http://127.0.0.1:8000/api',
   mediaUrl: 'http://127.0.0.1:8000/media'*/
-  apiUrl: 'https://en-equilibre-back.herokuapp.com/api',
-  mediaUrl: 'https://en-equilibre-back.herokuapp.com/media'
+  /*apiUrl: 'http://estiva-inspiron7590:8000/api',
+  mediaUrl: 'http://estiva-inspiron7590:8000/media' */
+  /*apiUrl: 'https://en-equilibre-back.herokuapp.com/api',
+  mediaUrl: 'https://en-equilibre-back.herokuapp.com/media'*/
+  apiUrl: 'http://enequilibre.zapto.org:10081/api',
+  mediaUrl: 'http://enequilibre.zapto.org:10081//media'
 };
 
 /*

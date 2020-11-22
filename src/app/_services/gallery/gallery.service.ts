@@ -144,7 +144,7 @@ export class GalleryService extends CService<Gallery> {
   public getUrl(name: string, width: number, value: Gallery): string {
     if (value) {
       if (value[name]) {
-        let url = value[name].url();
+        let url = value[name].url(10000);
         if (width < 1001 && width > 900) { url = url.replace('/media/', '/media/w_1000_'); }
         else if (width < 901 && width > 800) { url = url.replace('/media/', '/media/w_900_'); }
         else if (width < 801 && width > 700) { url = url.replace('/media/', '/media/w_800_'); }

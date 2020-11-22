@@ -57,6 +57,9 @@ import { AboutDesktopComponent } from './_components/about/about-desktop/about-d
 import { AboutMobileComponent } from './_components/about/about-mobile/about-mobile.component';
 import { ContactMobileComponent } from './_components/contact/contact-mobile/contact-mobile.component';
 import { ContactDesktopComponent } from './_components/contact/contact-desktop/contact-desktop.component';
+import { ShopComponent } from './_components/shop/shop.component';
+import { EventsComponent } from './_components/events/events.component';
+import { DesignerCircleComponent } from './_components/designer-circle/designer-circle.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +98,10 @@ import { ContactDesktopComponent } from './_components/contact/contact-desktop/c
     AboutDesktopComponent,
     AboutMobileComponent,
     ContactMobileComponent,
-    ContactDesktopComponent
+    ContactDesktopComponent,
+    ShopComponent,
+    EventsComponent,
+    DesignerCircleComponent
   ],
   imports: [
     BrowserModule,

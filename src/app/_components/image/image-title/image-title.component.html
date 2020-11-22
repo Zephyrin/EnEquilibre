@@ -1,9 +1,9 @@
 <div class="container-img"
      #containerImg
-     [ngClass]="{'min-size': service.edit, 'edit-img': service.edit}"
+     [ngClass]="{'min-size': service.edit, 'edit-img': service.edit && !service.hasUrl(name, undefined)}"
      *ngIf="(service.hasImage(name, undefined) && !service.hasError(name, undefined)) || service.edit">
   <div (window.resize)="onResize($event)"
-       [ngClass]="{'edit-img': service.edit}">
+       [ngClass]="{'edit-img': service.edit && !service.hasUrl(name, undefined)}">
     <div class="text-block-top-center d-flex flex-column align-items-center"
          *ngIf="service.hasTitleOrSubtitle(undefined)">
       <div class="row align-items-center">
@@ -22,7 +22,7 @@
     </div>
     <div class="text-block-top d-flex justify-content-between"
          *ngIf="service.edit"
-         [ngClass]="{'edit-image': service.edit}"
+         [ngClass]="{'edit-image': service.edit && !service.hasUrl(name, undefined)}"
          (click)="openDialog($event, name)">
       <p class="align-self-center"
          *ngIf="!service.hasUrl(name, undefined)">{{vt.translate('click.add.' + name)}}</p>
@@ -37,11 +37,12 @@
       </button>
     </div>
     <img #img
+         [src]="service.getUrl(name, element.nativeElement.offsetHeight, undefined)"
          [alt]="service.getDescription(name, undefined)"
          (click)="openDialog($event, name)"
          (error)="service.onError(name, undefined)"
          [ngClass]="{ 'border': service.border(name, undefined),
-          'edit-img': service.edit,
+          'edit-img': service.edit && !service.hasUrl(name, undefined),
           'edit-image': service.edit}"
          class="img-fluid"
          [style.width.px]="(isHandset$ | async) === true ? undefined : width" />

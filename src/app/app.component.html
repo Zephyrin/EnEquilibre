@@ -18,7 +18,7 @@
          routerLinkActive="active-link"
          class="hover-link"
          [routerLinkActiveOptions]="{ exact: true }"
-         routerLink="boutique">{{vt.translate('shop')}}</a>
+         routerLink="shop">{{vt.translate('shop')}}</a>
       <a mat-list-item
          routerLinkActive="active-link"
          class="hover-link"
@@ -35,11 +35,11 @@
       <a mat-list-item
          routerLinkActive="active-link"
          class="hover-link"
-         routerLink="event">{{vt.translate('events')}}</a>
+         routerLink="events">{{vt.translate('events')}}</a>
       <a mat-list-item
          routerLinkActive="active-link"
          class="hover-link"
-         routerLink="designer-circle">{{vt.translate('designer.circle')}}</a>
+         routerLink="designerCircle">{{vt.translate('designer.circle')}}</a>
     </mat-nav-list>
     <mat-toolbar *ngIf="isMerchant">{{vt.translate('merchant')}}</mat-toolbar>
     <mat-nav-list *ngIf="isMerchant">

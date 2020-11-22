@@ -64,15 +64,10 @@ export class ImageTitleComponent implements OnInit, AfterViewInit, OnDestroy {
     setTimeout(() => {
       if (this.element !== undefined && this.img !== undefined) {
         this.containerHeight = this.element.nativeElement.offsetHeight;
-        const width = this.element.nativeElement.offsetWidth;
-        const url = this.service.getUrl(this.name, width, undefined);
-        if (this.img.nativeElement.src !== url) {
-          this.img.nativeElement.src = url;
-          this.img.nativeElement.onload = () => {
-            this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
-          };
-        } else {
+        if (this.img.nativeElement.naturalHeight > 0) {
           this.width = this.containerHeight * this.img.nativeElement.naturalWidth / this.img.nativeElement.naturalHeight;
+        } else {
+          this.width = this.element.nativeElement.offsetWidth;
         }
       } else {
         setTimeout(() => {

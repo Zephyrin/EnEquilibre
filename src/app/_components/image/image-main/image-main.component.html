@@ -3,6 +3,7 @@
      *ngIf="service.hasImage(name, child) || service.edit"
      [ngClass]="{pointer: service.edit}">
   <div class="text-block-top d-flex justify-content-between"
+       [ngStyle]="{'width': img.width + 'px', 'margin-left': img.offsetLeft + 'px'}"
        *ngIf="service.edit"
        (click)="openDialog($event, name)"
        [ngClass]="{'edit-image': service.edit}">
@@ -21,7 +22,8 @@
   <img [src]="service.getUrl(name, element.nativeElement.offsetWidth, child)"
        [alt]="service.getDescription(name, child)"
        (click)="openDialog($event, name)"
-       [ngClass]="{ 'border': service.border(name, child), 'edit-img': service.edit}"
+       #img
+       [ngClass]="{ 'border': service.border(name, child), 'edit-img': service.edit && !service.hasUrl(name, child)}"
        class="img-fluid" />
 
 </div>

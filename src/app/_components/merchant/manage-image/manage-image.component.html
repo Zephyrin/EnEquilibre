@@ -30,10 +30,11 @@
 <ng-template #imageGrid
              let-img="img">
   <div class="border-shadow"
+       #parent
        (click)="selectImg($event, img)"
        [ngClass]="{'img-selected': img.id === service.selectedImg?.id}">
     <div class="container-img">
-      <img [src]="img.url(200)"
+      <img [src]="img.url(parent.offsetWidth)"
            [alt]="service.getTranslations(img)"
            class="img-fluid">
       <div class="text-block"

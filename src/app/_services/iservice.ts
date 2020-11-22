@@ -97,8 +97,8 @@ export abstract class CService<T> implements IService {
   }
 
   public hasUrl(name: string, child: T | undefined): boolean {
-    if (child) { return child[name] !== undefined; }
-    return this.model[name] !== undefined;
+    if (child) { return child[name] !== undefined && child[name].hasUrl(); }
+    return this.model[name] !== undefined && this.model[name].hasUrl();
   }
 
   public hasError(name: string, child: T): boolean {

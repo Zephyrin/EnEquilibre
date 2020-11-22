@@ -1,3 +1,6 @@
+import { DesignerCircleComponent } from './_components/designer-circle/designer-circle.component';
+import { EventsComponent } from './_components/events/events.component';
+import { ShopComponent } from './_components/shop/shop.component';
 import { ContactComponent } from './_components/contact/contact.component';
 import { Role } from './_enums/role.enum';
 import { AuthGuard } from './auth/auth.guard';
@@ -34,7 +37,10 @@ const routes: Routes = [
   {
     path: 'manage-image', component: ManageImageComponent, canActivate: [AuthGuard],
     data: { roles: [Role.Merchant, Role.Admin, Role.SuperAdmin] }
-  }
+  },
+  { path: 'shop', component: ShopComponent },
+  { path: 'events', component: EventsComponent },
+  { path: 'designerCircle', component: DesignerCircleComponent }
 ];
 
 @NgModule({

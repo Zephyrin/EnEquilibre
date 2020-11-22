@@ -14,7 +14,7 @@ interface ServiceInterface {
 export class HorizontalGalleriesComponent implements OnInit {
   @Input() service: ServiceInterface;
   @Input() child: any;
-  @Input() routerLink: string | any[];
+  @Input() routerLinked: string | any[];
   constructor(public galleries: GalleryService, public vt: ViewTranslateService) { }
 
   ngOnInit(): void {

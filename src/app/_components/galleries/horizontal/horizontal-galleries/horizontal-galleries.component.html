@@ -36,7 +36,7 @@
 <ng-template #galleryColumn
              let-c="c">
   <ng-container *ngFor="let gallery of c">
-    <app-image-full-height-double-border [routerLink]="routerLink"
+    <app-image-full-height-double-border [routerLink]="routerLinked"
                                          [fragmentLink]="gallery?.title?.split(' ').join('_')"
                                          [image]="gallery.main"
                                          [title]="gallery.title"
