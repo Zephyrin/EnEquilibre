@@ -21,6 +21,7 @@ import { resizeCanvas } from '@app/_helpers/utils/resize.utils';
 import { ExifTransform } from '@app/_interfaces/exif-transform.interface';
 import { HammerStatic } from '@app/_helpers/utils/hammer.utils';
 import { MoveTypes } from '@app/_interfaces/move-start.interface';
+import imageCompression from 'browser-image-compression';
 
 @Component({
   selector: 'app-image-cropper',
@@ -221,10 +222,25 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     }
   }
 
-  private loadImageFile(file: File): void {
-    const fileReader = new FileReader();
+  private async loadImageFile(file: File) {
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true
+    };
+    try {
+      const compressedFile = await imageCompression(file, options);
+      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+      const readerBlob = new FileReader();
+      readerBlob.onload = (loadEvent: any) => this.loadImage(loadEvent.target.result, file.type);
+      readerBlob.readAsDataURL(compressedFile);
+    } catch (error) {
+      console.log(error);
+    }
+    /* const fileReader = new FileReader();
     fileReader.onload = (event: any) => this.loadImage(event.target.result, file.type);
-    fileReader.readAsDataURL(file);
+    fileReader.readAsDataURL(file); */
   }
 
   private isValidImageType(type: string): boolean {

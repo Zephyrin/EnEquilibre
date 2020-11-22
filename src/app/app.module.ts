@@ -122,7 +122,7 @@ import { DesignerCircleComponent } from './_components/designer-circle/designer-
     MatDialogModule,
     MatProgressSpinnerModule,
     NgbModule,
-    HammerModule
+    HammerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

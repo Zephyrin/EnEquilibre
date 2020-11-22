@@ -5,13 +5,13 @@ export class Mediaobject {
   id: number;
   description: any;
   filePath: string;
-  protected img: SafeResourceUrl | File;
+  protected img: ArrayBuffer;
   translations: any;
   error = false;
-  get image(): SafeResourceUrl | File {
+  get image(): ArrayBuffer {
     return this.img;
   }
-  set image(image: SafeResourceUrl | File) {
+  set image(image: ArrayBuffer) {
     this.img = image;
     this.timeStamp = (new Date()).getTime();
   }

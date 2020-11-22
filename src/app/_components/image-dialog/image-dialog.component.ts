@@ -1,5 +1,4 @@
 import { MediaobjectService } from './../../_services/Mediaobject/mediaobject.service';
-import { HttpParams } from '@angular/common/http';
 import { TranslateComponent } from './../helpers/translate/translate.component';
 import { MediaobjectHttpService } from './../../_services/Mediaobject/mediaobject-http.service';
 import { FormErrors } from './../../_helpers/form-error';
@@ -8,11 +7,10 @@ import { Mediaobject } from './../../_models/mediaobject';
 import { ViewTranslateService } from './../../_services/view-translate.service';
 import { Component, OnInit, Inject, ViewChild, AfterViewInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { MatTabChangeEvent, MatTabGroup } from '@angular/material/tabs';
 
 import { Dimensions, ImageCroppedEvent, ImageTransform } from '@app/_interfaces/index';
-import { base64ToFile } from '@app/_helpers/utils/blob.utils';
 
 @Component({
   selector: 'app-image-dialog',
@@ -26,9 +24,8 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   loading = false;
   submitted = false;
   errors = new FormErrors();
-  imageSrc: SafeResourceUrl;
+  imageSrc: string;
   fileName: string;
-  blobImage: File;
   tabPosition = 0;
   edit = false;
   get f() { return this.form.controls; }
@@ -51,7 +48,6 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     public dialogRef: MatDialogRef<ImageDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Mediaobject,
     private formBuilder: FormBuilder,
-    private domSanitizer: DomSanitizer,
     private service: MediaobjectService,
     private http: MediaobjectHttpService) {
     this.service.selectedImg = data;
@@ -99,29 +95,19 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
       });
   }
 
-  onFileChange(event) {
-    const reader = new FileReader();
+  async onFileChange(event) {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       this.fileName = file.name;
       this.format = file.name.split('.').pop();
-      this.blobImage = file;
       this.imageSrc = '';
       this.imageChangedEvent = event;
-      reader.readAsArrayBuffer(file);
-      reader.onload = (evt) => {
-        if (evt.target.readyState === FileReader.DONE) {
-          const array = new Uint8Array(evt.target.result as ArrayBuffer);
-          const fileByteArray = [];
-          array.forEach(byte => {
-            fileByteArray.push(byte);
-          });
-          this.form.patchValue({
-            image: fileByteArray
-          });
-        }
-      };
     }
+  }
+
+  private patchImageAsBase64(imageBase64: string) {
+    console.log('compressed base64 :', imageBase64?.length);
+    this.form.patchValue({ image: imageBase64 });
   }
 
   endTransaction(mediaObject: Mediaobject) {
@@ -178,9 +164,10 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
 
   imageCropped(event: ImageCroppedEvent) {
     this.imageSrc = event.base64;
-    /* this.form.patchValue({
-      image: this.blobImage
-    }); */
+    console.log(this.imageSrc.length);
+    this.form.patchValue({
+      image: this.imageSrc
+    });
   }
 
   imageLoaded() {
