@@ -44,6 +44,7 @@ export class GalleryService extends CService<Gallery> {
     }
     if (edit === this.edit$ && this.values !== undefined) { return; }
     this.edit$ = edit;
+    this.loading = true;
     if (this.edit$) {
       this.http.getAllMerchant(null).subscribe(response => {
         this.values = response.body.map((x) => new Gallery(x));
@@ -58,8 +59,10 @@ export class GalleryService extends CService<Gallery> {
           this.c3.push(this.c1[this.c1.length - 1]);
           this.c1.splice(this.c1.length - 1, 1);
         }
+        this.loading = false;
       }, err => {
         this.values = [];
+        this.loading = false;
       });
     } else {
       this.http.getAll(null).subscribe(response => {
@@ -75,8 +78,10 @@ export class GalleryService extends CService<Gallery> {
           this.c3.push(this.c1[this.c1.length - 1]);
           this.c1.splice(this.c1.length - 1, 1);
         }
+        this.loading = false;
       }, err => {
         this.values = [];
+        this.loading = false;
       });
     }
   }

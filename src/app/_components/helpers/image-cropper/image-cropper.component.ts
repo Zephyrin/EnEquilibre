@@ -231,8 +231,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
     };
     try {
       const compressedFile = await imageCompression(file, options);
-      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
-      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+      /* console.log('compressedFile instanceof Blob', compressedFile instanceof Blob); // true
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB */
       const readerBlob = new FileReader();
       readerBlob.onload = (loadEvent: any) => this.loadImage(loadEvent.target.result, file.type);
       readerBlob.readAsDataURL(compressedFile);
@@ -250,7 +250,6 @@ export class ImageCropperComponent implements OnChanges, OnInit {
 
   private loadBase64Image(imageBase64: string): void {
     this.loadBase64ImageSuccess.emit(imageBase64);
-    console.log('image base 64 length: ', imageBase64.length);
     this.autoRotateSupported
       .then((supported: boolean) => this.checkExifAndLoadBase64Image(imageBase64, supported))
       .then(() => this.transformOriginalImage())

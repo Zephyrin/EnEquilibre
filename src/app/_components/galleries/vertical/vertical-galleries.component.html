@@ -45,6 +45,7 @@
           color="primary"
           class="action-bottom"
           *ngIf="gallery.canEdit"
+          [disabled]="gallery.loading"
           (click)="gallery.edit = !gallery.edit"
           [matTooltip]="vt.translate('aria.edit.gallery')"
           [attr.aria-label]="vt.translate('aria.edit.gallery')">

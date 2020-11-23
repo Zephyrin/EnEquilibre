@@ -224,5 +224,11 @@
   }, {
     "key": "crop.original",
     "translate": { "en": "Original crop", "fr": "Rognage original" }
+  }, {
+    "key": "comming.soon.title",
+    "translate": { "en": "Comming soon", "fr": "Bientôt disponible" }
+  }, {
+    "key": "comming.soon.helper",
+    "translate": { "en": " ", "fr": " " }
   }
 ]

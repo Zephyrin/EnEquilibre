@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 interface IEdit {
   edit: boolean;
+  loading: boolean;
   canEdit: boolean;
 }
 

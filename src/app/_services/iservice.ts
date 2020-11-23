@@ -50,17 +50,23 @@ export abstract class CService<T> implements IService {
       }
     }
     this.edit$ = edit;
+    this.loading = true;
     if (this.edit$) {
+
       this.http.getMerchant('').subscribe(data => {
         this.model = new this.createCpy(data);
+        this.loading = false;
       }, err => {
         this.model = new this.create();
+        this.loading = false;
       });
     } else {
       this.http.get('').subscribe(data => {
         this.model = new this.createCpy(data);
+        this.loading = false;
       }, err => {
         this.model = new this.create();
+        this.loading = false;
       });
     }
   }

@@ -61,6 +61,7 @@
           color="primary"
           class="action-bottom"
           *ngIf="home.canEdit"
+          [disabled]="home.loading"
           (click)="home.edit = !home.edit"
           [matTooltip]="vt.translate('aria.edit.home')"
           [attr.aria-label]="vt.translate('aria.edit.home')">

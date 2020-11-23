@@ -170,7 +170,6 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   }
 
   imageCropped($event: ImageCroppedEvent) {
-    console.log($event);
     this.form.patchValue({
       crop:
       {
