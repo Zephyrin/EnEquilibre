@@ -58,7 +58,18 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
       id: [''],
       filePathUser: [''],
       filePath: [''],
-      image: ['']
+      image: [''],
+      crop: this.formBuilder.group({
+        topLeft: this.formBuilder.group({
+          x: [''],
+          y: ['']
+        }),
+        bottomRight: this.formBuilder.group({
+          x: [''],
+          y: ['']
+        })
+      }),
+      rotate: ['']
     });
     this.imageSrc = '';
   }
@@ -97,17 +108,13 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
 
   async onFileChange(event) {
     if (event.target.files && event.target.files.length) {
+      this.errors = new FormErrors();
       const [file] = event.target.files;
       this.fileName = file.name;
       this.format = file.name.split('.').pop();
       this.imageSrc = '';
       this.imageChangedEvent = event;
     }
-  }
-
-  private patchImageAsBase64(imageBase64: string) {
-    console.log('compressed base64 :', imageBase64?.length);
-    this.form.patchValue({ image: imageBase64 });
   }
 
   endTransaction(mediaObject: Mediaobject) {
@@ -146,14 +153,6 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   updateMediasList(tabChangeEvent: MatTabChangeEvent): void {
     this.tabPosition = tabChangeEvent.index;
     if (tabChangeEvent.index > 0) {
-      //TODO
-      /* this.loading = true;
-      const httpParams = new HttpParams();
-      httpParams.append('noPagination', 'true');
-      this.http.getAll(null).subscribe(response => {
-        this.medias = response.body.map((x) => new Mediaobject(x));
-        this.loading = false;
-      }); */
     }
   }
 
@@ -162,12 +161,31 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
     this.imageChangedEvent = event;
   }
 
-  imageCropped(event: ImageCroppedEvent) {
-    this.imageSrc = event.base64;
-    console.log(this.imageSrc.length);
+  loadImageBase64(base64Image: string) {
+    // this.imageSrc = base64Image;
+
     this.form.patchValue({
-      image: this.imageSrc
+      image: base64Image
     });
+  }
+
+  imageCropped($event: ImageCroppedEvent) {
+    console.log($event);
+    this.form.patchValue({
+      crop:
+      {
+        topLeft:
+        {
+          x: $event.imagePosition.x1, y: $event.imagePosition.y1
+        },
+        bottomRight:
+        {
+          x: $event.imagePosition.x2, y: $event.imagePosition.y2
+        }
+      },
+      rotate: this.canvasRotation
+    });
+    this.imageSrc = $event.base64;
   }
 
   imageLoaded() {
@@ -178,6 +196,9 @@ export class ImageDialogComponent implements OnInit, AfterViewInit {
   }
 
   loadImageFailed() {
+    this.errors = new FormErrors();
+    this.errors.hasFatalError = true;
+    this.errors.fatalError = 'Unable to load this image. I don\'t know why!';
     console.log('Load failed');
   }
 

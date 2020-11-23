@@ -22,6 +22,7 @@ import { ExifTransform } from '@app/_interfaces/exif-transform.interface';
 import { HammerStatic } from '@app/_helpers/utils/hammer.utils';
 import { MoveTypes } from '@app/_interfaces/move-start.interface';
 import imageCompression from 'browser-image-compression';
+import { emit } from 'process';
 
 @Component({
   selector: 'app-image-cropper',
@@ -76,7 +77,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
   @Input() initialStepSize = 3;
   @Input() roundCropper = false;
   @Input() onlyScaleDown = false;
-  @Input() imageQuality = 92;
+  @Input() imageQuality = 100;
   @Input() autoCrop = true;
   @Input() backgroundColor: string;
   @Input() containWithinAspectRatio = false;
@@ -97,7 +98,7 @@ export class ImageCropperComponent implements OnChanges, OnInit {
   @Output() imageLoaded = new EventEmitter<void>();
   @Output() cropperReady = new EventEmitter<Dimensions>();
   @Output() loadImageFailed = new EventEmitter<void>();
-
+  @Output() loadBase64ImageSuccess = new EventEmitter<string>();
   constructor(
     private sanitizer: DomSanitizer,
     private cd: ChangeDetectorRef) {
@@ -248,6 +249,8 @@ export class ImageCropperComponent implements OnChanges, OnInit {
   }
 
   private loadBase64Image(imageBase64: string): void {
+    this.loadBase64ImageSuccess.emit(imageBase64);
+    console.log('image base 64 length: ', imageBase64.length);
     this.autoRotateSupported
       .then((supported: boolean) => this.checkExifAndLoadBase64Image(imageBase64, supported))
       .then(() => this.transformOriginalImage())
