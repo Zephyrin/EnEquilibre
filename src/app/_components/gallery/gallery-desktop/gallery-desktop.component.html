@@ -29,10 +29,19 @@
         </button>
       </div>
       <div class="full"
-           [ngClass]="{ 'edit-gallery': service.edit}">
+           [ngClass]="{ 'edit-gallery': service.edit}"
+           [ngClass]="{ 'center': gallery.description === undefined || gallery.description === ''}">
         <app-image-main [service]="service"
                         [name]="'main'"
                         [child]="gallery"></app-image-main>
+      </div>
+      <div class="text-flex-right-bottom">
+        <app-text-edit [value]="gallery"
+                       [service]="service"
+                       [placeholder]="'description'"
+                       [title]="false"
+                       [area]="true"
+                       [field]="'description'"></app-text-edit>
       </div>
     </div>
   </div>

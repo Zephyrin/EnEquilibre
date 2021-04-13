@@ -6,7 +6,8 @@
     <mat-icon>edit</mat-icon>
   </button>
 </h1>
-<p *ngIf="!title && !edit">{{getTranslation()}}<button mat-button
+<p *ngIf="!title && !edit"
+   class="new-line">{{getTranslation()}}<button mat-button
           [matTooltip]="vt.translate('edit.translation')"
           *ngIf="!edit && service.edit"
           class="small"

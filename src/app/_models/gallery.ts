@@ -9,6 +9,7 @@ export class Gallery {
   translations: any;
   title: any;
   order: number;
+  description: any;
 
   public constructor(gallery: Gallery = null) {
     if (gallery && gallery !== null) {
@@ -31,6 +32,7 @@ export class Gallery {
       this.translations = gallery.translations;
       this.title = gallery.title;
       this.order = gallery.order;
+      this.description = gallery.description;
     }
   }
 
@@ -46,6 +48,7 @@ export class Gallery {
     if (this.showCase) { data[`showCase`] = this.showCase.id; }
     if (this.showCase === null) { data[`showCase`] = null; }
     if (this.title) { data[`title`] = this.title; }
+    if (this.description) { data[`description`] = this.description; }
     if (this.order >= 0) { data[`order`] = this.order; }
     if (this.medias) {
       data[`medias`] = [];

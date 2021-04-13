@@ -29,4 +29,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Production
 
 `ng build --prod`
-It create a folder into `dist` that can be copied into the server. 
+It create a folder into `dist` that can be copied into the server.
+You can copy directly to the raspberry using :
+`scp -r dist/en-equilibre zephyrin@192.168.1.102:/srv/http/EnEquilibre/dist/`

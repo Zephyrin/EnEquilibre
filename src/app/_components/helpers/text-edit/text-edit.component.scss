@@ -35,14 +35,18 @@ h1 {
   flex-wrap: wrap;
 }
 
+.new-line {
+  white-space: pre-wrap;
+}
+
 ::ng-deep .mat-form-field-label {
-    color: currentColor!important;
+  color: currentColor !important;
 }
 
 ::ng-deep .mat-form-field-underline {
-  background-color: currentColor!important;
+  background-color: currentColor !important;
 }
 
 ::ng-deep .mat-form-field-ripple {
-  background-color: currentColor!important;
+  background-color: currentColor !important;
 }

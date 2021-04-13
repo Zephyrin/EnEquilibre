@@ -13,11 +13,13 @@
   margin-left: auto;
   margin-right: auto;
   top: 0;
-  bottom: 0;
+  //bottom: 0;
   left: 0;
   right: 0;
 }
-
+.center {
+  bottom: 0;
+}
 .edit-gallery {
   top: 5em !important;
   width: 100%;
@@ -41,6 +43,16 @@
   justify-content: center;
   max-height: 5em;
   min-height: 5em;
+}
+
+.text-flex-right-bottom {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  width: 100%;
 }
 
 .flex-vcenter {
