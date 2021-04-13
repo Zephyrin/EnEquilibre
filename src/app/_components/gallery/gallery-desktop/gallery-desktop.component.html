@@ -29,8 +29,7 @@
         </button>
       </div>
       <div class="full"
-           [ngClass]="{ 'edit-gallery': service.edit}"
-           [ngClass]="{ 'center': gallery.description === undefined || gallery.description === ''}">
+           [ngClass]="{ 'edit-gallery': service.edit, 'center': gallery.description === undefined || gallery.description === ''}">
         <app-image-main [service]="service"
                         [name]="'main'"
                         [child]="gallery"></app-image-main>
