@@ -53,7 +53,7 @@
                 <mat-icon>image_not_supported</mat-icon>
               </button>
             </div>
-            <img [src]="img.url()"
+            <img [src]="img.url(element.nativeElement.offsetWidth)"
                  [alt]="img.description" />
           </div>
         </div>

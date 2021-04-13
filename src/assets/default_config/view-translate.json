@@ -230,5 +230,41 @@
   }, {
     "key": "comming.soon.helper",
     "translate": { "en": " ", "fr": " " }
+  }, {
+    "key": "save.phone",
+    "translate": { "en": "Save phone number", "fr": "Enregistrer le numéro de téléphone"}
+  }, {
+    "key": "cancel.phone",
+    "translate": { "en": "Cancel updates", "fr": "Annuler les modifications"}
+  }, {
+    "key": "save.email",
+    "translate": { "en": "Save email", "fr": "Enregistrer l'email"}
+  }, {
+    "key": "cancel.email",
+    "translate": { "en": "Cancel updates", "fr": "Annuler les modifications"}
+  }, {
+    "key": "edit.phone",
+    "translate": { "en": "Edit phone", "fr": "Modifier le numéro de téléphone"}
+  }, {
+    "key": "edit.email",
+    "translate": { "en": "Edit email", "fr": "Modifier l'email"}
+  }, {
+    "key": "no.contact",
+    "translate": { "en": "No contact title!", "fr": "Pas de titre contact !"}
+  }, {
+    "key": "no.email",
+    "translate": { "en": "No email...", "fr": "Pas d'email..."}
+  }, {
+    "key": "no.phone",
+    "translate": { "en": "No phone number...", "fr": "Pas de numéro de téléphone..."}
+  }, {
+    "key": "no.comment",
+    "translate": { "en": "No comment...", "fr": "Pas de commentaire..."}
+  }, {
+    "key": "no.about",
+    "translate": { "en": "No about title!", "fr": "Pas de titre À propos !"}
+  }, {
+    "key": "aria.edit",
+    "translate": { "en": "Edit", "fr": "Édition" }
   }
 ]

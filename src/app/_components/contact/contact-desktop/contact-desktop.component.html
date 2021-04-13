@@ -38,13 +38,13 @@
               </div>
               <div class="d-flex flex-row-reverse">
                 <button mat-button
-                        [matTooltip]="vt.translate('save.translation')"
+                        [matTooltip]="vt.translate('save.email')"
                         type="submit"
                         class="small">
                   <mat-icon class="pointer">save</mat-icon>
                 </button>
                 <button mat-button
-                        [matTooltip]="vt.translate('cancel.translation')"
+                        [matTooltip]="vt.translate('cancel.email')"
                         (click)="stopEdition($event)"
                         type="button"
                         class="small">
@@ -64,6 +64,56 @@
               </button>
             </p>
           </div>
+        </div>
+        <div class="justify-content-center">
+          <div class="row justify-content-center"
+               [ngClass]="{'visible': isEditPhone(), 'hidden': !isEditPhone()}">
+            <form (ngSubmit)="onSubmitPhone($event)"
+                  (click)="stopPropagation($event)"
+                  class="cursor-default"
+                  [formGroup]="form">
+              <div class="d-flex align-items-center pl1">
+                <mat-form-field class="full-width">
+                  <input matInput
+                         #input
+                         class="mr-auto">
+                </mat-form-field>
+              </div>
+              <div class="d-flex flex-row-reverse">
+                <button mat-button
+                        [matTooltip]="vt.translate('save.phone')"
+                        type="submit"
+                        class="small">
+                  <mat-icon class="pointer">save</mat-icon>
+                </button>
+                <button mat-button
+                        [matTooltip]="vt.translate('cancel.phone')"
+                        (click)="stopEdition($event)"
+                        type="button"
+                        class="small">
+                  <mat-icon class="pointer">cancel</mat-icon>
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="row justify-content-center"
+               *ngIf="!isEditPhone()">
+            <p>{{service?.get(null, 'phone')}}<button mat-button
+                      [matTooltip]="vt.translate('edit.phone')"
+                      *ngIf="!editPhone && service.edit"
+                      class="small"
+                      (click)="editionPhone($event)">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </p>
+          </div>
+        </div>
+        <div class="justify-content-center">
+          <app-text-edit [value]="service"
+                         [service]="service"
+                         [placeholder]="'comment'"
+                         [area]="true"
+                         [field]="'comment'"></app-text-edit>
         </div>
       </div>
     </div>

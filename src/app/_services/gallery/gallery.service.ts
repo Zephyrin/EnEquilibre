@@ -150,8 +150,8 @@ export class GalleryService extends CService<Gallery> {
     if (value) {
       if (value[name]) {
         let url = value[name].url(10000);
-        if (width < 1001 && width > 900) { url = url.replace('/media/', '/media/w_1000_'); }
-        else if (width < 901 && width > 800) { url = url.replace('/media/', '/media/w_900_'); }
+        if (width < 400) { url = url.replace('/media/', '/media/w_1000_'); }
+        /* else if (width < 901 && width > 800) { url = url.replace('/media/', '/media/w_900_'); }
         else if (width < 801 && width > 700) { url = url.replace('/media/', '/media/w_800_'); }
         else if (width < 701 && width > 600) { url = url.replace('/media/', '/media/w_700_'); }
         else if (width < 601 && width > 500) { url = url.replace('/media/', '/media/w_600_'); }
@@ -159,7 +159,7 @@ export class GalleryService extends CService<Gallery> {
         else if (width < 401 && width > 300) { url = url.replace('/media/', '/media/w_400_'); }
         else if (width < 301 && width > 200) { url = url.replace('/media/', '/media/w_300_'); }
         else if (width < 201 && width > 100) { url = url.replace('/media/', '/media/w_200_'); }
-        else if (width < 101) { url = url.replace('/media/', '/media/w_100_'); }
+        else if (width < 101) { url = url.replace('/media/', '/media/w_100_'); } */
         return url;
       }
     }

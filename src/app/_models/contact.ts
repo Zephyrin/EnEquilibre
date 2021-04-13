@@ -6,6 +6,7 @@ export class Contact {
   translations: any;
   contact: any;
   comment: any;
+  phone: string;
   email: string;
 
   public constructor(contact: Contact = null) {
@@ -40,6 +41,8 @@ export class Contact {
     if (this.comment === null) { data[`comment`] = null; }
     if (this.email) { data[`email`] = this.email; }
     if (this.email === null) { data[`email`] = null; }
+    if (this.phone) { data[`phone`] = this.phone; }
+    if (this.phone === null) { data[`phone`] = null; }
     return data;
   }
 }

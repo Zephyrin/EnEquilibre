@@ -13,6 +13,7 @@ export class ContactDesktopComponent implements OnInit {
   @ViewChild('input') input: ElementRef;
   editEmail = false;
   editTitle = false;
+  editPhone = false;
   form: FormGroup;
   constructor(
     public vt: ViewTranslateService,
@@ -37,9 +38,23 @@ export class ContactDesktopComponent implements OnInit {
     this.editEmail = true;
   }
 
+  onSubmitPhone($event: any): void {
+    $event.stopPropagation();
+    this.editPhone = false;
+    const phone = this.input.nativeElement.value;
+    this.service.update(null, 'phone', phone);
+  }
+
+  editionPhone($event: any) {
+    $event.stopPropagation();
+    this.input.nativeElement.value = this.service.get(null, 'phone');
+    this.editPhone = true;
+  }
+
   stopEdition($event: any) {
     $event.stopPropagation();
     this.editEmail = false;
+    this.editPhone = false;
   }
   stopPropagation($event: any) {
     $event.stopPropagation();
@@ -47,5 +62,9 @@ export class ContactDesktopComponent implements OnInit {
 
   isEditEmail() {
     return this.service.edit && this.editEmail;
+  }
+
+  isEditPhone() {
+    return this.service.edit && this.editPhone;
   }
 }
