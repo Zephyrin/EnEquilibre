@@ -11,6 +11,7 @@ import { Component, OnInit, Input, ElementRef, ViewChild } from '@angular/core';
 export class ContactMobileComponent implements OnInit {
   @Input() service: IService;
   @ViewChild('input') input: ElementRef;
+  @ViewChild('inputPhone') inputPhone: ElementRef;
 
   editEmail = false;
   editTitle = false;
@@ -42,13 +43,13 @@ export class ContactMobileComponent implements OnInit {
   onSubmitPhone($event: any): void {
     $event.stopPropagation();
     this.editPhone = false;
-    const phone = this.input.nativeElement.value;
+    const phone = this.inputPhone.nativeElement.value;
     this.service.update(null, 'phone', phone);
   }
 
   editionPhone($event: any) {
     $event.stopPropagation();
-    this.input.nativeElement.value = this.service.get(null, 'phone');
+    this.inputPhone.nativeElement.value = this.service.get(null, 'phone');
     this.editPhone = true;
   }
 

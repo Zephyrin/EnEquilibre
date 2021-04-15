@@ -2,7 +2,9 @@
   flex-wrap: wrap;
 }
 
-.custom-file:hover, .custom-file-input:hover, .custom-file-label:hover {
+.custom-file:hover,
+.custom-file-input:hover,
+.custom-file-label:hover {
   cursor: pointer;
 }
 
@@ -83,6 +85,7 @@ button.active {
 @media screen and (max-width: 600px) {
   .preview {
     width: 100%;
+    height: 100%;
   }
   app-image-cropper {
     width: 100%;
@@ -90,11 +93,13 @@ button.active {
 }
 
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner:before {
-  content: '';
+  content: "";
   box-sizing: border-box;
   position: absolute;
   top: 50%;
@@ -106,5 +111,5 @@ button.active {
   border-radius: 50%;
   border: 2px solid #ffffff;
   border-top-color: #000000;
-  animation: spinner .8s linear infinite;
+  animation: spinner 0.8s linear infinite;
 }

@@ -23,6 +23,7 @@ export class Contact {
       this.contact = contact.contact;
       this.comment = contact.comment;
       this.email = contact.email;
+      this.phone = contact.phone;
     }
   }
 

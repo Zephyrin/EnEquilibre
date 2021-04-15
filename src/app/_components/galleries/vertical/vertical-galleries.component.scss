@@ -1,4 +1,4 @@
-.center{
+.center {
   text-align: center;
 }
 
@@ -13,7 +13,8 @@
   border: none;
 }
 
-.float-left-middle, .float-right-middle {
+.float-left-middle,
+.float-right-middle {
   position: absolute;
   top: 64px;
   bottom: 0px;
@@ -38,4 +39,9 @@
   left: 0px;
   display: flex;
   justify-content: right;
+}
+
+.tild {
+  font-size: xx-large;
+  margin-bottom: 0.5em;
 }

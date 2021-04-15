@@ -1,15 +1,13 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
 $custom-typography: mat-typography-config(
-  $font-family: 'cursive'
-  /* $font-family: 'CmmercialScript BT' */
+  $font-family: "cursive" /* $font-family: 'CmmercialScript BT' */,
 );
 @include mat-core($custom-typography);
 
@@ -23,12 +21,26 @@ $en-equilibre-accent: mat-palette($mat-purple, A200, A100, A400);
 $en-equilibre-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$en-equilibre-theme: mat-light-theme($en-equilibre-primary, $en-equilibre-accent, $en-equilibre-warn);
+$en-equilibre-theme: mat-light-theme(
+  $en-equilibre-primary,
+  $en-equilibre-accent,
+  $en-equilibre-warn
+);
 
 $custom-background-color: #fff6e8;
 $background: map-get($en-equilibre-theme, background);
-$background: map_merge($background, (background: $custom-background-color));
-$en-equilibre-theme: map_merge($en-equilibre-theme, (background: $background));
+$background: map_merge(
+  $background,
+  (
+    background: $custom-background-color,
+  )
+);
+$en-equilibre-theme: map_merge(
+  $en-equilibre-theme,
+  (
+    background: $background,
+  )
+);
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -36,7 +48,8 @@ $en-equilibre-theme: map_merge($en-equilibre-theme, (background: $background));
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
   height: 100%;
   background-color: #fff6e8;
 }
@@ -45,7 +58,9 @@ body {
   font-size: x-large;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 .fill-remaining-space {
   flex: 1 1 auto;
@@ -56,15 +71,15 @@ html { scroll-behavior: smooth; }
 }
 
 .btn-icon {
-  padding-top: 0!important;
-  padding-bottom: 0!important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
   padding-left: 0.5em !important;
   padding-right: 0.5em !important;
 }
 
 $custom-file-text: (
   en: "Browse",
-  fr: "Ouvrir"
+  fr: "Ouvrir",
 );
 
 .active-link {
@@ -104,13 +119,13 @@ b {
 }
 
 p {
-  font-weight: 800!important;
+  font-weight: 800 !important;
   font-size: x-large;
-  margin: 0!important;
+  //margin: 0 !important;
 }
 h1 {
-  font-weight: 900!important;
-  font-size: xxx-large!important;
+  font-weight: 900 !important;
+  font-size: xxx-large !important;
   margin-bottom: 0.5em !important;
   margin-top: 0.5em !important;
 }
@@ -120,12 +135,18 @@ h1 {
 }
 .text-block-white {
   position: absolute;
-  background-image: linear-gradient(to top, rgba(255, 246, 232, 1), rgba(255, 246, 232, 0));
+  background-image: linear-gradient(
+    to top,
+    rgba(255, 246, 232, 1),
+    rgba(255, 246, 232, 0)
+  );
   width: 100%;
   color: rgba(94, 62, 22, 0.6);
   min-height: 3em;
 }
-.text-block, .text-block-top, .text-block-top-center {
+.text-block,
+.text-block-top,
+.text-block-top-center {
   position: absolute;
   /* background-color:rgba(0,0,0,0.5); */
   background-color: rgba(94, 62, 22, 0.6);
@@ -134,10 +155,13 @@ h1 {
   min-height: 3em;
 }
 
-.text-block p, .text-block-top p, .text-block-top-center, .text-block-white {
+.text-block p,
+.text-block-top p,
+.text-block-top-center,
+.text-block-white {
   color: white;
   font-weight: bold;
-  opacity: 1.0;
+  opacity: 1;
   vertical-align: middle;
   display: table-cell;
   padding-left: 1em;
@@ -171,7 +195,7 @@ h1 {
   bottom: 0;
 }
 
-.border-shadow{
+.border-shadow {
   position: relative;
   cursor: pointer;
   padding: 0.5em;
@@ -189,9 +213,9 @@ h1 {
 }
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
-.container{
+.container {
   padding-left: 0px;
   padding-right: 0px;
 }
@@ -208,7 +232,7 @@ h1 {
   background-repeat: repeat;
   background-attachment: fixed;
   width: 100%;
-  background-size: auto;
+  background-size: 100%;
 }
 
 /* .border-double {
@@ -218,16 +242,17 @@ h1 {
 } */
 
 .border-double {
-    border: solid 8px #000;
-    box-shadow: 0 0 0 14px #000;
-    outline: solid 8px #fff;
+  border: solid 8px #000;
+  box-shadow: 0 0 0 14px #000;
+  outline: solid 8px #fff;
 }
 
 .border-double-outside {
   padding: 0.2em;
 }
 
-.border-double-outside, .border-double-inside {
+.border-double-outside,
+.border-double-inside {
   border: solid 1.5px;
   border-color: #5e3e16;
 }
@@ -252,7 +277,7 @@ h1 {
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-   &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
   margin-left: auto;
@@ -276,7 +301,6 @@ h1 {
 
 .edit-image {
   cursor: pointer;
-
 }
 
 .full-height {

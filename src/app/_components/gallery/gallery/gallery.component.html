@@ -62,6 +62,14 @@
     <ng-template [ngTemplateOutletContext]="{name: 'main', small: false, separator: false}"
                  [ngTemplateOutlet]="imgContainer">
     </ng-template>
+    <div class="text-flex-right-bottom">
+      <app-text-edit [value]="gallery"
+                     [service]="service"
+                     [placeholder]="'description'"
+                     [title]="false"
+                     [area]="true"
+                     [field]="'description'"></app-text-edit>
+    </div>
     <div class="padding-top-bottom">
       <ng-template [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"
                    [ngTemplateOutlet]="imgContainer"></ng-template>

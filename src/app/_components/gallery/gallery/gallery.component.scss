@@ -3,7 +3,7 @@
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-   &::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     display: none;
   }
   margin-left: auto;
@@ -38,4 +38,8 @@
 
 .right {
   margin-right: 0;
+}
+
+.text-flex-right-bottom {
+  margin-top: 10px;
 }
