@@ -20,6 +20,8 @@ export const environment = {
   mediaUrl: 'https://en-equilibre-back.herokuapp.com/media'*/
   /*apiUrl: 'http://enequilibre.zapto.org:10081/api',
   mediaUrl: 'http://enequilibre.zapto.org:10081/media'*/
+  /*apiUrl: 'https://enequilibre-creation.com/api',
+  mediaUrl: 'https://enequilibre-creation.com/media'*/
 };
 
 /*
