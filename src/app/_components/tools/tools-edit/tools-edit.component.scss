@@ -1,7 +1,10 @@
-:host{
+:host {
   display: block;
 }
-.float-right-bottom
-{
+.float-right-bottom {
   z-index: 2000;
+}
+
+.float-right-bottom > * {
+  margin-right: 20px;
 }

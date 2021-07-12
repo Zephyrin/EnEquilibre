@@ -6,6 +6,7 @@ import { FormErrors } from '@app/_helpers/form-error';
 import { GalleryHttpService } from './gallery-http.service';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Gallery, User, Mediaobject } from '@app/_models';
+import { JSonLDHttpService } from '../jsonld/jsonld-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -97,9 +98,10 @@ export class GalleryService extends CService<Gallery> {
 
   constructor(
     private h: GalleryHttpService,
+    private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, as, v, Gallery, Gallery);
+    super(h, j, as, v, Gallery, Gallery);
   }
 
   public get(object: any, name: string): string {

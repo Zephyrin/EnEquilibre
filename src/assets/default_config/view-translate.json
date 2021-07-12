@@ -446,5 +446,19 @@
       "en": "Add an image to the gallery",
       "fr": "Ajouter une image à la gallerie"
     }
+  },
+  {
+    "key": "aria.edit.jsonld",
+    "translate": {
+      "en": "Edit Google robot's information",
+      "fr": "Édition des données du robot Google"
+    }
+  },
+  {
+    "key": "jsonld.editor",
+    "translate": {
+      "en": "JSon LD editor",
+      "fr": "Éditeur de JSon LD"
+    }
   }
 ]

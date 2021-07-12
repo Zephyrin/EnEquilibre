@@ -4,6 +4,7 @@ import { About } from '@app/_models';
 import { CService } from '@app/_services/iservice';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { JSonLDHttpService } from '../jsonld/jsonld-http.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,10 @@ export class AboutService extends CService<About> {
 
   constructor(
     private h: AboutHttpService,
+    private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, as, v, About, About);
+    super(h, j, as, v, About, About);
   }
 
   public hasAboutOrComment(): boolean {

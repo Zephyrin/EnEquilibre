@@ -4,15 +4,17 @@ import { Home } from '@app/_models';
 import { CService } from '@app/_services/iservice';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { JSonLDHttpService } from '../jsonld/jsonld-http.service';
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService extends CService<Home>{
   constructor(
     private h: HomeHttpService,
+    private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, as, v, Home, Home);
+    super(h, j, as, v, Home, Home);
   }
 
   public hasTitleOrSubtitle(): boolean {

@@ -41,14 +41,5 @@
           [attr.aria-label]="vt.translate('aria.add.gallery')">
     <mat-icon>add</mat-icon>
   </button>
-  <button mat-fab
-          color="primary"
-          class="action-bottom"
-          *ngIf="gallery.canEdit"
-          [disabled]="gallery.loading"
-          (click)="gallery.edit = !gallery.edit"
-          [matTooltip]="vt.translate('aria.edit.gallery')"
-          [attr.aria-label]="vt.translate('aria.edit.gallery')">
-    <mat-icon>edit</mat-icon>
-  </button>
+  <app-tools-edit [service]="gallery"></app-tools-edit>
 </div>

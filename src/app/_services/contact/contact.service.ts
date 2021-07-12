@@ -1,3 +1,4 @@
+import { JSonLDHttpService } from './../jsonld/jsonld-http.service';
 import { ContactHttpService } from './contact-http.service';
 import { Injectable } from '@angular/core';
 import { Contact } from '@app/_models';
@@ -11,9 +12,10 @@ import { ViewTranslateService } from '@app/_services/view-translate.service';
 export class ContactService extends CService<Contact> {
   constructor(
     private h: ContactHttpService,
+    private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, as, v, Contact, Contact);
+    super(h, j, as, v, Contact, Contact);
   }
 
   public hasContactOrComment(): boolean {

@@ -5,8 +5,18 @@
           class="action-bottom"
           *ngIf="service.canEdit"
           (click)="changeEdit($event)"
-          [matTooltip]="vt.translate('aria.edit')"
-          [attr.aria-label]="vt.translate('aria.edit')">
+          [matTooltip]="service.vt.translate('aria.edit')"
+          [attr.aria-label]="service.vt.translate('aria.edit')">
     <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-fab
+          color="accent"
+          [disabled]="service.loading"
+          class="action-bottom"
+          *ngIf="service.canEdit"
+          (click)="editJSonLD($event)"
+          [matTooltip]="service.vt.translate('aria.edit.jsonld')"
+          [attr.aria-label]="service.vt.translate('aria.edit.jsonld')">
+    <mat-icon>settings</mat-icon>
   </button>
 </div>

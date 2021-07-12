@@ -1,0 +1,1 @@
+rsync -av ./dist/en-equilibre enequim@ssh.cluster028.hosting.ovh.net:~/www

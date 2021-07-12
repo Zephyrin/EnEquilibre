@@ -4,9 +4,21 @@ import { ViewTranslateService } from './view-translate.service';
 import { HttpService } from '@app/_services/http.service';
 import { Role } from '@app/_enums/role.enum';
 import { Mediaobject, User } from '@app/_models';
+import { JSonLD } from '@app/_models/jsonld';
+import { Subject } from 'rxjs';
 
 export interface IService {
   edit: boolean;
+  canEdit: boolean;
+  loading: boolean;
+  jsonLD: JSonLD;
+  vt: ViewTranslateService;
+  /**
+   * Permet de dire à l'interface que la création, mise à jour ou la suppression est terminée
+   * et qu'il peut mettre à jour la vue.
+   * Si le boolean est true alors tout va bien. sinon il y a eu une erreur.
+   */
+  endUpdate: Subject<boolean>;
   has(name: string, child: any | undefined): boolean;
   hasImage(name: string, child: any | undefined): boolean;
 
@@ -31,6 +43,9 @@ export interface IService {
 
   update(object: any, name: string, mediaObject: Mediaobject): void;
   remove(object: any, name: string, old: any): void;
+
+  initJSonLD();
+  createOrUpdateJSonLD(json: JSonLD);
 }
 
 export abstract class CService<T> implements IService {
@@ -38,6 +53,8 @@ export abstract class CService<T> implements IService {
   public model: T;
   public loading = false;
   public errors = new FormErrors();
+  public endUpdate = new Subject<boolean>();
+  public jsonLD = new JSonLD();
 
   public set edit(edit: boolean) {
     if (edit) {
@@ -83,8 +100,9 @@ export abstract class CService<T> implements IService {
 
   public constructor(
     protected http: HttpService<T>,
+    protected httpJSonLD: HttpService<JSonLD>,
     protected authenticationService: AuthenticationService,
-    protected vt: ViewTranslateService,
+    public vt: ViewTranslateService,
     private createCpy: new (obj: any) => T,
     private create: new () => T
   ) {
@@ -218,7 +236,10 @@ export abstract class CService<T> implements IService {
   protected end(error?: any | undefined) {
     this.loading = false;
     if (error) {
+      this.endUpdate.next(false);
       this.errors.formatError(error);
+    } else {
+      this.endUpdate.next(true);
     }
   }
 
@@ -251,5 +272,43 @@ export abstract class CService<T> implements IService {
   public remove(child: any, name: string, old: any): void {
     if (name === 'separator') { this.removeSeparator(); }
     if (name === 'background') { this.removeBackground(); }
+  }
+
+  public initJSonLD(): void {
+    if (this.jsonLD.id === '') {
+      this.httpJSonLD.get(this.constructor.name.replace('Service', '')).subscribe(data => {
+        this.jsonLD = new JSonLD(data);
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.innerHTML = this.jsonLD.json;
+        document.head.appendChild(script);
+      }, error => {
+        this.jsonLD = new JSonLD();
+      });
+    }
+  }
+
+  public createOrUpdateJSonLD(jsonLD: JSonLD): void {
+    this.start();
+    if (jsonLD.id === '') {
+      const name = this.constructor.name.replace('Service', '');
+      const json = new JSonLD(jsonLD);
+      json.id = name;
+      this.httpJSonLD.create(json).subscribe(data => {
+        this.jsonLD.id = name;
+        this.jsonLD.json = jsonLD.json;
+        jsonLD.id = name;
+        this.end();
+      }, error => {
+        this.end(error);
+      });
+    } else {
+      this.httpJSonLD.update(jsonLD.id, jsonLD).subscribe(data => {
+        this.jsonLD.json = jsonLD.json;
+        this.end();
+      }, error => {
+        this.end(error);
+      });
+    }
   }
 }

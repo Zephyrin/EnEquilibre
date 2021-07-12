@@ -1,11 +1,8 @@
-import { ViewTranslateService } from '@app/_services/view-translate.service';
+import { IService } from '@app/_services/iservice';
+import { MatDialog } from '@angular/material/dialog';
+import { JsonLdComponent } from './../json-ld/json-ld.component';
 import { Component, OnInit, Input } from '@angular/core';
 
-interface IEdit {
-  edit: boolean;
-  loading: boolean;
-  canEdit: boolean;
-}
 
 @Component({
   selector: 'app-tools-edit',
@@ -13,15 +10,20 @@ interface IEdit {
   styleUrls: ['./tools-edit.component.scss']
 })
 export class ToolsEditComponent implements OnInit {
-  @Input() service: IEdit;
+  @Input() service: IService;
   constructor(
-    public vt: ViewTranslateService
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
+    this.service.initJSonLD();
   }
 
   changeEdit(evt: any): void {
     this.service.edit = !this.service.edit;
+  }
+
+  editJSonLD(evt: any): void {
+    const dialogRef = this.dialog.open(JsonLdComponent, { width: '90%', height: '80%', data: { service: this.service } });
   }
 }

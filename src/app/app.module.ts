@@ -60,6 +60,7 @@ import { ContactDesktopComponent } from './_components/contact/contact-desktop/c
 import { ShopComponent } from './_components/shop/shop.component';
 import { EventsComponent } from './_components/events/events.component';
 import { DesignerCircleComponent } from './_components/designer-circle/designer-circle.component';
+import { JsonLdComponent } from './_components/tools/json-ld/json-ld.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { DesignerCircleComponent } from './_components/designer-circle/designer-
     ContactDesktopComponent,
     ShopComponent,
     EventsComponent,
-    DesignerCircleComponent
+    DesignerCircleComponent,
+    JsonLdComponent
   ],
   imports: [
     BrowserModule,
