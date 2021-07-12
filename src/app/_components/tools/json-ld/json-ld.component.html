@@ -1,31 +1,32 @@
-<form [formGroup]="form"
-      (ngSubmit)="onSubmitClick()"
-      class="full">
-  <p mat-dialog-title>{{service.vt.translate('jsonld.editor')}}</p>
-  <div mat-dialog-content
-       class="full">
-    <fieldset [disabled]="service.loading"
-              class="full">
-      <mat-form-field class="full">
+<fieldset [disabled]="service.loading">
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmitClick()">
+
+    <p mat-dialog-title>{{service.vt.translate('jsonld.editor')}}</p>
+    <div mat-dialog-content>
+
+      <mat-form-field class="full-width">
         <mat-label>JSonLD</mat-label>
         <textarea matInput
-                  class="code-font full"
+                  cdkTextareaAutosize
+                  cdkAutosizeMinRows="10"
+                  class="code-font"
                   formControlName="json"></textarea>
       </mat-form-field>
-    </fieldset>
-  </div>
-  <div mat-dialog-actions
-       class="d-flex flex-row-reverse">
-    <button mat-icon-button
-            [disabled]="!form || form.invalid"
-            type="submit"
-            [attr.aria-label]="service.vt.translate('save')">
-      {{service.vt.translate('save')}}
-    </button>
-    <button mat-icon-button
-            type="button"
-            (click)="onCancelClick()">
-      {{service.vt.translate('cancel')}}
-    </button>
-  </div>
-</form>
+    </div>
+    <div mat-dialog-actions
+         class="d-flex flex-row-reverse">
+      <button mat-icon-button
+              [disabled]="!form || form.invalid"
+              type="submit"
+              [attr.aria-label]="service.vt.translate('save')">
+        {{service.vt.translate('save')}}
+      </button>
+      <button mat-icon-button
+              type="button"
+              (click)="onCancelClick()">
+        {{service.vt.translate('cancel')}}
+      </button>
+    </div>
+  </form>
+</fieldset>
