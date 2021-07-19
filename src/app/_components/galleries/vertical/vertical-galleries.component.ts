@@ -8,6 +8,7 @@ import { Gallery } from '@app/_models';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map, shareReplay } from 'rxjs/operators';
 import { Observable, Subscription } from 'rxjs';
+import { JsonLdComponent } from '@app/_components/tools/json-ld/json-ld.component';
 
 @Component({
   selector: 'app-vertical-galleries',
@@ -92,7 +93,7 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
       const elt = document.getElementById(this.fragment);
       if (elt !== null) {
         offset = elt.offsetLeft;
-        if (offset < this.mainContainer.nativeElement.clientWidth) {
+        if (this.mainContainer && offset < this.mainContainer.nativeElement.clientWidth) {
           offset = 0;
         }
       }
@@ -188,6 +189,7 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
   }
 
   private smoothScroll(offSet) {
+    if (this.mainContainer === undefined) { return; }
     const currentScroll = this.mainContainer.nativeElement.scrollLeft;
     this.mainContainer.nativeElement.scrollLeft = offSet;
     this.disabledNext = this.mainContainer.nativeElement.scrollLeftMax <= this.mainContainer.nativeElement.scrollLeft;
@@ -206,5 +208,13 @@ export class VerticalGalleriesComponent implements OnInit, OnDestroy {
 
   isFirst(): boolean {
     return this.mainContainer.nativeElement.scrollLeft <= 0;
+  }
+
+  changeEdit(evt: any): void {
+    this.gallery.edit = !this.gallery.edit;
+  }
+
+  editJSonLD(evt: any): void {
+    const dialogRef = this.dialog.open(JsonLdComponent, { width: '90%', height: '80%', data: { service: this.gallery } });
   }
 }

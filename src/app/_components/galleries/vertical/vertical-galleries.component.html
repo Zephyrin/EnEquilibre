@@ -3,9 +3,9 @@
   <ng-container *ngFor="let img of gallery.values; index as i">
     <div class="img-column">
       <app-gallery [gallery]="img"></app-gallery>
-      <div *ngIf="!gallery.isLast(img)"
-           class="center tild">&#1757;</div>
     </div>
+    <div *ngIf="!gallery.isLast(img)"
+         class="center tild">&#1757;</div>
   </ng-container>
 </div>
 <div class="container vertical-scroll"
@@ -34,6 +34,26 @@
 <div class="float-right-bottom">
   <button mat-fab
           color="primary"
+          [disabled]="gallery.loading"
+          class="action-bottom"
+          *ngIf="gallery.canEdit"
+          (click)="changeEdit($event)"
+          [matTooltip]="gallery.vt.translate('aria.edit')"
+          [attr.aria-label]="gallery.vt.translate('aria.edit')">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-fab
+          color="accent"
+          [disabled]="gallery.loading"
+          class="action-bottom"
+          *ngIf="gallery.canEdit"
+          (click)="editJSonLD($event)"
+          [matTooltip]="gallery.vt.translate('aria.edit.jsonld')"
+          [attr.aria-label]="gallery.vt.translate('aria.edit.jsonld')">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <button mat-fab
+          color="primary"
           class="action-bottom mr-2"
           *ngIf="gallery.edit"
           (click)="addGallery()"
@@ -41,5 +61,4 @@
           [attr.aria-label]="vt.translate('aria.add.gallery')">
     <mat-icon>add</mat-icon>
   </button>
-  <app-tools-edit [service]="gallery"></app-tools-edit>
 </div>

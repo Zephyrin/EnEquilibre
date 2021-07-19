@@ -460,5 +460,12 @@
       "en": "JSon LD editor",
       "fr": "Éditeur de JSon LD"
     }
+  },
+  {
+    "key": "gallery.creator",
+    "translate": {
+      "en": "Create gallery",
+      "fr": "Créer une gallerie"
+    }
   }
 ]

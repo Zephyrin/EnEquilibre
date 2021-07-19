@@ -14,7 +14,7 @@ export class HomeService extends CService<Home>{
     private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, j, as, v, Home, Home);
+    super(h, j, as, v, Home, Home, 'Home');
   }
 
   public hasTitleOrSubtitle(): boolean {

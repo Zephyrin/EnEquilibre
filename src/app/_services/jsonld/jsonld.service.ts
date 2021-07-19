@@ -8,7 +8,7 @@ import { ViewTranslateService } from '@app/_services/view-translate.service';
 @Injectable({
   providedIn: 'root'
 })
-export class ContactService extends CService<JSonLD> {
+export class JSonLDService extends CService<JSonLD> {
   constructor(
     private h: JSonLDHttpService,
     private as: AuthenticationService,

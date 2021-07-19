@@ -101,7 +101,7 @@ export class GalleryService extends CService<Gallery> {
     private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, j, as, v, Gallery, Gallery);
+    super(h, j, as, v, Gallery, Gallery, 'Gallery');
   }
 
   public get(object: any, name: string): string {
@@ -240,9 +240,10 @@ export class GalleryService extends CService<Gallery> {
   public updateOrCreateGallery(value: Gallery, field: string, newValue: any, object: Gallery) {
     if (value.id === undefined) {
       this.http.create(value).subscribe(data => {
-        this.selected = new Gallery(data);
-        this.values.push(this.selected);
+        const gal = new Gallery(data);
+        this.values.push(gal);
         this.end();
+        this.selected = gal;
       }, error => {
         this.end(error);
       });

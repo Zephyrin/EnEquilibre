@@ -4,7 +4,7 @@
     <ng-template [ngTemplateOutletContext]="{name: 'separator', small: true, separator: true}"
                  [ngTemplateOutlet]="imgContainer"></ng-template>
     <div class="d-flex mt-2 mb-2 color"
-         [attr.id]="gallery.title.split(' ').join('_')">
+         [attr.id]="gallery.title?.split(' ').join('_')">
       <app-text-edit [value]="gallery"
                      [service]="service"
                      [placeholder]="'title'"

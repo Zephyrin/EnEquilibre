@@ -13,6 +13,14 @@
   border: none;
 }
 
+.margin-right {
+  margin-right: 40px;
+}
+
+.float-right-bottom > * {
+  margin-right: 20px;
+}
+
 .float-left-middle,
 .float-right-middle {
   position: absolute;

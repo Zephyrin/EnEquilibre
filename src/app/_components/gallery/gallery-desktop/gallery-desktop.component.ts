@@ -21,6 +21,7 @@ export class GalleryDesktopComponent implements OnInit, OnDestroy {
     public service: GalleryService,
     public vt: ViewTranslateService,
     public dialog: MatDialog) {
+    service.initJSonLD();
   }
 
   ngOnInit(): void {

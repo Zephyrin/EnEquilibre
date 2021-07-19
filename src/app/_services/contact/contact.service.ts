@@ -15,7 +15,7 @@ export class ContactService extends CService<Contact> {
     private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, j, as, v, Contact, Contact);
+    super(h, j, as, v, Contact, Contact, 'Contact');
   }
 
   public hasContactOrComment(): boolean {

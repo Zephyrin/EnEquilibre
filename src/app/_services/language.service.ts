@@ -11,8 +11,8 @@ export class LanguageService {
   constructor() {
     let lang = localStorage.getItem('language');
     if (lang === null || !lang) {
-      lang = 'en';
-      localStorage.setItem('language', 'en');
+      lang = 'fr';
+      localStorage.setItem('language', 'fr');
     }
     this.language = lang;
     this.currentLanguageSubject = new BehaviorSubject<string>(lang);

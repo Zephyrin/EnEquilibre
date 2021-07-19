@@ -1,21 +1,6 @@
 <div [formGroup]="parts"
      class="d-flex flex-row">
   <div class="flex-column full-width">
-    <div class="d-flex flex-row nowrap"
-         *ngIf="vt.language === 'en' || focused">
-      <input matInput
-             #enInput
-             class="mr-auto en"
-             *ngIf="!isArea"
-             formControlName="en">
-      <textarea matInput
-                #enInput
-                class="mr-auto en"
-                *ngIf="isArea"
-                formControlName="en"></textarea>
-      <label>en</label>
-    </div>
-    <mat-divider *ngIf="focused"></mat-divider>
     <!-- <mat-divider></mat-divider> -->
     <div class="d-flex flex-row"
          *ngIf="vt.language === 'fr' || focused">
@@ -31,6 +16,23 @@
                 formControlName="fr"></textarea>
       <label>fr</label>
     </div>
+    <mat-divider *ngIf="focused"></mat-divider>
+    <div class="d-flex flex-row nowrap"
+         *ngIf="vt.language === 'en' || focused">
+      <input matInput
+             #enInput
+             class="mr-auto en"
+             *ngIf="!isArea"
+             formControlName="en">
+      <textarea matInput
+                #enInput
+                class="mr-auto en"
+                *ngIf="isArea"
+                formControlName="en"></textarea>
+      <label>en</label>
+    </div>
+
+
   </div>
   <mat-icon class="align-self-center ml-2"
             [matTooltip]="vt.translate('missing.translation')"

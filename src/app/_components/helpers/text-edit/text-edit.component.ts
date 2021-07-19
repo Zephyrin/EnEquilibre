@@ -37,8 +37,8 @@ export class TextEditComponent implements OnInit {
       if (typeof (trans) === 'string') {
         this.oldValueIsString = true;
         trans = { en: [], fr: [] };
-        trans.en[this.field] = '';
-        trans.fr[this.field] = '';
+        trans.en[this.field] = this.vt.language === 'en' ? this.value[this.field] : '';
+        trans.fr[this.field] = this.vt.language === 'fr' ? this.value[this.field] : '';
         this.service.set(this.value, 'translations', trans);
       }
       const t = { en: '', fr: '' };
@@ -63,7 +63,12 @@ export class TextEditComponent implements OnInit {
     if (trans[this.vt.language]) {
       if (trans[this.vt.language][this.field]
         || trans[this.vt.language][this.field] === '') {
-        if (trans[this.vt.language][this.field] === '') { return this.vt.translate('no.' + this.field); }
+        if (trans[this.vt.language][this.field] === '') {
+          return this.vt.translate('no.' + this.field);
+        }
+        if (this.edit$ || this.service.edit) {
+          return trans[this.vt.language][this.field].substring(0, 25) + '...';
+        }
         return trans[this.vt.language][this.field];
       }
     }

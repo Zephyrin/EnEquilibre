@@ -136,10 +136,10 @@ export class TranslateComponent implements MatFormFieldControl<Translate>, OnDes
   private setFocus() {
     setTimeout(() => {
       const n = this.parts.value;
-      if (!n.en && this.enInput) {
-        this.enInput.nativeElement.focus();
-      } else if (!n.fr && this.frInput) {
+      if (!n.fr && this.frInput) {
         this.frInput.nativeElement.focus();
+      } else if (!n.en && this.enInput) {
+        this.enInput.nativeElement.focus();
       } else if (this.enInput) {
         this.enInput.nativeElement.focus();
       }

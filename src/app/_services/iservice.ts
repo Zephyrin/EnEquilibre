@@ -104,7 +104,8 @@ export abstract class CService<T> implements IService {
     protected authenticationService: AuthenticationService,
     public vt: ViewTranslateService,
     private createCpy: new (obj: any) => T,
-    private create: new () => T
+    private create: new () => T,
+    private name: string
   ) {
     this.edit = false;
     this.authenticationService.currentUser.subscribe(
@@ -291,13 +292,12 @@ export abstract class CService<T> implements IService {
   public createOrUpdateJSonLD(jsonLD: JSonLD): void {
     this.start();
     if (jsonLD.id === '') {
-      const name = this.constructor.name.replace('Service', '');
       const json = new JSonLD(jsonLD);
-      json.id = name;
+      json.id = this.name;
       this.httpJSonLD.create(json).subscribe(data => {
-        this.jsonLD.id = name;
+        this.jsonLD.id = this.name;
         this.jsonLD.json = jsonLD.json;
-        jsonLD.id = name;
+        jsonLD.id = this.name;
         this.end();
       }, error => {
         this.end(error);

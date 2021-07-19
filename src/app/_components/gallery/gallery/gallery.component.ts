@@ -26,6 +26,7 @@ export class GalleryComponent implements OnInit {
     this.route.fragment.subscribe((fragment: string) => {
       this.fragment = fragment;
     });
+    service.initJSonLD();
   }
 
   ngOnInit(): void {
