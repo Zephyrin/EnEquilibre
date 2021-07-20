@@ -22,7 +22,6 @@ import { ExifTransform } from '@app/_interfaces/exif-transform.interface';
 import { HammerStatic } from '@app/_helpers/utils/hammer.utils';
 import { MoveTypes } from '@app/_interfaces/move-start.interface';
 import imageCompression from 'browser-image-compression';
-import { emit } from 'process';
 
 @Component({
   selector: 'app-image-cropper',

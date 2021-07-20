@@ -14,10 +14,11 @@ import { FormErrors } from '@app/_helpers/form-error';
 })
 export class UserPaginationSearchService extends SortService<User> {
   /* Search */
-  public sortBy = SortByEnum.username;
+
 
   constructor(private service: UserHttpService) {
     super(service);
+    this.sortByP = SortByEnum.username;
   }
 
   canEditOrDelete(x: User): boolean {

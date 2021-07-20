@@ -277,10 +277,10 @@ export abstract class CService<T> implements IService {
 
   public initJSonLD(): void {
     if (this.jsonLD.id === '') {
-      this.httpJSonLD.get(this.constructor.name.replace('Service', '')).subscribe(data => {
+      this.httpJSonLD.get(this.name).subscribe(data => {
         this.jsonLD = new JSonLD(data);
         const script = document.createElement('script');
-        script.type = 'text/javascript';
+        script.type = 'application/ld+json';
         script.innerHTML = this.jsonLD.json;
         document.head.appendChild(script);
       }, error => {

@@ -21,7 +21,7 @@ export abstract class SortService<T> extends PaginationAndParamsService<T> {
     return this.sortByP;
   }
 
-  private sortByP: any;
+  protected sortByP: any;
 
   constructor(service: HttpService<T>) {
     super(service);

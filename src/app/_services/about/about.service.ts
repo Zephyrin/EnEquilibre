@@ -17,7 +17,7 @@ export class AboutService extends CService<About> {
     private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, j, as, v, About, About, 'About');
+    super(h, j, as, v, About, About, 'about');
   }
 
   public hasAboutOrComment(): boolean {

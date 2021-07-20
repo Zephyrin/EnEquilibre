@@ -3,9 +3,12 @@ import { Mediaobject } from '@app/_models';
 import { ImageDialogComponent } from '@app/_components/image-dialog/image-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewTranslateService } from '@app/_services/view-translate.service';
-import { Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IService } from '@app/_services/iservice';
 
+@Component({
+  template: ''
+})
 export class EditComponent {
   @Input() service: IService;
   @Input() child: any;

@@ -1,7 +1,6 @@
 import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
-import { FormGroup, FormBuilder } from '@angular/forms';
 import { RemoveDialogComponent } from './../helpers/remove-dialog/remove-dialog.component';
 import { Mediaobject } from './../../_models/mediaobject';
 import { ImageDialogComponent } from './../image-dialog/image-dialog.component';

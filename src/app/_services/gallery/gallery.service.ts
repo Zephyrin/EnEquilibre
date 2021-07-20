@@ -101,7 +101,7 @@ export class GalleryService extends CService<Gallery> {
     private j: JSonLDHttpService,
     private as: AuthenticationService,
     private v: ViewTranslateService) {
-    super(h, j, as, v, Gallery, Gallery, 'Gallery');
+    super(h, j, as, v, Gallery, Gallery, 'gallery');
   }
 
   public get(object: any, name: string): string {
